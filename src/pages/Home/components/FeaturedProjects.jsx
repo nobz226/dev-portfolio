@@ -88,7 +88,7 @@ export default function FeaturedProjects() {
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
                 <Badge
-                  key={t}
+                  key={`${project.number}-${t}`}
                   variant="outline"
                   className="font-mono text-sm border-black/10 text-[#555555] bg-transparent rounded-none group-hover:border-[#2dd4bf]/30 transition-colors duration-300"
                 >

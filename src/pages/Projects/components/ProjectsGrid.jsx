@@ -92,6 +92,7 @@ export default function ProjectsGrid() {
           <button
             key={tag}
             onClick={() => setActive(tag)}
+            aria-pressed={active === tag}
             className={`font-mono text-sm uppercase tracking-widest px-4 py-2 transition-all duration-300 border ${
               active === tag
                 ? 'border-[#2dd4bf] text-[#1e1e1e] bg-[#2dd4bf]'

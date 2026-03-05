@@ -97,7 +97,7 @@ export default function TechStack() {
             <ul className="flex flex-col gap-3">
               {group.items.map(({ label, Icon }, ii) => (
                 <motion.li
-                  key={label}
+                  key={`${group.category}-${label}`}
                   custom={ii}
                   initial="hidden"
                   whileInView="visible"

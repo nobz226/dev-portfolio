@@ -35,6 +35,8 @@ export default function ContactForm() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
+          role="alert"
+          aria-live="polite"
           className="flex flex-col items-center gap-4 py-12 text-center"
         >
           <span className="font-mono text-3xl text-[#2dd4bf]">✓</span>
@@ -56,6 +58,7 @@ export default function ContactForm() {
               </Label>
               <Input
                 required
+                name="name"
                 placeholder="Your name"
                 className="font-mono text-base bg-[#f9f7f7] border-black/10 text-[#1e1e1e] placeholder:text-black/25 rounded-none focus-visible:ring-[#2dd4bf] focus-visible:border-[#2dd4bf]"
               />
@@ -66,6 +69,7 @@ export default function ContactForm() {
               </Label>
               <Input
                 required
+                name="email"
                 type="email"
                 placeholder="your@email.com"
                 className="font-mono text-base bg-[#f9f7f7] border-black/10 text-[#1e1e1e] placeholder:text-black/25 rounded-none focus-visible:ring-[#2dd4bf] focus-visible:border-[#2dd4bf]"
@@ -78,6 +82,7 @@ export default function ContactForm() {
               Subject
             </Label>
             <Input
+              name="subject"
               placeholder="What's this about?"
               className="font-mono text-base bg-[#f9f7f7] border-black/10 text-[#1e1e1e] placeholder:text-black/25 rounded-none focus-visible:ring-[#2dd4bf] focus-visible:border-[#2dd4bf]"
             />
@@ -89,6 +94,7 @@ export default function ContactForm() {
             </Label>
             <Textarea
               required
+              name="message"
               rows={6}
               placeholder="Tell me about your project…"
               className="font-mono text-base bg-[#f9f7f7] border-black/10 text-[#1e1e1e] placeholder:text-black/25 rounded-none focus-visible:ring-[#2dd4bf] focus-visible:border-[#2dd4bf] resize-none"

@@ -7,6 +7,13 @@ const socialLinks = [
   { label: 'Email', href: 'mailto:hello@eduardrotaru.dev', icon: '@' },
 ]
 
+const navLinks = [
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
+  { path: '/projects', label: 'Projects' },
+  { path: '/contact', label: 'Contact' },
+]
+
 export default function Footer() {
   return (
     <footer className="border-t border-black/10 bg-[#eeece9] mt-auto">
@@ -22,14 +29,14 @@ export default function Footer() {
 
         {/* Nav */}
         <nav className="flex gap-6">
-          {['/', '/about', '/projects', '/contact'].map((path, i) => (
+          {navLinks.map(({ path, label }) => (
             <NavLink
               key={path}
               to={path}
               end={path === '/'}
               className="font-mono text-sm font-medium uppercase tracking-widest text-[#666666] hover:text-[#2dd4bf] transition-colors duration-300"
             >
-              {['Home', 'About', 'Projects', 'Contact'][i]}
+              {label}
             </NavLink>
           ))}
         </nav>
