@@ -44,7 +44,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.9 }}
         >
           <h1 className="font-sans font-bold text-5xl md:text-7xl lg:text-8xl text-[#1e1e1e] leading-none tracking-tight">
-            Eduard <span className="text-[#2dd4bf]">Rotaru</span>
+            System & <span className="text-[#2dd4bf]">Soul</span>
           </h1>
         </motion.div>
 
