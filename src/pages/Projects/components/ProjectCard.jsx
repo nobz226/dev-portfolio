@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { Badge } from '../../../components/ui/badge'
 import { Button } from '../../../components/ui/button'
 
@@ -22,8 +23,11 @@ export default function ProjectCard({ project, index }) {
         <span className="font-mono text-sm text-[#666666] ml-2">{project.slug}.jsx</span>
       </div>
 
-      {/* Screenshot */}
-      <div className="w-full h-48 bg-black/5 border-b border-black/5 overflow-hidden flex items-center justify-center">
+      {/* Screenshot — clickable link to detail page */}
+      <Link
+        to={`/projects/${project.slug}`}
+        className="w-full h-48 bg-black/5 border-b border-black/5 overflow-hidden flex items-center justify-center hover:bg-black/8 transition-colors duration-300"
+      >
         {project.screenshot ? (
           <img
             src={project.screenshot}
@@ -35,13 +39,17 @@ export default function ProjectCard({ project, index }) {
             <span className="font-mono text-sm text-[#999999]">screenshot</span>
           </div>
         )}
-      </div>
+      </Link>
 
       <div className="p-6 flex flex-col flex-1 gap-5">
         <div className="flex items-start justify-between gap-4">
-          <div>
+          <div className="flex-1">
             <span className="font-mono text-sm text-cyber-cyan block mb-1">{project.category}</span>
-            <h3 className="font-sans font-bold text-xl text-charcoal">{project.title}</h3>
+            <Link to={`/projects/${project.slug}`} className="block group/title">
+              <h3 className="font-sans font-bold text-xl text-charcoal group-hover/title:text-cyber-cyan transition-colors duration-300">
+                {project.title}
+              </h3>
+            </Link>
           </div>
           {project.featured && (
             <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 border border-cyber-cyan/40 text-cyber-cyan shrink-0">
@@ -67,28 +75,31 @@ export default function ProjectCard({ project, index }) {
         </div>
 
         <div className="flex gap-3 border-t border-black/5 pt-4">
+          <Link
+            to={`/projects/${project.slug}`}
+            className="flex-1 font-mono text-sm uppercase tracking-wider bg-cyber-cyan text-charcoal hover:bg-soft-blue rounded-none transition-colors duration-300 px-4 py-2 text-center font-semibold"
+          >
+            Details →
+          </Link>
           {project.liveUrl && (
-            <Button
-              asChild
-              size="sm"
-              className="font-mono text-sm uppercase tracking-wider bg-cyber-cyan text-charcoal hover:bg-soft-blue rounded-none flex-1 transition-colors duration-300"
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 font-mono text-sm uppercase tracking-wider border border-black/10 text-[#555555] hover:border-cyber-cyan hover:text-cyber-cyan rounded-none bg-transparent transition-all duration-300 px-4 py-2 text-center"
             >
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                Live ↗
-              </a>
-            </Button>
+              Live ↗
+            </a>
           )}
           {project.repoUrl && (
-            <Button
-              asChild
-              size="sm"
-              variant="outline"
-              className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-cyber-cyan hover:text-cyber-cyan rounded-none flex-1 bg-transparent transition-all duration-300"
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 font-mono text-sm uppercase tracking-wider border border-black/10 text-[#555555] hover:border-cyber-cyan hover:text-cyber-cyan rounded-none bg-transparent transition-all duration-300 px-4 py-2 text-center"
             >
-              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                Code ↗
-              </a>
-            </Button>
+              Code ↗
+            </a>
           )}
         </div>
       </div>
