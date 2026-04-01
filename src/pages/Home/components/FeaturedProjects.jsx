@@ -10,7 +10,7 @@ const featured = [
     slug: 'nobz-beats',
     title: 'Nobz Beats',
     description:
-      'A full-stack hip hop music streaming platform with integrated audio player, dynamic visualizer, real-time database via Convex, responsive design, and admin dashboard for track/album management.',
+      'A full-stack music streaming platform with integrated audio player, dynamic visualizer, real-time database via Convex, responsive design, and admin dashboard for track/album management.',
     tech: ['React', 'Vite', 'Convex', 'Tailwind CSS'],
     href: '/projects',
   },
