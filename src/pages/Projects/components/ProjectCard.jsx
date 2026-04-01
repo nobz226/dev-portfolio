@@ -22,6 +22,21 @@ export default function ProjectCard({ project, index }) {
         <span className="font-mono text-sm text-[#666666] ml-2">{project.slug}.jsx</span>
       </div>
 
+      {/* Screenshot */}
+      <div className="w-full h-48 bg-black/5 border-b border-black/5 overflow-hidden flex items-center justify-center">
+        {project.screenshot ? (
+          <img
+            src={project.screenshot}
+            alt={`${project.title} screenshot`}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div className="text-center">
+            <span className="font-mono text-sm text-[#999999]">screenshot</span>
+          </div>
+        )}
+      </div>
+
       <div className="p-6 flex flex-col flex-1 gap-5">
         <div className="flex items-start justify-between gap-4">
           <div>
