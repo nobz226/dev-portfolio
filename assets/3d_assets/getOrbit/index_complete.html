@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_complete.css">
+    <title>Model-viewer getOrbit Demo</title>
+</head>
+
+<body>
+    <div class="container">
+        <model-viewer id="jordan1"
+        src="air_jordan_1.glb"
+        alt="black and white jordan1"
+        camera-orbit='82rad 1.35rad 80m'
+        camera-controls>
+        </model-viewer>
+    </div>
+    <button id="orbitBtn" onclick="getOrbit()">Get Orbit</button>
+    <button id="leftBtn" onclick="setOrbit('-1.3rad 1.2rad 80m')">left</button>
+    <button id="rightBtn" onclick="setOrbit('1.5rad 1.3rad 80m')">right</button>
+    <button id="soleBtn" onclick="setOrbit('89rad 2.5rad 80m')">bottom</button>
+    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+    <script src="script_complete.js"></script>
+</body>
+</html>
