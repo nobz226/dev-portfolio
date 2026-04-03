@@ -7,21 +7,21 @@ const values = [
     title: 'The Art of Resilience',
     body: "One of my oldest and biggest passions is skateboarding. In that world, a trick isn't finished until it's landed cleanly. I apply this to web development by obsessing over the final user experience — viewing every bug as a necessary step toward perfect execution.",
     accent: '#2dd4bf',
-    modelSrc: '/assets/3d_assets/skateboard_-_used.glb',
+    modelSrc: '/3d_assets/skateboard_-_used.glb',
   },
   {
     index: '02',
     title: 'Uncompromising Detail',
     body: "Quality isn't an afterthought; it's the blueprint. With 9 years of experience in technical testing, I see the 'invisible' details — page speed, security, and responsive breaks — that others miss. My work is engineered to be unbreakable.",
     accent: '#22b8c7',
-    modelSrc: '/assets/3d_assets/macbook_air_notebook_pbr.glb',
+    modelSrc: '/3d_assets/macbook_air_notebook_pbr.glb',
   },
   {
     index: '03',
     title: 'Intentional Craftsmanship',
     body: "I love making music. Much like producing a track, great web development requires a balance of structure and soul. I build scaffolded code that is organized and scalable, ensuring the backend logic supports a beautiful, rhythmic front-end experience.",
     accent: '#2dd4bf',
-    modelSrc: '/assets/3d_assets/midi_keyboard__piano__instrument.glb',
+    modelSrc: '/3d_assets/midi_keyboard__piano__instrument.glb',
   },
 ]
 
