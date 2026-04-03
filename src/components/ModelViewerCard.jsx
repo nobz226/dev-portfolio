@@ -5,8 +5,7 @@ import './model-viewer.css'
 
 /**
  * ModelViewerCard — Interactive 3D model viewer card integrated into About page
- * Features: auto-rotate, orbit controls, camera presets, interactive hotspots, responsive design
- * Assignment Requirements: ✅ Auto-rotate + Orbit controls, ✅ Hotspots, ✅ Camera presets (bonus)
+ * Features: auto-rotate, draggable orbit controls, interactive hotspots, responsive design
  */
 export default function ModelViewerCard({
   modelSrc,
@@ -17,16 +16,7 @@ export default function ModelViewerCard({
   hotspots = [],
 }) {
   const modelViewerRef = useRef(null)
-  const [selectedCamera, setSelectedCamera] = useState('default')
   const [hoveredHotspot, setHoveredHotspot] = useState(null)
-
-  const cameraPresets = {
-    default: { orbit: '0deg 75deg 105%', zoom: 1 },
-    front: { orbit: '0deg 0deg 105%', zoom: 1 },
-    side: { orbit: '90deg 0deg 105%', zoom: 1 },
-    top: { orbit: '0deg 90deg 105%', zoom: 1 },
-    isometric: { orbit: '45deg 60deg 120%', zoom: 1 },
-  }
 
   useEffect(() => {
     const viewer = modelViewerRef.current
@@ -48,7 +38,7 @@ export default function ModelViewerCard({
 
     // Setup hotspot interactions
     const setupHotspots = () => {
-      const hotspotButtons = viewer.querySelectorAll('button[slot^="hotspot-"]')
+      const hotspotButtons = viewer.querySelectorAll('div[slot^="hotspot-"]')
       hotspotButtons.forEach((button, idx) => {
         button.addEventListener('click', (e) => {
           e.stopPropagation()
@@ -70,17 +60,6 @@ export default function ModelViewerCard({
       clearTimeout(interactionTimeout)
     }
   }, [hoveredHotspot])
-
-  const handleCameraSwitch = (preset) => {
-    setSelectedCamera(preset)
-    const camera = cameraPresets[preset]
-    const viewer = modelViewerRef.current
-    if (viewer) {
-      viewer.cameraOrbit = camera.orbit
-      // Smooth transition
-      viewer.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
-    }
-  }
 
   return (
     <motion.div
@@ -114,30 +93,9 @@ export default function ModelViewerCard({
             </p>
           </div>
 
-          {/* Camera Control Buttons */}
-          <div className="mt-8 flex flex-wrap gap-2">
-            {Object.keys(cameraPresets).map((preset) => (
-              <motion.button
-                key={preset}
-                onClick={() => handleCameraSwitch(preset)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`font-mono text-xs uppercase tracking-widest px-3 py-2 rounded-sm border transition-all duration-300 ${
-                  selectedCamera === preset
-                    ? 'bg-[#2dd4bf] border-[#2dd4bf] text-[#1e1e1e] shadow-md'
-                    : 'border-black/10 text-[#555555] hover:border-[#2dd4bf] hover:text-[#1e1e1e] hover:bg-white'
-                }`}
-                title={`View ${preset} angle`}
-              >
-                {preset === 'default' ? '◎' : preset === 'front' ? '■' : preset === 'side' ? '⊟' : preset === 'top' ? '⊞' : '⬢'}
-                <span className="ml-1">{preset}</span>
-              </motion.button>
-            ))}
-          </div>
-
-          {/* Info text */}
-          <div className="mt-6 text-xs text-[#999999] font-mono">
-            <p>💡 Drag to rotate • Use buttons for preset views</p>
+          {/* Interaction hint */}
+          <div className="mt-8 text-xs text-[#999999] font-mono">
+            <p>💡 Drag to rotate • Tap hotspots for info</p>
           </div>
         </div>
 
