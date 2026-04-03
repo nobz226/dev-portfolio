@@ -1,22 +1,19 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import '@google/model-viewer'
 import './model-viewer.css'
 
 /**
  * ModelViewerCard — Interactive 3D model viewer card integrated into About page
- * Features: auto-rotate, draggable orbit controls, interactive hotspots, responsive design
+ * Features: auto-rotate, draggable orbit controls, responsive design
  */
 export default function ModelViewerCard({
   modelSrc,
   title,
   index,
   body,
-  accentColor,
-  hotspots = [],
 }) {
   const modelViewerRef = useRef(null)
-  const [hoveredHotspot, setHoveredHotspot] = useState(null)
 
   useEffect(() => {
     const viewer = modelViewerRef.current
@@ -36,30 +33,12 @@ export default function ModelViewerCard({
     viewer.addEventListener('mousedown', handleInteraction)
     viewer.addEventListener('touchstart', handleInteraction)
 
-    // Setup hotspot interactions
-    const setupHotspots = () => {
-      const hotspotButtons = viewer.querySelectorAll('div[slot^="hotspot-"]')
-      hotspotButtons.forEach((button, idx) => {
-        button.addEventListener('click', (e) => {
-          e.stopPropagation()
-          setHoveredHotspot(hoveredHotspot === idx ? null : idx)
-        })
-      })
-    }
-
-    // Wait for model to load before setting up hotspots
-    if (viewer.modelIsVisible) {
-      setupHotspots()
-    } else {
-      viewer.addEventListener('load', setupHotspots)
-    }
-
     return () => {
       viewer.removeEventListener('mousedown', handleInteraction)
       viewer.removeEventListener('touchstart', handleInteraction)
       clearTimeout(interactionTimeout)
     }
-  }, [hoveredHotspot])
+  }, [])
 
   return (
     <motion.div
@@ -92,11 +71,6 @@ export default function ModelViewerCard({
               {body}
             </p>
           </div>
-
-          {/* Interaction hint */}
-          <div className="mt-8 text-xs text-[#999999] font-mono">
-            <p>💡 Drag to rotate • Tap hotspots for info</p>
-          </div>
         </div>
 
         {/* Right Column: 3D Model Viewer */}
@@ -126,71 +100,6 @@ export default function ModelViewerCard({
               minHeight: '300px',
             }}
           >
-            {/* Interactive Hotspots */}
-            {hotspots.map((hotspot, idx) => (
-              <div
-                key={idx}
-                slot={`hotspot-${idx}`}
-                data-position={hotspot.position}
-                data-normal={hotspot.normal}
-                className="hotspot group/hotspot"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setHoveredHotspot(hoveredHotspot === idx ? null : idx)
-                }}
-                onMouseEnter={() => setHoveredHotspot(idx)}
-                onMouseLeave={() => setHoveredHotspot(null)}
-                style={{
-                  cursor: 'pointer',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                }}
-              >
-                {/* Hotspot visual indicator */}
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  background: hoveredHotspot === idx ? 'rgba(45, 212, 191, 0.95)' : 'rgba(45, 212, 191, 0.7)',
-                  border: '2px solid #2dd4bf',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '18px',
-                  fontWeight: 'bold',
-                  color: '#1e1e1e',
-                  boxShadow: hoveredHotspot === idx ? '0 8px 24px rgba(45, 212, 191, 0.5)' : '0 2px 8px rgba(45, 212, 191, 0.3)',
-                  transform: hoveredHotspot === idx ? 'scale(1.2)' : 'scale(1)',
-                  fontFamily: '"Courier Prime", monospace',
-                }}>
-                  ◆
-                </div>
-
-                {/* Label tooltip */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '110%',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  background: 'rgba(30, 30, 30, 0.95)',
-                  color: '#2dd4bf',
-                  padding: '6px 10px',
-                  borderRadius: '3px',
-                  fontSize: '11px',
-                  fontWeight: '600',
-                  whiteSpace: 'nowrap',
-                  opacity: hoveredHotspot === idx ? 1 : 0,
-                  pointerEvents: 'none',
-                  transition: 'opacity 0.2s ease',
-                  border: '1px solid rgba(45, 212, 191, 0.3)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-                  letterSpacing: '0.5px',
-                  zIndex: 10,
-                }}>
-                  {hotspot.label}
-                </div>
-              </div>
-            ))}
-
             {/* Fallback for loading state */}
             <div slot="progress-bar" style={{
               height: '2px',
