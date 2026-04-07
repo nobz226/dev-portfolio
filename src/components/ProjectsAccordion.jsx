@@ -47,6 +47,15 @@ export default function ProjectsAccordion({ projects }) {
               className={`accordion-slide ${activeIndex === index ? 'active' : ''}`}
               onClick={() => handleSlideClick(index)}
             >
+              {project.screenshot && activeIndex !== index && (
+                <img
+                  src={project.screenshot}
+                  alt={`${project.title} preview`}
+                  className="collapsed-screenshot"
+                />
+              )}
+              <div className="collapsed-title">{project.title}</div>
+
               <div className="slide-content">
                 <div className="slide-number">{project.number}</div>
 

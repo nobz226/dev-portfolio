@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../../components/ui/button'
 import { Badge } from '../../components/ui/badge'
 import SectionLabel from '../../components/SectionLabel'
@@ -10,8 +11,18 @@ import { allProjects } from '../Projects/components/ProjectsGrid'
 export default function ProjectDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const project = allProjects.find((p) => p.slug === slug)
+
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsModalOpen(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   if (!project) {
     return (
@@ -96,8 +107,17 @@ export default function ProjectDetail() {
             </div>
 
             {/* Screenshot Placeholder */}
-            <div className="w-full h-96 bg-black/5 border border-black/5 rounded-none mb-8 flex items-center justify-center">
-              <span className="font-mono text-base text-[#999999]">screenshot</span>
+            <div className="w-full bg-black/5 border border-black/5 rounded-none mb-8 flex items-center justify-center overflow-hidden">
+              {project.screenshot ? (
+                <img
+                  src={project.screenshot}
+                  alt={`${project.title} screenshot`}
+                  className="w-full h-auto cursor-pointer hover:opacity-80 transition-opacity"
+                  onClick={() => setIsModalOpen(true)}
+                />
+              ) : (
+                <span className="font-mono text-base text-[#999999] py-20">screenshot</span>
+              )}
             </div>
 
             {/* Tech Stack */}
@@ -170,6 +190,39 @@ export default function ProjectDetail() {
           </motion.div>
         </div>
       </section>
+
+      {/* Screenshot Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsModalOpen(false)}
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-5xl w-full max-h-screen"
+            >
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute -top-12 right-0 text-white font-mono text-sm uppercase tracking-widest hover:text-[#2dd4bf] transition-colors"
+              >
+                Close (ESC)
+              </button>
+              <img
+                src={project.screenshot}
+                alt={`${project.title} screenshot fullscreen`}
+                className="w-full h-auto"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   )
 }

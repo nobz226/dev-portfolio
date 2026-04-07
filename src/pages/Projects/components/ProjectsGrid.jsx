@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import mdMuralsScreenshot from '../../../assets/mdmurals.png'
+import nobzBeatsScreenshot from '../../../assets/nobzbeats.png'
+import skateshopScreenshot from '../../../assets/skateshop.gif'
 import ProjectCard from './ProjectCard'
 
 export const allProjects = [
@@ -11,6 +14,7 @@ export const allProjects = [
     tech: ['React', 'Vite', 'Convex', 'Tailwind CSS'],
     liveUrl: 'https://nobz-beats-react.vercel.app/latest',
     repoUrl: 'https://github.com/nobz226/nobz-beats',
+    screenshot: nobzBeatsScreenshot,
     featured: true,
     tags: ['Full-Stack', 'Creative'],
   },
@@ -23,6 +27,7 @@ export const allProjects = [
     tech: ['React', 'Vite', 'GSAP', 'Convex'],
     liveUrl: 'https://md-murals.vercel.app',
     repoUrl: 'https://github.com/nobz226/md-murals',
+    screenshot: mdMuralsScreenshot,
     featured: true,
     tags: ['Frontend', 'Creative'],
   },
@@ -35,6 +40,7 @@ export const allProjects = [
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Convex', 'Clerk', 'Stripe'],
     liveUrl: null,
     repoUrl: 'https://github.com/nobz226/ollie-north-skateshop',
+    screenshot: skateshopScreenshot,
     featured: true,
     tags: ['Full-Stack', 'E-Commerce'],
   },

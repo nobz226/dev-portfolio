@@ -24,19 +24,19 @@ export default function ProjectCard({ project, index }) {
       </div>
 
       {/* Screenshot */}
-      <div className="w-full h-40 bg-black/5 border-b border-black/5 overflow-hidden flex items-center justify-center">
+      <Link to={`/projects/${project.slug}`} className="block w-full h-64 bg-black/5 border-b border-black/5 overflow-hidden flex items-center justify-center">
         {project.screenshot ? (
           <img
             src={project.screenshot}
             alt={`${project.title} screenshot`}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover object-top-left group-hover:scale-105 transition-transform duration-300 cursor-pointer"
           />
         ) : (
           <div className="text-center">
             <span className="font-mono text-sm text-[#999999]">screenshot</span>
           </div>
         )}
-      </div>
+      </Link>
 
       <div className="p-5 flex flex-col flex-1 gap-3">
         <div className="flex items-start justify-between gap-4">

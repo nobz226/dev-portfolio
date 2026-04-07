@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom'
 import { Button } from '../../../components/ui/button'
 import ProjectsAccordion from '../../../components/ProjectsAccordion'
 import SectionWrapper from '../../../components/SectionWrapper'
+import mdMuralsScreenshot from '../../../assets/mdmurals.png'
+import nobzBeatsScreenshot from '../../../assets/nobzbeats.png'
+import skateshopScreenshot from '../../../assets/skateshop.png'
 
 const featured = [
   {
@@ -13,6 +16,7 @@ const featured = [
     tech: ['React', 'Vite', 'Convex', 'Tailwind CSS'],
     liveUrl: 'https://nobz-beats-react.vercel.app/latest',
     repoUrl: 'https://github.com/nobz226/nobz-beats',
+    screenshot: nobzBeatsScreenshot,
   },
   {
     number: '02',
@@ -23,6 +27,7 @@ const featured = [
     tech: ['React', 'Vite', 'GSAP', 'Convex'],
     liveUrl: 'https://md-murals.vercel.app',
     repoUrl: 'https://github.com/nobz226/md-murals',
+    screenshot: mdMuralsScreenshot,
   },
   {
     number: '03',
@@ -33,6 +38,7 @@ const featured = [
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Convex'],
     liveUrl: null,
     repoUrl: 'https://github.com/nobz226/ollie-north-skateshop',
+    screenshot: skateshopScreenshot,
   },
 ]
 
