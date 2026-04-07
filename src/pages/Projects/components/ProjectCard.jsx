@@ -87,7 +87,7 @@ export default function ProjectCard({ project, index }) {
             size="sm"
             variant="outline"
             disabled={!project.repoUrl}
-            className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-cyber-cyan hover:text-cyber-cyan rounded-none flex-1 bg-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#333333] hover:border-cyber-cyan hover:text-cyber-cyan hover:bg-black/5 rounded-none flex-1 bg-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {project.repoUrl ? (
               <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
@@ -101,7 +101,7 @@ export default function ProjectCard({ project, index }) {
             asChild
             size="sm"
             variant="outline"
-            className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-cyber-cyan hover:text-cyber-cyan rounded-none flex-1 bg-transparent transition-all duration-300"
+            className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#333333] hover:border-cyber-cyan hover:text-cyber-cyan hover:bg-black/5 rounded-none flex-1 bg-transparent transition-all duration-300"
           >
             <Link to={`/projects/${project.slug}`}>
               Details ↗

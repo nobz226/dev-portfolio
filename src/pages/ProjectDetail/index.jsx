@@ -172,7 +172,7 @@ export default function ProjectDetail() {
                 <Button
                   asChild
                   variant="outline"
-                  className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] rounded-none px-6 py-5 bg-transparent transition-all duration-300"
+                  className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-black/5 rounded-none px-6 py-5 bg-transparent transition-all duration-300"
                 >
                   <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
                     View Code ↗
@@ -182,7 +182,7 @@ export default function ProjectDetail() {
               <Button
                 onClick={() => navigate('/projects')}
                 variant="outline"
-                className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] rounded-none px-6 py-5 bg-transparent transition-all duration-300"
+                className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-black/5 rounded-none px-6 py-5 bg-transparent transition-all duration-300"
               >
                 Back to Projects
               </Button>
