@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { Badge } from '../../../components/ui/badge'
 import { Button } from '../../../components/ui/button'
 
@@ -11,7 +12,7 @@ export default function ProjectCard({ project, index }) {
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.55, delay: (index % 3) * 0.1 }}
+      transition={{ duration: 0.55, delay: (index % 2) * 0.1 }}
       className="bg-snow group flex flex-col hover:bg-[#eeece9] transition-colors duration-300 border border-black/5 hover:border-cyber-cyan/30"
     >
       {/* Top bar */}
@@ -23,7 +24,7 @@ export default function ProjectCard({ project, index }) {
       </div>
 
       {/* Screenshot */}
-      <div className="w-full h-48 bg-black/5 border-b border-black/5 overflow-hidden flex items-center justify-center">
+      <div className="w-full h-40 bg-black/5 border-b border-black/5 overflow-hidden flex items-center justify-center">
         {project.screenshot ? (
           <img
             src={project.screenshot}
@@ -37,11 +38,11 @@ export default function ProjectCard({ project, index }) {
         )}
       </div>
 
-      <div className="p-6 flex flex-col flex-1 gap-5">
+      <div className="p-5 flex flex-col flex-1 gap-3">
         <div className="flex items-start justify-between gap-4">
           <div>
             <span className="font-mono text-sm text-cyber-cyan block mb-1">{project.category}</span>
-            <h3 className="font-sans font-bold text-xl text-charcoal">{project.title}</h3>
+            <h3 className="font-sans font-bold text-lg text-charcoal">{project.title}</h3>
           </div>
           {project.featured && (
             <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 border border-cyber-cyan/40 text-cyber-cyan shrink-0">
@@ -50,7 +51,7 @@ export default function ProjectCard({ project, index }) {
           )}
         </div>
 
-        <p className="font-mono text-base font-medium text-[#555555] leading-relaxed flex-1">
+        <p className="font-mono text-sm font-medium text-[#555555] leading-relaxed">
           {project.description}
         </p>
 
@@ -66,30 +67,46 @@ export default function ProjectCard({ project, index }) {
           ))}
         </div>
 
-        <div className="flex gap-3 border-t border-black/5 pt-4">
-          {project.liveUrl && (
-            <Button
-              asChild
-              size="sm"
-              className="font-mono text-sm uppercase tracking-wider bg-cyber-cyan text-charcoal hover:bg-soft-blue rounded-none flex-1 transition-colors duration-300"
-            >
+        <div className="flex gap-2 border-t border-black/5 pt-3">
+          <Button
+            asChild={!!project.liveUrl}
+            size="sm"
+            disabled={!project.liveUrl}
+            className="font-mono text-sm uppercase tracking-wider bg-cyber-cyan text-charcoal hover:bg-soft-blue rounded-none flex-1 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {project.liveUrl ? (
               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                 Live ↗
               </a>
-            </Button>
-          )}
-          {project.repoUrl && (
-            <Button
-              asChild
-              size="sm"
-              variant="outline"
-              className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-cyber-cyan hover:text-cyber-cyan rounded-none flex-1 bg-transparent transition-all duration-300"
-            >
+            ) : (
+              <span>Live ↗</span>
+            )}
+          </Button>
+          <Button
+            asChild={!!project.repoUrl}
+            size="sm"
+            variant="outline"
+            disabled={!project.repoUrl}
+            className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-cyber-cyan hover:text-cyber-cyan rounded-none flex-1 bg-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {project.repoUrl ? (
               <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
                 Code ↗
               </a>
-            </Button>
-          )}
+            ) : (
+              <span>Code ↗</span>
+            )}
+          </Button>
+          <Button
+            asChild
+            size="sm"
+            variant="outline"
+            className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-cyber-cyan hover:text-cyber-cyan rounded-none flex-1 bg-transparent transition-all duration-300"
+          >
+            <Link to={`/projects/${project.slug}`}>
+              Details ↗
+            </Link>
+          </Button>
         </div>
       </div>
     </motion.article>

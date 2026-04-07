@@ -9,7 +9,7 @@ export const allProjects = [
     description:
       'A full-stack music streaming and content management platform featuring integrated audio player with dynamic visualizer, real-time database, responsive design, and admin dashboard for managing tracks and albums.',
     tech: ['React', 'Vite', 'Convex', 'Tailwind CSS'],
-    liveUrl: null,
+    liveUrl: 'https://nobz-beats-react.vercel.app/latest',
     repoUrl: 'https://github.com/nobz226/nobz-beats',
     featured: true,
     tags: ['Full-Stack', 'Creative'],
@@ -72,7 +72,7 @@ export default function ProjectsGrid() {
             className={`font-mono text-sm uppercase tracking-widest px-4 py-2 transition-all duration-300 border ${
               active === tag
                 ? 'border-[#2dd4bf] text-[#1e1e1e] bg-[#2dd4bf]'
-                : 'border-black/10 text-[#555555] bg-transparent hover:border-[#2dd4bf]/50 hover:text-[#1e1e1e]'
+                : 'border-black/10 text-[#555555] bg-transparent hover:border-[#2dd4bf]/50 hover:text-[#2dd4bf]'
             }`}
           >
             {tag}
@@ -81,7 +81,7 @@ export default function ProjectsGrid() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-black/5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-px bg-black/5">
         {filtered.map((project, i) => (
           <ProjectCard key={project.slug} project={project} index={i} />
         ))}

@@ -161,7 +161,7 @@ export default function HeroSection() {
               <Button
                 asChild
                 variant="outline"
-                className="font-mono uppercase tracking-widest text-sm border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] rounded-none px-8 py-5 bg-transparent transition-all duration-300"
+                className="font-mono uppercase tracking-widest text-sm border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-8 py-5 bg-transparent transition-all duration-300"
               >
                 <Link to="/contact">Get In Touch</Link>
               </Button>

@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
 import {
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiFramer, SiThreedotjs,
-  SiNodedotjs, SiExpress, SiPostgresql, SiMongodb, SiGraphql,
-  SiVite, SiGit, SiDocker, SiVercel, SiFigma, SiSanity,
+  SiNodedotjs, SiGraphql,
+  SiVite, SiGit, SiDocker, SiVercel, SiFigma,
   SiGithub, SiAnthropic, SiOpenai,
+  SiMysql, SiPostman,
 } from 'react-icons/si'
-import { TbApi, TbBrain } from 'react-icons/tb'
+import { TbApi, TbBrain, TbDatabase } from 'react-icons/tb'
 import { VscTerminalCmd } from 'react-icons/vsc'
 import SectionWrapper from '../../../components/SectionWrapper'
 
@@ -25,9 +26,8 @@ const stack = [
     category: 'Backend',
     items: [
       { label: 'Node.js',    Icon: SiNodedotjs },
-      { label: 'Express',    Icon: SiExpress },
-      { label: 'PostgreSQL', Icon: SiPostgresql },
-      { label: 'MongoDB',    Icon: SiMongodb },
+      { label: 'Convex',     Icon: TbDatabase },
+      { label: 'MySQL',      Icon: SiMysql },
       { label: 'REST APIs',  Icon: TbApi },
       { label: 'GraphQL',    Icon: SiGraphql },
     ],
@@ -35,12 +35,13 @@ const stack = [
   {
     category: 'Tooling',
     items: [
-      { label: 'Vite',       Icon: SiVite },
-      { label: 'Git',        Icon: SiGit },
-      { label: 'Docker',     Icon: SiDocker },
-      { label: 'Vercel',     Icon: SiVercel },
-      { label: 'Figma',      Icon: SiFigma },
-      { label: 'Sanity CMS', Icon: SiSanity },
+      { label: 'Vite',     Icon: SiVite },
+      { label: 'Git',      Icon: SiGit },
+      { label: 'Docker',   Icon: SiDocker },
+      { label: 'Vercel',   Icon: SiVercel },
+      { label: 'Figma',    Icon: SiFigma },
+      { label: 'Postman',  Icon: SiPostman },
+      { label: 'SoapUI',   Icon: TbApi },
     ],
   },
   {
@@ -89,12 +90,12 @@ export default function TechStack() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={cardVariants}
-            className="bg-black/10 p-6"
+            className="bg-black/10 p-8"
           >
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#1e1e1e]/60 mb-5">
+            <p className="font-mono text-sm uppercase tracking-[0.25em] text-[#1e1e1e]/60 mb-8">
               {group.category}
             </p>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-4">
               {group.items.map(({ label, Icon }, ii) => (
                 <motion.li
                   key={`${group.category}-${label}`}
@@ -103,13 +104,13 @@ export default function TechStack() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={itemVariants}
-                  className="flex items-center gap-3 group cursor-default"
+                  className="flex items-center gap-4 group cursor-default"
                 >
                   <Icon
                     className="text-[#1e1e1e]/40 group-hover:text-[#1e1e1e] transition-colors duration-300 shrink-0"
-                    size={16}
+                    size={24}
                   />
-                  <span className="font-mono text-sm text-[#1e1e1e]/70 group-hover:text-[#1e1e1e] transition-colors duration-300">
+                  <span className="font-mono text-base text-[#1e1e1e]/70 group-hover:text-[#1e1e1e] transition-colors duration-300">
                     {label}
                   </span>
                 </motion.li>
