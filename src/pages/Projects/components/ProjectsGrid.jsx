@@ -38,7 +38,7 @@ export const allProjects = [
     description:
       'A full-featured skateboard e-commerce platform with 150+ products, advanced filtering, real-time cart management, user authentication via Clerk, Stripe payment integration, wishlist functionality, and admin dashboard. Built with Next.js and Convex.',
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Convex', 'Clerk', 'Stripe'],
-    liveUrl: null,
+    liveUrl: 'https://ollie-north-skateshop.vercel.app/',
     repoUrl: 'https://github.com/nobz226/ollie-north-skateshop',
     screenshot: skateshopScreenshot,
     featured: true,

@@ -36,7 +36,7 @@ const featured = [
     description:
       'A full-featured skateboard e-commerce platform with 150+ products, advanced filtering, real-time cart management, Clerk authentication, Stripe payments, and admin dashboard.',
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Convex'],
-    liveUrl: null,
+    liveUrl: 'https://ollie-north-skateshop.vercel.app/',
     repoUrl: 'https://github.com/nobz226/ollie-north-skateshop',
     screenshot: skateshopScreenshot,
   },
