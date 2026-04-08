@@ -149,18 +149,18 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.5 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-nowrap gap-3 md:gap-4 flex-wrap md:flex-nowrap"
             >
               <Button
                 asChild
-                className="font-mono uppercase tracking-widest text-sm bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none px-8 py-5 transition-all duration-300"
+                className="font-mono uppercase tracking-widest text-xs md:text-sm bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none px-4 md:px-8 py-3 md:py-5 transition-all duration-300"
               >
                 <Link to="/projects">View Work</Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
-                className="font-mono uppercase tracking-widest text-sm border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-8 py-5 bg-transparent transition-all duration-300"
+                className="font-mono uppercase tracking-widest text-xs md:text-sm border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-4 md:px-8 py-3 md:py-5 bg-transparent transition-all duration-300"
               >
                 <Link to="/contact">Get In Touch</Link>
               </Button>
