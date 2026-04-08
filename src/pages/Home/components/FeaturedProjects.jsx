@@ -42,20 +42,22 @@ const featured = [
 export default function FeaturedProjects() {
   return (
     <SectionWrapper id="featured" label="// selected work">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-        <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] leading-tight">
-          Featured <span className="text-[#2dd4bf]">Projects</span>
-        </h2>
-        <Button
-          asChild
-          variant="outline"
-          className="font-mono uppercase tracking-widest text-sm border-white/20 text-[#aaaaaa] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-6 py-4 bg-transparent w-fit transition-all duration-300"
-        >
-          <Link to="/projects">View All →</Link>
-        </Button>
-      </div>
+      <div className="pb-[600px] md:pb-0">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] leading-tight">
+            Featured <span className="text-[#2dd4bf]">Projects</span>
+          </h2>
+          <Button
+            asChild
+            variant="outline"
+            className="font-mono uppercase tracking-widest text-sm border-white/20 text-[#aaaaaa] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-6 py-4 bg-transparent w-fit transition-all duration-300"
+          >
+            <Link to="/projects">View All →</Link>
+          </Button>
+        </div>
 
-      <ProjectsAccordion projects={featured} />
+        <ProjectsAccordion projects={featured} />
+      </div>
     </SectionWrapper>
   )
 }

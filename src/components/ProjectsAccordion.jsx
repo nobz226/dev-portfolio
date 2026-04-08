@@ -42,10 +42,10 @@ export default function ProjectsAccordion({ projects }) {
   }, [activeIndex])
 
   return (
-    <div className="flex items-center gap-5 w-full">
+    <div className="flex items-center md:gap-5 gap-0 w-full">
       {/* Previous button */}
       <button
-        className="w-10 h-10 md:w-[50px] md:h-[50px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/20 hover:border-cyan-500/60 backdrop-blur-[10px] flex-shrink-0 flex items-center justify-center font-mono font-semibold text-xl md:text-2xl"
+        className="hidden md:flex w-10 h-10 md:w-[50px] md:h-[50px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/20 hover:border-cyan-500/60 backdrop-blur-[10px] flex-shrink-0 items-center justify-center font-mono font-semibold text-xl md:text-2xl"
         onClick={handlePrevious}
         aria-label="Previous project"
       >
@@ -53,7 +53,7 @@ export default function ProjectsAccordion({ projects }) {
       </button>
 
       {/* Accordion Container */}
-      <div className="flex-1 relative overflow-hidden min-h-[500px] md:min-h-[500px]">
+      <div className="flex-1 relative md:overflow-hidden overflow-visible md:min-h-[500px]">
         <div className="flex md:flex-row flex-col h-[500px] md:h-[500px] md:items-stretch relative gap-0">
           {projects.map((project, index) => {
             const isActive = activeIndex === index
@@ -84,24 +84,24 @@ export default function ProjectsAccordion({ projects }) {
                 {/* Content area */}
                 <div className="slide-content">
                   {/* Slide number */}
-                  <div className={`text-5xl md:text-[64px] font-light text-[#2dd4bf] leading-none font-mono z-[3] mb-0 md:mb-0 ${isActive ? '' : 'md:absolute md:bottom-[30px] md:left-[30px]'}`}>
+                  <div className={`text-5xl md:text-[64px] font-light text-[#2dd4bf] leading-none font-mono z-[3] mb-0 md:mb-0 ${isActive ? '' : 'md:absolute md:bottom-[30px] md:left-[30px] hidden md:block'}`}>
                     {project.number}
                   </div>
 
                   {/* Project info */}
-                  <div className={`mb-5 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0' : 'md:opacity-0 md:translate-y-[30px]'}`} style={{ transitionDelay: isActive ? '300ms' : '0ms' }}>
+                  <div className={`mb-5 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px] md:opacity-0 md:translate-y-[30px]'}`} style={{ transitionDelay: isActive ? '300ms' : '0ms' }}>
                     <div className="text-xs md:text-sm font-semibold text-white/80 mb-2 font-mono uppercase tracking-wider">{project.title}</div>
                     <h3 className="text-2xl md:text-[28px] font-bold mb-2 text-[#2dd4bf] font-sans">{project.title}</h3>
                     <p className="text-sm md:text-base text-white/80 font-mono leading-relaxed">{project.description}</p>
                   </div>
 
                   {/* Tech badges */}
-                  <div className={`flex flex-wrap gap-2 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0' : 'md:opacity-0 md:translate-y-[30px]'}`} style={{ transitionDelay: isActive ? '500ms' : '0ms' }}>
+                  <div className={`flex flex-wrap gap-2 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px] md:opacity-0 md:translate-y-[30px]'}`} style={{ transitionDelay: isActive ? '500ms' : '0ms' }}>
                     {project.tech.map((t, i) => (
                       <Badge
                         key={`${project.slug}-${t}`}
                         variant="outline"
-                        className={`text-xs font-medium border-cyan-500/50 text-[#2dd4bf] bg-cyan-500/10 transition-all duration-300 ${isActive ? 'opacity-100 scale-100' : 'md:opacity-0 md:scale-75'}`}
+                        className={`text-xs font-medium border-cyan-500/50 text-[#2dd4bf] bg-cyan-500/10 transition-all duration-300 ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-75 md:opacity-0 md:scale-75'}`}
                         style={{ transitionDelay: isActive ? `${550 + i * 50}ms` : '0ms' }}
                       >
                         {t}
@@ -110,7 +110,7 @@ export default function ProjectsAccordion({ projects }) {
                   </div>
 
                   {/* Project links */}
-                  <div className={`flex gap-4 mt-5 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0' : 'md:opacity-0 md:translate-y-[30px]'}`} style={{ transitionDelay: isActive ? '750ms' : '0ms' }}>
+                  <div className={`flex gap-4 mt-5 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px] md:opacity-0 md:translate-y-[30px]'}`} style={{ transitionDelay: isActive ? '750ms' : '0ms' }}>
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
@@ -150,7 +150,7 @@ export default function ProjectsAccordion({ projects }) {
 
       {/* Next button */}
       <button
-        className="w-10 h-10 md:w-[50px] md:h-[50px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/20 hover:border-cyan-500/60 backdrop-blur-[10px] flex-shrink-0 flex items-center justify-center font-mono font-semibold text-xl md:text-2xl"
+        className="hidden md:flex w-10 h-10 md:w-[50px] md:h-[50px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/20 hover:border-cyan-500/60 backdrop-blur-[10px] flex-shrink-0 items-center justify-center font-mono font-semibold text-xl md:text-2xl"
         onClick={handleNext}
         aria-label="Next project"
       >
