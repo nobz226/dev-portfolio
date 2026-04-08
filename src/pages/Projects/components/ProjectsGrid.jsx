@@ -56,6 +56,8 @@ export const allProjects = [
     tech: ['Flask', 'Python', 'FFmpeg', 'Demucs', 'PyTorch'],
     liveUrl: null,
     repoUrl: 'https://github.com/nobz226/audio-tools-API',
+    screenshot: '/assets/images/api.gif',
+    accordionScreenshot: '/assets/images/api.png',
     featured: true,
     tags: ['API'],
   },
