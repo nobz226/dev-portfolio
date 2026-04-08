@@ -24,7 +24,7 @@ function PortraitRing() {
     <div style={{ position: 'relative', width: CONTAINER, height: CONTAINER, flexShrink: 0 }}>
       {/* Circular portrait */}
       <img
-        src="/assets/images/EduardRotaru.JPG"
+        src="/assets/images/eduardrotaru.jpg"
         alt="Eduard Rotaru"
         style={{
           position: 'absolute',

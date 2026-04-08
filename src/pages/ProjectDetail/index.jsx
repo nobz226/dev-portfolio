@@ -34,6 +34,18 @@ export default function ProjectDetail() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  const renderParagraphs = (content) => {
+    const paragraphs = Array.isArray(content)
+      ? content
+      : String(content).split(/\n\n+/).filter(Boolean)
+
+    return paragraphs.map((paragraph) => (
+      <p key={paragraph} className="font-mono text-lg leading-relaxed text-[#f9f7f7]/80">
+        {paragraph}
+      </p>
+    ))
+  }
+
   if (!project) {
     return (
       <main className="min-h-screen pt-40 pb-20">
@@ -83,14 +95,6 @@ export default function ProjectDetail() {
           >
             {project.title}
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-mono text-base font-medium text-[#555555] max-w-2xl leading-relaxed"
-          >
-            {project.description}
-          </motion.p>
         </div>
       </section>
 
@@ -144,9 +148,9 @@ export default function ProjectDetail() {
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
             The Why
           </h2>
-          <p className="font-mono text-lg leading-relaxed text-[#1e1e1e]/80">
-            {project.why}
-          </p>
+          <div className="space-y-6 text-[#1e1e1e]/80">
+            {renderParagraphs(project.why)}
+          </div>
         </SectionWrapper>
       )}
 
@@ -156,9 +160,9 @@ export default function ProjectDetail() {
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
             The System
           </h2>
-          <p className="font-mono text-lg leading-relaxed text-[#f9f7f7]/80 mb-8">
-            {project.system}
-          </p>
+          <div className="space-y-6 text-[#f9f7f7]/80 mb-8">
+            {renderParagraphs(project.system)}
+          </div>
           <div>
             <h3 className="font-sans font-bold text-2xl text-[#f9f7f7] mb-6">
               Tech Stack
@@ -184,9 +188,9 @@ export default function ProjectDetail() {
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
             The Soul
           </h2>
-          <p className="font-mono text-lg leading-relaxed text-[#1e1e1e]/80">
-            {project.soul}
-          </p>
+          <div className="space-y-6 text-[#1e1e1e]/80">
+            {renderParagraphs(project.soul)}
+          </div>
         </SectionWrapper>
       )}
 

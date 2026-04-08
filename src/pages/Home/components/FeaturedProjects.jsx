@@ -13,7 +13,7 @@ const featured = [
     tech: ['React', 'Vite', 'Convex', 'Tailwind CSS'],
     liveUrl: 'https://nobz-beats-react.vercel.app/latest',
     repoUrl: 'https://github.com/nobz226/nobz-beats',
-    screenshot: '/assets/images/nobzbeats.png',
+    screenshot: '/assets/images/nobzbeats.jpg',
   },
   {
     number: '02',
@@ -24,7 +24,7 @@ const featured = [
     tech: ['React', 'Vite', 'GSAP', 'Convex'],
     liveUrl: 'https://md-murals.vercel.app',
     repoUrl: 'https://github.com/nobz226/md-murals',
-    screenshot: '/assets/images/mdmurals.png',
+    screenshot: '/assets/images/mdmurals.jpg',
   },
   {
     number: '03',
@@ -35,7 +35,7 @@ const featured = [
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Convex'],
     liveUrl: 'https://ollie-north-skateshop.vercel.app/',
     repoUrl: 'https://github.com/nobz226/ollie-north-skateshop',
-    screenshot: '/assets/images/skateshop.png',
+    screenshot: '/assets/images/skateshop.jpg',
   },
 ]
 
