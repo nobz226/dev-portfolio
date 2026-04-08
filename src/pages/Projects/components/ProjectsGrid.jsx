@@ -8,10 +8,16 @@ export const allProjects = [
     category: 'Music Platform',
     description:
       'A full-stack music streaming and content management platform featuring integrated audio player with dynamic visualizer, real-time database, responsive design, and admin dashboard for managing tracks and albums.',
+    why:
+      'I wanted a more customized and curated way of showcasing personal music projects other than the corporate platforms like YouTube or Soundcloud. I wanted it to be possible to completely choose how to display your personal music and artwork and also being a music producer myself I took upon the challenge of building a custom music streaming/showcase website.',
+    system:
+      'Built as a single-page React application with Vite, it leverages Convex for backend data storage and serverless HTTP actions. The architecture separates client-side routing (history API for routes like /latest, /singles, /albums) from the backend which manages two main tables: tracks (with metadata, artwork, audio source, and album associations) and albums. Client queries use Convex React hooks to fetch data, while mutations and file uploads (artwork/audio) are handled through HTTP actions. A global event bus coordinates playback state between the player and UI components, creating a seamless listening experience.',
+    soul:
+      'I used single page application format to make navigation and music playback seamless and I added an industrial/punk aesthetic overall with digital motifs here and there to make the experience visually appealing. Also users can interact with the artwork and spinning disc to play, pause or stop playback.',
     tech: ['React', 'Vite', 'Convex', 'Tailwind CSS'],
     liveUrl: 'https://nobz-beats-react.vercel.app/latest',
     repoUrl: 'https://github.com/nobz226/nobz-beats',
-    screenshot: '/assets/images/nobzbeats.png',
+    screenshot: '/assets/images/nobzbeats.gif',
     featured: true,
     tags: ['Full-Stack', 'Creative'],
   },

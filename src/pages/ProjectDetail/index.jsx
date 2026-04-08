@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../../components/ui/button'
 import { Badge } from '../../components/ui/badge'
 import SectionLabel from '../../components/SectionLabel'
+import SectionWrapper from '../../components/SectionWrapper'
 import { usePageMeta } from '../../hooks/usePageMeta'
 
 // Import all projects
@@ -93,109 +94,140 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* Content Section */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
+      {/* Screenshot Section */}
+      <section className="relative py-16 px-6">
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#f9f7f7] border border-black/5 p-12"
+            className="w-full bg-black/5 border border-black/5 rounded-none flex items-center justify-center overflow-hidden"
           >
-            {/* Category & Featured Badge */}
-            <div className="flex items-center gap-4 mb-8">
-              <span className="font-mono text-sm text-[#2dd4bf] uppercase tracking-widest">
-                {project.category}
-              </span>
-              {project.featured && (
-                <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 border border-[#2dd4bf]/40 text-[#2dd4bf]">
-                  Featured
-                </span>
-              )}
-            </div>
+            {project.screenshot ? (
+              <img
+                src={project.screenshot}
+                alt={`${project.title} screenshot`}
+                className="w-full h-auto cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => setIsModalOpen(true)}
+              />
+            ) : (
+              <span className="font-mono text-base text-[#999999] py-20">screenshot</span>
+            )}
+          </motion.div>
+        </div>
+      </section>
 
-            {/* Screenshot Placeholder */}
-            <div className="w-full bg-black/5 border border-black/5 rounded-none mb-8 flex items-center justify-center overflow-hidden">
-              {project.screenshot ? (
-                <img
-                  src={project.screenshot}
-                  alt={`${project.title} screenshot`}
-                  className="w-full h-auto cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => setIsModalOpen(true)}
-                />
-              ) : (
-                <span className="font-mono text-base text-[#999999] py-20">screenshot</span>
-              )}
-            </div>
+      {/* Description Section */}
+      <SectionWrapper label="// description" variant="dark">
+        <div className="flex items-center gap-4 mb-8">
+          <span className="font-mono text-sm text-[#f9f7f7] uppercase tracking-widest">
+            {project.category}
+          </span>
+          {project.featured && (
+            <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 border border-[#f9f7f7]/40 text-[#f9f7f7]">
+              Featured
+            </span>
+          )}
+        </div>
+        <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
+          Description
+        </h2>
+        <p className="font-mono text-lg leading-relaxed text-[#f9f7f7]/80">
+          {project.description}
+        </p>
+      </SectionWrapper>
 
-            {/* Tech Stack */}
-            <div className="mb-8">
-              <h2 className="font-sans font-bold text-2xl text-[#1e1e1e] mb-4">
-                Tech Stack
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((t) => (
-                  <Badge
-                    key={t}
-                    variant="outline"
-                    className="font-mono text-sm border-black/10 text-[#555555] bg-transparent rounded-none"
-                  >
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-            </div>
+      {/* The Why Section */}
+      {project.why && (
+        <SectionWrapper label="// the why" variant="cyan">
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
+            The Why
+          </h2>
+          <p className="font-mono text-lg leading-relaxed text-[#1e1e1e]/80">
+            {project.why}
+          </p>
+        </SectionWrapper>
+      )}
 
-            {/* Tags */}
-            <div className="mb-8 pb-8 border-b border-black/5">
-              <h2 className="font-sans font-bold text-2xl text-[#1e1e1e] mb-4">
-                Tags
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="outline"
-                    className="font-mono text-sm border-[#2dd4bf]/30 text-[#2dd4bf] bg-transparent rounded-none"
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            {/* Links */}
-            <div className="flex gap-3 flex-wrap">
-              {project.liveUrl && (
-                <Button
-                  asChild
-                  className="font-mono text-sm uppercase tracking-wider bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none px-6 py-5 transition-colors duration-300"
-                >
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                    Live Demo ↗
-                  </a>
-                </Button>
-              )}
-              {project.repoUrl && (
-                <Button
-                  asChild
+      {/* The System Section */}
+      {project.system && (
+        <SectionWrapper label="// the system" variant="dark">
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
+            The System
+          </h2>
+          <p className="font-mono text-lg leading-relaxed text-[#f9f7f7]/80 mb-8">
+            {project.system}
+          </p>
+          <div>
+            <h3 className="font-sans font-bold text-2xl text-[#f9f7f7] mb-6">
+              Tech Stack
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {project.tech.map((t) => (
+                <Badge
+                  key={t}
                   variant="outline"
-                  className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-black/5 rounded-none px-6 py-5 bg-transparent transition-all duration-300"
+                  className="font-mono text-sm border-[#f9f7f7]/30 text-[#f9f7f7] bg-transparent rounded-none"
                 >
-                  <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                    View Code ↗
-                  </a>
-                </Button>
-              )}
-              <Button
-                onClick={() => navigate('/projects')}
-                variant="outline"
-                className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-black/5 rounded-none px-6 py-5 bg-transparent transition-all duration-300"
-              >
-                Back to Projects
-              </Button>
+                  {t}
+                </Badge>
+              ))}
             </div>
+          </div>
+        </SectionWrapper>
+      )}
+
+      {/* The Soul Section */}
+      {project.soul && (
+        <SectionWrapper label="// the soul" variant="cyan">
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
+            The Soul
+          </h2>
+          <p className="font-mono text-lg leading-relaxed text-[#1e1e1e]/80">
+            {project.soul}
+          </p>
+        </SectionWrapper>
+      )}
+
+      {/* Links Section */}
+      <section className="relative py-16 px-6">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex gap-3 flex-wrap"
+          >
+            {project.liveUrl && (
+              <Button
+                asChild
+                className="font-mono text-sm uppercase tracking-wider bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none px-8 py-5 transition-colors duration-300"
+              >
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                  Live Demo ↗
+                </a>
+              </Button>
+            )}
+            {project.repoUrl && (
+              <Button
+                asChild
+                variant="outline"
+                className="font-mono text-sm uppercase tracking-wider border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-8 py-5 bg-transparent transition-all duration-300"
+              >
+                <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+                  View Code ↗
+                </a>
+              </Button>
+            )}
+            <Button
+              onClick={() => navigate('/projects')}
+              variant="outline"
+              className="font-mono text-sm uppercase tracking-wider border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-8 py-5 bg-transparent transition-all duration-300"
+            >
+              Back to Projects
+            </Button>
           </motion.div>
         </div>
       </section>
