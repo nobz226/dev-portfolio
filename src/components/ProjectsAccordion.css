@@ -1,43 +1,43 @@
-.projects-accordion-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
-
-.projects-accordion-container {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-  min-height: 500px;
-}
-
-.accordion-slider {
-  display: flex;
-  height: 500px;
-  position: relative;
-  gap: 0;
-}
+/* ProjectsAccordion - Complex animations and pseudo-element styling */
 
 .accordion-slide {
-  flex: 1;
-  position: relative;
-  cursor: pointer;
-  background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  filter: grayscale(0.8) brightness(0.7);
   border-right: 1px solid rgba(45, 212, 191, 0.1);
 }
 
-.accordion-slide:hover {
-  filter: grayscale(0.3) brightness(0.85);
+.accordion-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.6) 80%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.accordion-slide.active {
-  flex: 2.5;
-  filter: grayscale(0);
-  background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+.accordion-slide-title {
+  position: absolute;
+  left: 30px;
+  top: 70%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Courier Prime', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  z-index: 3;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.accordion-slide.active .accordion-slide-title {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .collapsed-screenshot {
@@ -57,42 +57,6 @@
   pointer-events: none;
 }
 
-.accordion-slide::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.6) 80%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.collapsed-title {
-  position: absolute;
-  left: 30px;
-  top: 70%;
-  transform: translateY(-50%) rotate(-90deg);
-  transform-origin: left center;
-  font-size: 20px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  font-family: 'Courier Prime', monospace;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  white-space: nowrap;
-  z-index: 3;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 1;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.8);
-}
-
-.accordion-slide.active .collapsed-title {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .slide-content {
   position: absolute;
   bottom: 30px;
@@ -106,172 +70,6 @@
 .accordion-slide.active .slide-content {
   bottom: 80px;
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
-}
-
-.slide-number {
-  font-size: 64px;
-  font-weight: 300;
-  color: #2dd4bf;
-  line-height: 1;
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: 'Courier Prime', monospace;
-  z-index: 3;
-}
-
-.accordion-slide.active .slide-number {
-  bottom: auto;
-  top: -50px;
-  font-size: 48px;
-  left: 0;
-}
-
-.slide-title-section {
-  margin-bottom: 20px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0s;
-  position: relative;
-  z-index: 3;
-}
-
-.accordion-slide.active .slide-title-section {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.3s;
-}
-
-.project-brand {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 8px;
-  font-family: 'Courier Prime', monospace;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.project-name {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #2dd4bf;
-  font-family: 'Cal Sans', system-ui, sans-serif;
-}
-
-.project-subtitle {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.8);
-  font-family: 'Courier Prime', monospace;
-  line-height: 1.4;
-}
-
-.project-tech-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0s;
-  position: relative;
-  z-index: 3;
-}
-
-.accordion-slide.active .project-tech-list {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.5s;
-}
-
-.tech-badge {
-  font-size: 12px;
-  font-weight: 500;
-  border-color: rgba(45, 212, 191, 0.5);
-  color: #2dd4bf;
-  background: rgba(45, 212, 191, 0.1);
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.accordion-slide.active .tech-badge {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.accordion-slide.active .tech-badge:nth-child(1) {
-  transition-delay: 0.55s;
-}
-.accordion-slide.active .tech-badge:nth-child(2) {
-  transition-delay: 0.6s;
-}
-.accordion-slide.active .tech-badge:nth-child(3) {
-  transition-delay: 0.65s;
-}
-.accordion-slide.active .tech-badge:nth-child(4) {
-  transition-delay: 0.7s;
-}
-.accordion-slide.active .tech-badge:nth-child(5) {
-  transition-delay: 0.75s;
-}
-.accordion-slide.active .tech-badge:nth-child(6) {
-  transition-delay: 0.8s;
-}
-
-.project-links {
-  display: flex;
-  gap: 16px;
-  margin-top: 20px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0s;
-  position: relative;
-  z-index: 3;
-}
-
-.accordion-slide.active .project-links {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.75s;
-}
-
-.project-link {
-  font-size: 14px;
-  font-weight: 600;
-  color: #2dd4bf;
-  text-decoration: none;
-  font-family: 'Courier Prime', monospace;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.project-link:hover {
-  border-bottom-color: #2dd4bf;
-}
-
-.add-button {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  border: 2px solid #2dd4bf;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  z-index: 3;
 }
 
 .add-button::before,
@@ -300,49 +98,8 @@
   transform: rotate(45deg);
 }
 
-.navigation-arrows {
-  width: 50px;
-  height: 50px;
-  background: rgba(45, 212, 191, 0.1);
-  border: 2px solid rgba(45, 212, 191, 0.3);
-  border-radius: 50%;
-  color: #2dd4bf;
-  cursor: pointer;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 4;
-  backdrop-filter: blur(10px);
-  font-family: 'Courier Prime', monospace;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
-.nav-prev {
-  order: -1;
-}
-
-.nav-next {
-  order: 1;
-}
-
-.navigation-arrows:hover {
-  background: rgba(45, 212, 191, 0.2);
-  border-color: rgba(45, 212, 191, 0.6);
-}
-
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  .projects-accordion-wrapper {
-    flex-direction: column;
-  }
-
-  .accordion-slider {
-    flex-direction: column;
-    height: auto;
-  }
-
   .accordion-slide {
     flex: 1;
     min-height: 200px;
@@ -356,11 +113,7 @@
     min-height: 500px;
   }
 
-  .projects-accordion-container {
-    min-height: auto;
-  }
-
-  .collapsed-title {
+  .accordion-slide-title {
     position: absolute;
     left: 20px;
     top: 75%;
@@ -377,31 +130,6 @@
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
   }
 
-  .slide-number {
-    font-size: 32px;
-    position: relative;
-    bottom: auto;
-    left: auto;
-    margin-bottom: 12px;
-  }
-
-  .accordion-slide.active .slide-number {
-    position: relative;
-    top: auto;
-    bottom: auto;
-    font-size: 28px;
-  }
-
-  .project-brand {
-    font-size: 12px;
-  }
-
-  .navigation-arrows {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-
   .slide-content {
     position: relative;
     bottom: auto;
@@ -413,14 +141,6 @@
   .accordion-slide.active .slide-content {
     bottom: auto;
     padding: 20px;
-  }
-
-  .project-name {
-    font-size: 20px;
-  }
-
-  .project-subtitle {
-    font-size: 14px;
   }
 
   .add-button {

@@ -172,7 +172,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
-            className="hidden lg:flex items-center justify-center"
+            className="flex items-center justify-center"
           >
             <PortraitRing />
           </motion.div>
