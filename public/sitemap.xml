@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://eduardrotaru.dev/</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://eduardrotaru.dev/about</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://eduardrotaru.dev/projects</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>bi-weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://eduardrotaru.dev/projects/nobz-beats</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://eduardrotaru.dev/assets/images/nobzbeats.png</image:loc>
+      <image:title>Nobz Beats - Music Streaming Platform</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eduardrotaru.dev/projects/md-murals</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://eduardrotaru.dev/assets/images/mdmurals.png</image:loc>
+      <image:title>MD Murals - Art Portfolio</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eduardrotaru.dev/projects/ollie-north-skateshop</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://eduardrotaru.dev/assets/images/skateshop.png</image:loc>
+      <image:title>Ollie North Skateshop - E-Commerce Platform</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://eduardrotaru.dev/projects/audio-tools-api</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://eduardrotaru.dev/contact</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

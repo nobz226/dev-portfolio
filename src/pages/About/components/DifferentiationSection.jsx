@@ -26,7 +26,7 @@ export default function DifferentiationSection() {
         </div>
 
         {/* Visual columns */}
-        <div className="grid grid-cols-2 gap-px bg-black/5">
+        <div className="grid grid-cols-1 gap-px bg-black/5">
           {[
             {
               label: 'Technical Rigor',
@@ -34,7 +34,7 @@ export default function DifferentiationSection() {
             },
             {
               label: 'Creative Soul',
-              items: ['Custom Animations', 'Brutalist Design', 'Artistic Intent', 'Brand Identity'],
+              items: ['Custom Animations', 'Creative Design', 'Artistic Intent', 'Brand Identity'],
             },
           ].map((col, i) => (
             <motion.div
@@ -43,16 +43,16 @@ export default function DifferentiationSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="bg-snow p-6"
+              className="bg-snow p-8"
             >
-              <p className="font-mono text-sm uppercase tracking-[0.25em] text-cyber-cyan mb-5">
+              <p className="font-mono text-base uppercase tracking-[0.25em] text-cyber-cyan mb-6">
                 {col.label}
               </p>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-4">
                 {col.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="w-1 h-1 bg-cyber-cyan shrink-0" />
-                    <span className="font-mono text-base text-charcoal/75">{item}</span>
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 bg-cyber-cyan shrink-0" />
+                    <span className="font-mono text-lg text-charcoal/75">{item}</span>
                   </li>
                 ))}
               </ul>

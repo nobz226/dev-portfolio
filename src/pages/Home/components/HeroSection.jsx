@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import TerminalText from '../../../components/TerminalText'
 import { Button } from '../../../components/ui/button'
-import eduardPhoto from '../../../assets/EduardRotaru.JPG'
 
 // "<there is a ghost in the machine/> " = 35 chars
 // Dark positions: 0 (<), 32 (/), 33 (>)
@@ -25,7 +24,7 @@ function PortraitRing() {
     <div style={{ position: 'relative', width: CONTAINER, height: CONTAINER, flexShrink: 0 }}>
       {/* Circular portrait */}
       <img
-        src={eduardPhoto}
+        src="/assets/images/EduardRotaru.JPG"
         alt="Eduard Rotaru"
         style={{
           position: 'absolute',

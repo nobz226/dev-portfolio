@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../../components/ui/button'
 import { Badge } from '../../components/ui/badge'
 import SectionLabel from '../../components/SectionLabel'
+import { usePageMeta } from '../../hooks/usePageMeta'
 
 // Import all projects
 import { allProjects } from '../Projects/components/ProjectsGrid'
@@ -14,6 +15,14 @@ export default function ProjectDetail() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const project = allProjects.find((p) => p.slug === slug)
+
+  // Set page meta dynamically based on project
+  usePageMeta(
+    project ? `${project.title} - Eduard Rotaru` : 'Project Not Found',
+    project
+      ? `${project.description} Built with ${project.tech.join(', ')}`
+      : 'The project you are looking for does not exist.'
+  )
 
   // Handle ESC key to close modal
   useEffect(() => {

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import logo from '/assets/logo.svg'
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -31,7 +30,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-3 mr-auto">
-          <img src={logo} alt="Eduard Rotaru" className="h-20 w-auto" />
+          <img src="/assets/images/logo.svg" alt="Eduard Rotaru" className="h-20 w-auto" />
           <span className="font-sans font-bold text-3xl text-[#1e1e1e] tracking-tight">Eduard Rotaru</span>
         </NavLink>
 

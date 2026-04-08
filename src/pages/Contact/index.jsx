@@ -2,8 +2,14 @@ import { motion } from 'framer-motion'
 import ContactForm from './components/ContactForm'
 import ContactInfo from './components/ContactInfo'
 import SectionLabel from '../../components/SectionLabel'
+import { usePageMeta } from '../../hooks/usePageMeta'
 
 export default function Contact() {
+  usePageMeta(
+    'Contact Eduard Rotaru - Get In Touch',
+    'Ready to discuss your next project? Contact Eduard Rotaru, a full-stack developer specializing in creative web experiences.'
+  )
+
   return (
     <main>
       {/* Hero */}

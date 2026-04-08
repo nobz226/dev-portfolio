@@ -3,10 +3,10 @@ import SectionWrapper from '../../../components/SectionWrapper'
 
 export default function MissionStatement() {
   return (
-    <SectionWrapper id="mission" label="// mission statement">
+    <SectionWrapper id="mission" label="// mission statement" variant="cyan">
       <div className="max-w-3xl">
-        <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-10 leading-tight">
-          The Ongoing <span className="text-[#2dd4bf]">&ldquo;Why&rdquo;</span>
+        <h2 className="font-sans font-bold text-4xl md:text-5xl text-charcoal mb-10 leading-tight">
+          The Ongoing <span className="text-snow">&ldquo;Why&rdquo;</span>
         </h2>
 
         <motion.blockquote
@@ -14,12 +14,12 @@ export default function MissionStatement() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative pl-8 border-l-2 border-[#2dd4bf]"
+          className="relative pl-8 border-l-2 border-snow"
         >
-          <p className="font-mono text-lg md:text-xl text-[#f9f7f7]/90 leading-relaxed">
+          <p className="font-mono text-lg md:text-xl text-charcoal/90 leading-relaxed">
             To transform complex ideas into high-fidelity web experiences through{' '}
-            <span className="text-[#2dd4bf]">technical honesty</span> and{' '}
-            <span className="text-[#2dd4bf]">artistic intent</span>, leveraging
+            <span className="text-snow font-bold">technical honesty</span> and{' '}
+            <span className="text-snow font-bold">artistic intent</span>, leveraging
             AI-accelerated workflows to deliver polished, resilient, and soul-driven
             digital products for clients and agencies alike.
           </p>
@@ -35,7 +35,7 @@ export default function MissionStatement() {
           {['Soul', 'Systems', 'AI-Catalysis'].map((tag) => (
             <span
               key={tag}
-              className="font-mono text-sm uppercase tracking-widest px-4 py-2 border border-[#2dd4bf]/30 text-[#2dd4bf]"
+              className="font-mono text-sm uppercase tracking-widest px-4 py-2 border border-snow text-snow"
             >
               {tag}
             </span>

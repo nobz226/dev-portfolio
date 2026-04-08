@@ -2,8 +2,26 @@ import { motion } from 'framer-motion'
 import ProjectsGrid from './components/ProjectsGrid'
 import SectionWrapper from '../../components/SectionWrapper'
 import SectionLabel from '../../components/SectionLabel'
+import { usePageMeta } from '../../hooks/usePageMeta'
+import { useStructuredData } from '../../hooks/useStructuredData'
 
 export default function Projects() {
+  usePageMeta(
+    'Projects - Eduard Rotaru | Full-Stack Development & Design',
+    'Case studies and portfolio projects including music platforms, art galleries, e-commerce, and APIs. Featuring React, Next.js, Tailwind CSS, and modern web technologies.'
+  )
+
+  useStructuredData({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Projects',
+    description: 'Portfolio projects showcasing full-stack development and creative web experiences',
+    creator: {
+      '@type': 'Person',
+      name: 'Eduard Rotaru',
+    },
+  })
+
   return (
     <main>
       {/* Page Hero */}

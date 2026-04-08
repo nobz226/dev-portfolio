@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eduardrotaru.dev/sitemap.xml
+
+# Disallow crawling of internal/admin routes if added in future
+Disallow: /admin/
+Disallow: /private/
+
+# Respect standard crawl delay
+Crawl-delay: 1

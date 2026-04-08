@@ -1,7 +1,4 @@
 import { useState } from 'react'
-import mdMuralsScreenshot from '../../../assets/mdmurals.png'
-import nobzBeatsScreenshot from '../../../assets/nobzbeats.png'
-import skateshopScreenshot from '../../../assets/skateshop.gif'
 import ProjectCard from './ProjectCard'
 
 export const allProjects = [
@@ -14,7 +11,7 @@ export const allProjects = [
     tech: ['React', 'Vite', 'Convex', 'Tailwind CSS'],
     liveUrl: 'https://nobz-beats-react.vercel.app/latest',
     repoUrl: 'https://github.com/nobz226/nobz-beats',
-    screenshot: nobzBeatsScreenshot,
+    screenshot: '/assets/images/nobzbeats.png',
     featured: true,
     tags: ['Full-Stack', 'Creative'],
   },
@@ -27,7 +24,7 @@ export const allProjects = [
     tech: ['React', 'Vite', 'GSAP', 'Convex'],
     liveUrl: 'https://md-murals.vercel.app',
     repoUrl: 'https://github.com/nobz226/md-murals',
-    screenshot: mdMuralsScreenshot,
+    screenshot: '/assets/images/mdmurals.gif',
     featured: true,
     tags: ['Frontend', 'Creative'],
   },
@@ -40,7 +37,7 @@ export const allProjects = [
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Convex', 'Clerk', 'Stripe'],
     liveUrl: 'https://ollie-north-skateshop.vercel.app/',
     repoUrl: 'https://github.com/nobz226/ollie-north-skateshop',
-    screenshot: skateshopScreenshot,
+    screenshot: '/assets/images/skateshop.gif',
     featured: true,
     tags: ['Full-Stack', 'E-Commerce'],
   },
@@ -54,7 +51,7 @@ export const allProjects = [
     liveUrl: null,
     repoUrl: 'https://github.com/nobz226/audio-tools-API',
     featured: true,
-    tags: ['Backend', 'API'],
+    tags: ['API'],
   },
 ]
 
@@ -87,7 +84,7 @@ export default function ProjectsGrid() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-px bg-black/5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[20px] bg-black/5">
         {filtered.map((project, i) => (
           <ProjectCard key={project.slug} project={project} index={i} />
         ))}

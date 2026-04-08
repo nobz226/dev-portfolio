@@ -1,9 +1,16 @@
 import { motion } from 'framer-motion'
+import { Mail, Linkedin, Github } from 'lucide-react'
+
+const iconMap = {
+  Email: Mail,
+  LinkedIn: Linkedin,
+  GitHub: Github,
+}
 
 const contactDetails = [
-  { label: 'Email', value: 'hello@eduardrotaru.dev', href: 'mailto:hello@eduardrotaru.dev' },
-  { label: 'LinkedIn', value: 'linkedin.com/in/eduardrotaru', href: 'https://linkedin.com' },
-  { label: 'GitHub', value: 'github.com/eduardrotaru', href: 'https://github.com' },
+  { label: 'Email', href: 'mailto:eduard.rotaru89@gmail.com' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/eduard-rotaru-b63b11124/' },
+  { label: 'GitHub', href: 'https://github.com/nobz226' },
 ]
 
 const availability = [
@@ -37,22 +44,23 @@ export default function ContactInfo() {
 
       {/* Contact links */}
       <div className="flex flex-col gap-3">
-        {contactDetails.map((c) => (
-          <a
-            key={c.label}
-            href={c.href}
-            target={c.href.startsWith('mailto') ? undefined : '_blank'}
-            rel="noopener noreferrer"
-            className="group flex items-center justify-between p-4 border border-black/5 hover:border-[#2dd4bf]/40 transition-all duration-300"
-          >
-            <span className="font-mono text-sm uppercase tracking-widest text-[#666666] group-hover:text-[#2dd4bf] transition-colors duration-300">
-              {c.label}
-            </span>
-            <span className="font-mono text-base text-[#1e1e1e]/50 group-hover:text-[#1e1e1e] transition-colors duration-300">
-              {c.value} ↗
-            </span>
-          </a>
-        ))}
+        {contactDetails.map((c) => {
+          const Icon = iconMap[c.label]
+          return (
+            <a
+              key={c.label}
+              href={c.href}
+              target={c.href.startsWith('mailto') ? undefined : '_blank'}
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between p-4 border border-black/5 hover:border-[#2dd4bf]/40 transition-all duration-300"
+            >
+              <span className="font-mono text-sm uppercase tracking-widest text-[#666666] group-hover:text-[#2dd4bf] transition-colors duration-300">
+                {c.label}
+              </span>
+              <Icon className="w-5 h-5 text-[#1e1e1e]/50 group-hover:text-[#1e1e1e] transition-colors duration-300" />
+            </a>
+          )
+        })}
       </div>
 
       {/* Availability */}
