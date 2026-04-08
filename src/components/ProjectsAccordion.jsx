@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Badge } from './ui/badge'
 import './ProjectsAccordion.css'
 
-export default function ProjectsAccordion({ projects }) {
+export default function ProjectsAccordion({ projects, onActiveChange }) {
   const [activeIndex, setActiveIndex] = useState(-1)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
 
@@ -35,11 +35,14 @@ export default function ProjectsAccordion({ projects }) {
     }
     document.addEventListener('keydown', handleKeyDown)
     window.addEventListener('resize', handleResize)
+    if (onActiveChange) {
+      onActiveChange(activeIndex !== -1)
+    }
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('resize', handleResize)
     }
-  }, [activeIndex])
+  }, [activeIndex, onActiveChange])
 
   return (
     <div className="flex items-center md:gap-5 gap-0 w-full">
@@ -138,6 +141,15 @@ export default function ProjectsAccordion({ projects }) {
                       Details →
                     </Link>
                   </div>
+
+                  {/* Project screenshot - mobile only */}
+                  {isActive && (project.screenshot || project.accordionScreenshot) && (
+                    <img
+                      src={project.screenshot || project.accordionScreenshot}
+                      alt={`${project.title} screenshot`}
+                      className="md:hidden w-full h-auto mt-6 rounded-sm object-cover"
+                    />
+                  )}
                 </div>
 
                 {/* Plus button */}

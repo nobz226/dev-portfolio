@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '../../../components/ui/button'
 import ProjectsAccordion from '../../../components/ProjectsAccordion'
@@ -40,9 +41,11 @@ const featured = [
 ]
 
 export default function FeaturedProjects() {
+  const [isCardActive, setIsCardActive] = useState(false)
+
   return (
     <SectionWrapper id="featured" label="// selected work">
-      <div className="pb-[600px] md:pb-0">
+      <div className={`${isCardActive ? 'pb-[800px]' : 'pb-96'} md:pb-0`}>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] leading-tight">
             Featured <span className="text-[#2dd4bf]">Projects</span>
@@ -56,7 +59,7 @@ export default function FeaturedProjects() {
           </Button>
         </div>
 
-        <ProjectsAccordion projects={featured} />
+        <ProjectsAccordion projects={featured} onActiveChange={setIsCardActive} />
       </div>
     </SectionWrapper>
   )
