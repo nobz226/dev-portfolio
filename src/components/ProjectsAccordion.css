@@ -345,27 +345,55 @@
 
   .accordion-slide {
     flex: 1;
-    min-height: 100px;
+    min-height: 200px;
     border-right: none;
     border-bottom: 1px solid rgba(45, 212, 191, 0.1);
+    border-radius: 0;
   }
 
   .accordion-slide.active {
-    flex: 2;
-    min-height: 400px;
+    flex: 1;
+    min-height: 500px;
   }
 
   .projects-accordion-container {
     min-height: auto;
   }
 
+  .collapsed-title {
+    position: absolute;
+    left: 20px;
+    top: 75%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left center;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    z-index: 3;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  }
+
   .slide-number {
     font-size: 32px;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-bottom: 12px;
+  }
+
+  .accordion-slide.active .slide-number {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    font-size: 28px;
   }
 
   .project-brand {
-    transform: none;
-    position: static;
+    font-size: 12px;
   }
 
   .navigation-arrows {
@@ -375,13 +403,16 @@
   }
 
   .slide-content {
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    padding: 20px;
   }
 
   .accordion-slide.active .slide-content {
-    bottom: 40px;
+    bottom: auto;
+    padding: 20px;
   }
 
   .project-name {
@@ -390,5 +421,10 @@
 
   .project-subtitle {
     font-size: 14px;
+  }
+
+  .add-button {
+    bottom: 20px;
+    right: 20px;
   }
 }

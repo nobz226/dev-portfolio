@@ -16,6 +16,12 @@ const fadeUp = {
  */
 export default function SectionWrapper({ id, label, children, className = '', variant = 'dark' }) {
   const bgColor = variant === 'cyan' ? '#2dd4bf' : '#1e1e1e'
+
+  const getClipPath = () => {
+    if (typeof window === 'undefined') return 'polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)'
+    return window.innerWidth < 960 ? 'none' : 'polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)'
+  }
+
   return (
     <motion.section
       id={id}
@@ -30,7 +36,7 @@ export default function SectionWrapper({ id, label, children, className = '', va
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundColor: bgColor,
-          clipPath: 'polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)',
+          clipPath: getClipPath(),
         }}
       />
       {/* Label sits above shape */}
@@ -39,8 +45,8 @@ export default function SectionWrapper({ id, label, children, className = '', va
           <SectionLabel label={label} variant={variant} />
         </div>
       )}
-      {/* Content — right padding keeps text inside the arrow cutout */}
-      <div className="relative z-10 max-w-5xl mx-auto pl-6 pr-24 py-16">
+      {/* Content — right padding keeps text inside the arrow cutout on desktop only (1200px+) */}
+      <div className="relative z-10 max-w-5xl mx-auto pl-6 pr-6 xl:pr-24 py-16">
         {children}
       </div>
     </motion.section>
