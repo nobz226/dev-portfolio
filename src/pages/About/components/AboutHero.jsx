@@ -4,24 +4,6 @@ import SectionLabel from '../../../components/SectionLabel'
 export default function AboutHero() {
   return (
     <>
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        .about-bg-image {
-          animation: fadeIn 1.2s ease-in 0.3s both;
-        }
-        @media (max-width: 768px) {
-          .about-bg-image {
-            display: none !important;
-          }
-        }
-      `}</style>
       <section className="relative pt-40 pb-20 overflow-visible">
       {/* Wipeout background image */}
       <img

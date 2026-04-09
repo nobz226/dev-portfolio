@@ -24,24 +24,6 @@ export default function Projects() {
 
   return (
     <>
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        .projects-bg-image {
-          animation: fadeIn 1.2s ease-in 0.3s both;
-        }
-        @media (max-width: 768px) {
-          .projects-bg-image {
-            display: none !important;
-          }
-        }
-      `}</style>
       <main>
       {/* Page Hero */}
       <section className="relative pt-40 pb-12 overflow-visible">

@@ -76,33 +76,6 @@ function PortraitRing() {
 export default function HeroSection() {
   return (
     <>
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        .hero-bg-image {
-          animation: fadeIn 1.2s ease-in 0.3s both;
-        }
-        @media (max-width: 768px) {
-          .hero-portrait {
-            width: 100% !important;
-            max-width: 240px !important;
-            height: auto !important;
-            aspect-ratio: 1 !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            margin-top: 2rem;
-          }
-          .hero-bg-image {
-            display: none !important;
-          }
-        }
-      `}</style>
       <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid background */}
       <div

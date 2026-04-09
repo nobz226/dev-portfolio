@@ -131,3 +131,40 @@
   color: #22b8c7;
   animation: glitch-2 3s infinite linear;
 }
+
+/* Fade in animation for hero background images */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-bg-image,
+.about-bg-image,
+.projects-bg-image,
+.contact-bg-image {
+  animation: fadeIn 1.2s ease-in 0.3s both;
+}
+
+/* Mobile responsive styling for hero sections */
+@media (max-width: 768px) {
+  .hero-portrait {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    aspect-ratio: 1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+  }
+
+  .hero-bg-image,
+  .about-bg-image,
+  .projects-bg-image,
+  .contact-bg-image {
+    display: none;
+  }
+}
