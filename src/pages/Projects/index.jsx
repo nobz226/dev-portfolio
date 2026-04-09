@@ -25,7 +25,14 @@ export default function Projects() {
   return (
     <main>
       {/* Page Hero */}
-      <section className="relative pt-40 pb-12">
+      <section className="relative pt-40 pb-12 overflow-visible">
+        {/* Wipeout background image */}
+        <img
+          src="/assets/images/wipeout.png"
+          alt="background"
+          className="absolute right-0 top-1/2 pointer-events-none z-10"
+          style={{ width: '1200px', height: '1300px', marginRight: '-600px', objectFit: 'contain', transform: 'translateY(-50%) rotate(-180deg)', opacity: 1 }}
+        />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -41,7 +48,7 @@ export default function Projects() {
         >
           <SectionLabel label="// selected work" />
         </motion.div>
-        <div className="max-w-6xl mx-auto px-6 pt-10">
+        <div className="max-w-6xl mx-auto px-6 pt-10 relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}

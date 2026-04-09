@@ -11,9 +11,16 @@ export default function Contact() {
   )
 
   return (
-    <main>
+    <main style={{ overflow: 'visible' }}>
       {/* Hero */}
-      <section className="relative pt-40 pb-12">
+      <section className="relative pt-40 pb-12 overflow-visible">
+        {/* Wipeout2 background image */}
+        <img
+          src="/assets/images/wipeout2.png"
+          alt="background"
+          className="absolute left-0 top-2/3 pointer-events-none z-0"
+          style={{ width: '1200px', height: '1300px', marginLeft: '-500px', objectFit: 'contain', transform: 'translateY(-50%)', opacity: 1 }}
+        />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -26,10 +33,11 @@ export default function Contact() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
+          className="relative z-10"
         >
           <SectionLabel label="// contact" />
         </motion.div>
-        <div className="max-w-6xl mx-auto px-6 pt-10">
+        <div className="max-w-6xl mx-auto px-6 pt-10 relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -42,7 +50,7 @@ export default function Contact() {
       </section>
 
       {/* Form + Info */}
-      <section className="py-16">
+      <section className="py-16 relative z-20">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
             <ContactInfo />

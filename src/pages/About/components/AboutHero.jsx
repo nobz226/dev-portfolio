@@ -3,7 +3,14 @@ import SectionLabel from '../../../components/SectionLabel'
 
 export default function AboutHero() {
   return (
-    <section className="relative pt-40 pb-20">
+    <section className="relative pt-40 pb-20 overflow-visible">
+      {/* Wipeout background image */}
+      <img
+        src="/assets/images/wipeout2.png"
+        alt="background"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 object-contain pointer-events-none z-10"
+        style={{ width: '1200px', height: '1300px', marginLeft: '-300px', opacity: 1 }}
+      />
       {/* Grid bg */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -17,10 +24,11 @@ export default function AboutHero() {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
+        className="relative z-20"
       >
         <SectionLabel label="// about me" />
       </motion.div>
-      <div className="max-w-6xl mx-auto px-6 pt-10">
+      <div className="max-w-6xl mx-auto px-6 pt-10 relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

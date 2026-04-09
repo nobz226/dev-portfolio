@@ -172,8 +172,16 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
-            className="flex items-center justify-center"
+            className="hidden lg:flex items-center justify-center relative overflow-visible"
+            style={{ width: '1100px', height: '700px', marginLeft: '-120px' }}
           >
+            {/* Wipeout background image */}
+            <img
+              src="/assets/images/wipeout.png"
+              alt="background"
+              className="absolute object-cover pointer-events-none"
+              style={{ width: '100%', height: '100%', transform: 'translateX(-40px)', opacity: 1 }}
+            />
             <PortraitRing />
           </motion.div>
 
