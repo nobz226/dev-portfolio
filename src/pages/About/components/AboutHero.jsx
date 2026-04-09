@@ -9,7 +9,7 @@ export default function AboutHero() {
       <img
         src="/assets/images/wipeout2.png"
         alt="background"
-        className="about-bg-image absolute top-1/2 transform -translate-y-1/2 object-contain pointer-events-none z-10"
+        className="about-bg-image absolute top-1/2 -translate-y-1/2 object-contain pointer-events-none z-10"
         style={{ width: '1200px', height: '1300px', left: '-400px' }}
       />
       {/* Grid bg */}

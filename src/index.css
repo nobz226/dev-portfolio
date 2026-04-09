@@ -152,13 +152,12 @@
 /* Mobile responsive styling for hero sections */
 @media (max-width: 768px) {
   .hero-portrait {
-    width: 100%;
-    max-width: 240px;
-    height: auto;
-    aspect-ratio: 1;
+    width: 320px;
+    height: 300px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
   }
 
   .hero-bg-image,
@@ -166,17 +165,5 @@
   .projects-bg-image,
   .contact-bg-image {
     display: none;
-  }
-}
-
-/* Mobile responsive styling for hero portrait */
-@media (max-width: 1024px) {
-  .hero-portrait {
-    width: 320px !important;
-    height: 300px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    margin-top: 6rem !important;
-    margin-bottom: 6rem !important;
   }
 }

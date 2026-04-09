@@ -180,8 +180,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
-            className="hero-portrait flex items-center justify-center relative overflow-visible"
-            style={{ width: '1100px', height: '700px', marginLeft: '-280px' }}
+            className="hero-portrait w-[1100px] h-[700px] lg:w-[1100px] lg:h-[700px] md:-ml-[280px] lg:-ml-[280px] flex items-center justify-center relative overflow-visible"
           >
             <PortraitRing />
           </motion.div>
