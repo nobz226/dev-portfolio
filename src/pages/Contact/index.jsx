@@ -13,6 +13,17 @@ export default function Contact() {
   return (
     <>
       <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        .contact-bg-image {
+          animation: fadeIn 1.2s ease-in 0.3s both;
+        }
         @media (max-width: 768px) {
           .contact-bg-image {
             display: none !important;

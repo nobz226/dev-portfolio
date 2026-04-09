@@ -77,6 +77,17 @@ export default function HeroSection() {
   return (
     <>
       <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        .hero-bg-image {
+          animation: fadeIn 1.2s ease-in 0.3s both;
+        }
         @media (max-width: 768px) {
           .hero-portrait {
             width: 100% !important;
