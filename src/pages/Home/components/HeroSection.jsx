@@ -91,7 +91,14 @@ export default function HeroSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#2dd4bf]/10 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-20 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Hero background image - behind text */}
+        <img
+          src="/assets/images/wipeout.png"
+          alt="background"
+          className="hero-bg-image absolute object-cover pointer-events-none"
+          style={{ width: '900px', height: '700px', left: '65%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 0 }}
+        />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
 
           {/* Left: text content */}
           <div>
@@ -174,15 +181,8 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
             className="hero-portrait flex items-center justify-center relative overflow-visible"
-            style={{ width: '1100px', height: '700px', marginLeft: '-120px' }}
+            style={{ width: '1100px', height: '700px', marginLeft: '-280px' }}
           >
-            {/* Wipeout background image */}
-            <img
-              src="/assets/images/wipeout.png"
-              alt="background"
-              className="hero-bg-image absolute object-cover pointer-events-none"
-              style={{ width: '100%', height: '100%', transform: 'translateX(-40px)', opacity: 1 }}
-            />
             <PortraitRing />
           </motion.div>
 
