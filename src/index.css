@@ -167,3 +167,12 @@
     display: none;
   }
 }
+
+/* Custom clip-path for CoreValues to accommodate About page background image */
+#values {
+  --clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%, 0 80%, 20% 80%, 20% 20%, 0 20%);
+}
+
+#values > div:first-child {
+  clip-path: var(--clip-path);
+}

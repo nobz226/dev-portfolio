@@ -14,10 +14,11 @@ const fadeUp = {
  * SectionWrapper — wraps page sections with a consistent layout,
  * optional section label, and a scroll-triggered fade-up animation.
  */
-export default function SectionWrapper({ id, label, children, className = '', variant = 'dark' }) {
+export default function SectionWrapper({ id, label, children, className = '', variant = 'dark', customClipPath = null }) {
   const bgColor = variant === 'cyan' ? '#2dd4bf' : '#1e1e1e'
 
   const getClipPath = () => {
+    if (customClipPath) return customClipPath
     if (typeof window === 'undefined') return 'polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)'
     return window.innerWidth < 960 ? 'none' : 'polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)'
   }
