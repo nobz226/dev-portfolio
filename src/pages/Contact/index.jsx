@@ -11,14 +11,22 @@ export default function Contact() {
   )
 
   return (
-    <main style={{ overflow: 'visible' }}>
+    <>
+      <style>{`
+        @media (max-width: 768px) {
+          .contact-bg-image {
+            display: none !important;
+          }
+        }
+      `}</style>
+      <main style={{ overflow: 'visible' }}>
       {/* Hero */}
       <section className="relative pt-40 pb-12 overflow-visible">
         {/* Wipeout2 background image */}
         <img
           src="/assets/images/wipeout2.png"
           alt="background"
-          className="absolute left-0 top-2/3 pointer-events-none z-0"
+          className="contact-bg-image absolute left-0 top-2/3 pointer-events-none z-0"
           style={{ width: '1200px', height: '1300px', marginLeft: '-500px', objectFit: 'contain', transform: 'translateY(-50%)', opacity: 1 }}
         />
         <div
@@ -61,5 +69,6 @@ export default function Contact() {
         </div>
       </section>
     </main>
+    </>
   )
 }

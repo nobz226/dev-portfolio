@@ -23,14 +23,22 @@ export default function Projects() {
   })
 
   return (
-    <main>
+    <>
+      <style>{`
+        @media (max-width: 768px) {
+          .projects-bg-image {
+            display: none !important;
+          }
+        }
+      `}</style>
+      <main>
       {/* Page Hero */}
       <section className="relative pt-40 pb-12 overflow-visible">
         {/* Wipeout background image */}
         <img
           src="/assets/images/wipeout.png"
           alt="background"
-          className="absolute right-0 top-1/2 pointer-events-none z-10"
+          className="projects-bg-image absolute right-0 top-1/2 pointer-events-none z-10"
           style={{ width: '1200px', height: '1300px', marginRight: '-600px', objectFit: 'contain', transform: 'translateY(-50%) rotate(-180deg)', opacity: 1 }}
         />
         <div
@@ -73,5 +81,6 @@ export default function Projects() {
         <ProjectsGrid />
       </SectionWrapper>
     </main>
+    </>
   )
 }

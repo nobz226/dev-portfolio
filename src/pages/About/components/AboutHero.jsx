@@ -3,12 +3,20 @@ import SectionLabel from '../../../components/SectionLabel'
 
 export default function AboutHero() {
   return (
-    <section className="relative pt-40 pb-20 overflow-visible">
+    <>
+      <style>{`
+        @media (max-width: 768px) {
+          .about-bg-image {
+            display: none !important;
+          }
+        }
+      `}</style>
+      <section className="relative pt-40 pb-20 overflow-visible">
       {/* Wipeout background image */}
       <img
         src="/assets/images/wipeout2.png"
         alt="background"
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 object-contain pointer-events-none z-10"
+        className="about-bg-image absolute left-0 top-1/2 transform -translate-y-1/2 object-contain pointer-events-none z-10"
         style={{ width: '1200px', height: '1300px', marginLeft: '-300px', opacity: 1 }}
       />
       {/* Grid bg */}
@@ -48,5 +56,6 @@ export default function AboutHero() {
         </motion.p>
       </div>
     </section>
+    </>
   )
 }

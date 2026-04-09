@@ -75,7 +75,24 @@ function PortraitRing() {
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <>
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-portrait {
+            width: 100% !important;
+            max-width: 240px !important;
+            height: auto !important;
+            aspect-ratio: 1 !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            margin-top: 2rem;
+          }
+          .hero-bg-image {
+            display: none !important;
+          }
+        }
+      `}</style>
+      <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid background */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -172,14 +189,14 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
-            className="hidden lg:flex items-center justify-center relative overflow-visible"
+            className="hero-portrait flex items-center justify-center relative overflow-visible"
             style={{ width: '1100px', height: '700px', marginLeft: '-120px' }}
           >
             {/* Wipeout background image */}
             <img
               src="/assets/images/wipeout.png"
               alt="background"
-              className="absolute object-cover pointer-events-none"
+              className="hero-bg-image absolute object-cover pointer-events-none"
               style={{ width: '100%', height: '100%', transform: 'translateX(-40px)', opacity: 1 }}
             />
             <PortraitRing />
@@ -188,5 +205,6 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
+    </>
   )
 }
