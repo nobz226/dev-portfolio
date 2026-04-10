@@ -77,6 +77,13 @@ export default function HeroSection() {
   return (
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Hero background image */}
+      <img
+        src="/assets/images/homeHero.svg"
+        alt="background"
+        className="absolute top-0 left-0 pointer-events-none z-10"
+        style={{ width: '100%', height: '100vh', objectFit: 'cover', opacity: 0.5 }}
+      />
       {/* Grid background */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -166,6 +173,19 @@ export default function HeroSection() {
                 <Link to="/contact">Get In Touch</Link>
               </Button>
             </motion.div>
+
+            {/* Scroll indicator arrow */}
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -bottom-32 left-6 flex flex-col items-center"
+            >
+              <img
+                src="/assets/images/homeArrow.svg"
+                alt="scroll down"
+                className="w-60 h-60 -mt-2"
+              />
+            </motion.div>
           </div>
 
           {/* Right: animated blob portrait */}
@@ -173,7 +193,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
-            className="hero-portrait w-[1100px] h-[700px] lg:w-[1100px] lg:h-[700px] md:-ml-[280px] lg:-ml-[280px] flex items-center justify-center relative overflow-visible"
+            className="hero-portrait w-[1100px] h-[700px] lg:w-[1100px] lg:h-[700px] md:-ml-[80px] lg:-ml-[80px] flex items-center justify-center relative overflow-visible"
           >
             <PortraitRing />
           </motion.div>
