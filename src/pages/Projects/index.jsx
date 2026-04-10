@@ -27,13 +27,6 @@ export default function Projects() {
       <main>
       {/* Page Hero */}
       <section className="relative pt-40 pb-12 overflow-visible">
-        {/* Wipeout background image */}
-        <img
-          src="/assets/images/wipeout.png"
-          alt="background"
-          className="projects-bg-image absolute right-0 top-1/2 pointer-events-none z-10"
-          style={{ width: '1200px', height: '1300px', marginRight: '-600px', objectFit: 'contain', transform: 'translateY(-50%) rotate(-180deg)', opacity: 1 }}
-        />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{

@@ -91,13 +91,6 @@ export default function HeroSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#2dd4bf]/10 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-20 w-full">
-        {/* Hero background image - behind text */}
-        <img
-          src="/assets/images/wipeout.png"
-          alt="background"
-          className="hero-bg-image absolute object-cover pointer-events-none"
-          style={{ width: '900px', height: '700px', left: '65%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 0 }}
-        />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
 
           {/* Left: text content */}

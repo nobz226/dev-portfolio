@@ -15,13 +15,6 @@ export default function Contact() {
       <main style={{ overflow: 'visible' }}>
       {/* Hero */}
       <section className="relative pt-40 pb-12 overflow-visible">
-        {/* Wipeout2 background image */}
-        <img
-          src="/assets/images/wipeout2.png"
-          alt="background"
-          className="contact-bg-image absolute left-0 top-2/3 pointer-events-none z-0"
-          style={{ width: '1200px', height: '1300px', marginLeft: '-500px', objectFit: 'contain', transform: 'translateY(-50%)', opacity: 1 }}
-        />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{

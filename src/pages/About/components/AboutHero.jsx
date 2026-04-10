@@ -5,13 +5,6 @@ export default function AboutHero() {
   return (
     <>
       <section className="relative pt-40 pb-20 overflow-visible">
-      {/* Wipeout background image */}
-      <img
-        src="/assets/images/wipeout2.png"
-        alt="background"
-        className="about-bg-image absolute top-1/2 -translate-y-1/2 object-contain pointer-events-none z-10"
-        style={{ width: '1200px', height: '1300px', left: '-400px' }}
-      />
       {/* Grid bg */}
       <div
         className="absolute inset-0 pointer-events-none"
