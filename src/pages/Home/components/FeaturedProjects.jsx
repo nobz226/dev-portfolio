@@ -57,7 +57,7 @@ export default function FeaturedProjects() {
           >
             <Link to="/projects" className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('viewAll')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'viewAll' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
               View All
-              <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
+              <img src="/assets/images/arrow2.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
             </Link>
           </Button>
         </div>

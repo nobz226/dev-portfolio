@@ -156,8 +156,14 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                   )}
                 </div>
 
-                {/* Plus button */}
-                <div className="add-button absolute bottom-[30px] md:bottom-[30px] right-[30px] md:right-[30px] w-8 h-8 bg-transparent border-2 border-[#2dd4bf] rounded-full flex items-center justify-center z-[3]"></div>
+                  {/* Expand/Close button */}
+                  <div className="absolute bottom-0 right-0 w-12 h-12 z-[3]">
+                    <img
+                      src={isActive ? '/assets/images/close.svg' : '/assets/images/expand.svg'}
+                      alt={isActive ? 'close' : 'expand'}
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  </div>
               </div>
             )
           })}

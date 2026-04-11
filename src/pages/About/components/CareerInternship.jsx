@@ -47,7 +47,7 @@ export default function CareerInternship() {
                 onMouseLeave={() => setHoveredArrow(null)}
                 style={{ transform: hoveredArrow === i ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
               >
-                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px', marginTop: '2px', flexShrink: 0 }} />
+                <img src="/assets/images/arrow2.svg" alt="arrow" style={{ width: '72px', height: '72px', marginTop: '2px', flexShrink: 0 }} />
                 <span>{item}</span>
               </motion.li>
             ))}

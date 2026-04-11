@@ -14,6 +14,7 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [hoveredArrow, setHoveredArrow] = useState(null)
 
   const project = allProjects.find((p) => p.slug === slug)
 
@@ -202,35 +203,59 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex gap-3 flex-wrap"
+            className="flex gap-4 flex-wrap"
           >
             {project.liveUrl && (
               <Button
                 asChild
-                className="font-mono text-sm uppercase tracking-wider bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none px-8 py-5 transition-colors duration-300"
+                className="font-mono text-sm uppercase tracking-wider bg-transparent text-[#2dd4bf] hover:bg-transparent hover:text-[#2dd4bf] rounded-none px-0 py-0"
               >
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                  Live Demo ↗
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                  onMouseEnter={() => setHoveredArrow('live')}
+                  onMouseLeave={() => setHoveredArrow(null)}
+                  style={{ transform: hoveredArrow === 'live' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
+                >
+                  Live Demo
+                  <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
                 </a>
               </Button>
             )}
             {project.repoUrl && (
               <Button
                 asChild
-                variant="outline"
-                className="font-mono text-sm uppercase tracking-wider border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-8 py-5 bg-transparent transition-all duration-300"
+                className="font-mono text-sm uppercase tracking-wider bg-transparent text-[#555555] hover:bg-transparent hover:text-[#555555] rounded-none px-0 py-0"
               >
-                <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                  View Code ↗
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                  onMouseEnter={() => setHoveredArrow('code')}
+                  onMouseLeave={() => setHoveredArrow(null)}
+                  style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
+                >
+                  View Code
+                  <img src="/assets/images/codeIcon.svg" alt="code" style={{ width: '72px', height: '72px' }} />
                 </a>
               </Button>
             )}
             <Button
               onClick={() => navigate('/projects')}
-              variant="outline"
-              className="font-mono text-sm uppercase tracking-wider border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-8 py-5 bg-transparent transition-all duration-300"
+              className="font-mono text-sm uppercase tracking-wider bg-transparent text-[#555555] hover:bg-transparent hover:text-[#555555] rounded-none px-0 py-0"
             >
-              Back to Projects
+              <div
+                className="flex items-center gap-2"
+                onMouseEnter={() => setHoveredArrow('back')}
+                onMouseLeave={() => setHoveredArrow(null)}
+                style={{ transform: hoveredArrow === 'back' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center', cursor: 'pointer' }}
+              >
+                Back to Projects
+                <img src="/assets/images/backArrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+              </div>
             </Button>
           </motion.div>
         </div>
