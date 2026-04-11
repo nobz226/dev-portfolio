@@ -40,7 +40,7 @@ export default function Footer() {
               key={path}
               to={path}
               end={path === '/'}
-              className="font-mono text-sm font-medium uppercase tracking-widest text-[#666666] hover:text-[#2dd4bf] transition-colors duration-300"
+              className="font-silom text-sm font-medium uppercase tracking-widest text-[#666666] hover:text-[#2dd4bf] transition-colors duration-300"
             >
               {label}
             </NavLink>

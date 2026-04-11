@@ -4,6 +4,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "Silom";
+  src: url("/assets/fonts/Silom.ttf") format("truetype");
+  font-display: swap;
+}
+
 @theme inline {
   --color-cyber-cyan: #2dd4bf;
   --color-soft-blue: #22b8c7;
@@ -66,27 +72,9 @@
   --color-ring: var(--ring);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-    box-sizing: border-box;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: "Courier Prime", "Courier New", monospace;
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Cal Sans", system-ui, sans-serif;
-  }
-  a {
-    text-decoration: none;
-    color: inherit;
+@layer utilities {
+  .font-silom {
+    font-family: "Silom", system-ui, sans-serif;
   }
 }
 

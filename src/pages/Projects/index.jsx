@@ -27,6 +27,16 @@ export default function Projects() {
       <main>
       {/* Page Hero */}
       <section className="relative pt-40 pb-12 overflow-visible">
+        {/* Background image */}
+        <motion.img
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          src="/assets/images/projectsHero.svg"
+          alt="background"
+          className="absolute top-0 left-0 pointer-events-none z-0"
+          style={{ width: '100%', height: '100vh', objectFit: 'cover' }}
+        />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -55,7 +65,7 @@ export default function Projects() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-mono text-base font-medium text-[#555555] max-w-xl leading-relaxed"
+            className="font-mono text-base font-medium text-[#1e1e1e] max-w-xl leading-relaxed"
           >
             A curated selection of real-world work — engineered to be unbreakable
             and designed to make an impression.

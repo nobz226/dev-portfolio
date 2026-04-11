@@ -42,7 +42,7 @@ export default function Header() {
               to={link.to}
               end={link.to === '/'}
               className={({ isActive }) =>
-                `font-mono text-base font-medium tracking-widest uppercase transition-colors duration-300 relative group ${
+                `font-silom text-base font-medium tracking-widest uppercase transition-colors duration-300 relative group ${
                   isActive ? 'text-[#2dd4bf]' : 'text-[#666666] hover:text-[#1e1e1e]'
                 }`
               }
@@ -100,7 +100,7 @@ export default function Header() {
                   end={link.to === '/'}
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) =>
-                    `font-mono text-base font-medium tracking-widest uppercase py-2 transition-colors duration-300 ${
+                    `font-silom text-base font-medium tracking-widest uppercase py-2 transition-colors duration-300 ${
                       isActive ? 'text-[#2dd4bf]' : 'text-[#666666]'
                     }`
                   }

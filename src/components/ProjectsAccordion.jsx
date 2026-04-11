@@ -111,7 +111,7 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-0 hover:text-[#2dd4bf] hover:bg-transparent"
+                        className="text-sm font-semibold text-[#2dd4bf] font-silom uppercase tracking-wider flex items-center gap-0 hover:text-[#2dd4bf] hover:bg-transparent"
                         onMouseEnter={() => setHoveredArrow(`live-${project.slug}`)}
                         onMouseLeave={() => setHoveredArrow(null)}
                         style={{ transform: hoveredArrow === `live-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
@@ -125,7 +125,7 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                         href={project.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-0 hover:text-[#2dd4bf] hover:bg-transparent"
+                        className="text-sm font-semibold text-[#2dd4bf] font-silom uppercase tracking-wider flex items-center gap-0 hover:text-[#2dd4bf] hover:bg-transparent"
                         onMouseEnter={() => setHoveredArrow(`repo-${project.slug}`)}
                         onMouseLeave={() => setHoveredArrow(null)}
                         style={{ transform: hoveredArrow === `repo-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
@@ -136,7 +136,7 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                     )}
                     <Link
                       to={`/projects/${project.slug}`}
-                      className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-0 hover:text-[#2dd4bf] hover:bg-transparent"
+                      className="text-sm font-semibold text-[#2dd4bf] font-silom uppercase tracking-wider flex items-center gap-0 hover:text-[#2dd4bf] hover:bg-transparent"
                       onMouseEnter={() => setHoveredArrow(`details-${project.slug}`)}
                       onMouseLeave={() => setHoveredArrow(null)}
                       style={{ transform: hoveredArrow === `details-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}

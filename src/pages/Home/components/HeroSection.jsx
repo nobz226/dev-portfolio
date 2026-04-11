@@ -129,7 +129,7 @@ export default function HeroSection() {
               transition={{ duration: 0.7, delay: 0.9 }}
             >
               <h1 className="font-sans font-bold text-5xl md:text-7xl lg:text-8xl text-[#1e1e1e] leading-none tracking-tight">
-                System & <span className="text-[#2dd4bf]">Soul</span>
+                <span className="font-silom">System</span> <span className="font-mono text-[#22b8c7]">&</span> <span className="text-[#2dd4bf]">Soul</span>
               </h1>
             </motion.div>
 
@@ -164,14 +164,14 @@ export default function HeroSection() {
             >
               <Button
                 asChild
-                className="font-mono uppercase tracking-widest text-xs md:text-sm bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none px-4 md:px-8 py-3 md:py-5 transition-all duration-300"
+                className="font-silom uppercase tracking-widest text-xs md:text-sm bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none px-4 md:px-8 py-3 md:py-5 transition-all duration-300"
               >
                 <Link to="/projects">View Work</Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
-                className="font-mono uppercase tracking-widest text-xs md:text-sm border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-4 md:px-8 py-3 md:py-5 bg-transparent transition-all duration-300"
+                className="font-silom uppercase tracking-widest text-xs md:text-sm border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-4 md:px-8 py-3 md:py-5 bg-transparent transition-all duration-300"
               >
                 <Link to="/contact">Get In Touch</Link>
               </Button>

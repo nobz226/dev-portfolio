@@ -15,6 +15,16 @@ export default function Contact() {
       <main style={{ overflow: 'visible' }}>
       {/* Hero */}
       <section className="relative pt-40 pb-12 overflow-visible">
+        {/* Background image */}
+        <motion.img
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          src="/assets/images/contactHero.svg"
+          alt="background"
+          className="absolute top-0 left-0 pointer-events-none z-0"
+          style={{ width: '100%', height: '100vh', objectFit: 'cover' }}
+        />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{

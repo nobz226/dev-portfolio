@@ -53,7 +53,7 @@ export default function FeaturedProjects() {
           </h2>
           <Button
             asChild
-            className="font-mono uppercase tracking-widest text-sm text-[#aaaaaa] bg-transparent w-fit hover:bg-transparent hover:text-[#aaaaaa]"
+            className="font-silom uppercase tracking-widest text-sm text-[#aaaaaa] bg-transparent w-fit hover:bg-transparent hover:text-[#aaaaaa]"
           >
             <Link to="/projects" className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('viewAll')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'viewAll' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
               View All

@@ -72,6 +72,16 @@ export default function ProjectDetail() {
     <main>
       {/* Hero Section */}
       <section className="relative pt-40 pb-12">
+        {/* Background image */}
+        <motion.img
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          src="/assets/images/projectsHero.svg"
+          alt="background"
+          className="absolute top-0 left-0 pointer-events-none z-0"
+          style={{ width: '100%', height: '100vh', objectFit: 'cover' }}
+        />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -92,7 +102,7 @@ export default function ProjectDetail() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-sans font-bold text-5xl md:text-7xl text-[#1e1e1e] leading-none mb-6"
+            className="font-sans font-bold text-5xl md:text-7xl text-[#1e1e1e] leading-none mb-6 opacity-100 relative z-20"
           >
             {project.title}
           </motion.h1>
@@ -208,7 +218,7 @@ export default function ProjectDetail() {
             {project.liveUrl && (
               <Button
                 asChild
-                className="font-mono text-sm uppercase tracking-wider bg-transparent text-[#2dd4bf] hover:bg-transparent hover:text-[#2dd4bf] rounded-none px-0 py-0"
+                className="font-silom text-sm uppercase tracking-wider bg-transparent text-[#2dd4bf] hover:bg-transparent hover:text-[#2dd4bf] rounded-none px-0 py-0"
               >
                 <a
                   href={project.liveUrl}
@@ -227,7 +237,7 @@ export default function ProjectDetail() {
             {project.repoUrl && (
               <Button
                 asChild
-                className="font-mono text-sm uppercase tracking-wider bg-transparent text-[#555555] hover:bg-transparent hover:text-[#555555] rounded-none px-0 py-0"
+                className="font-silom text-sm uppercase tracking-wider bg-transparent text-[#555555] hover:bg-transparent hover:text-[#555555] rounded-none px-0 py-0"
               >
                 <a
                   href={project.repoUrl}
@@ -245,7 +255,7 @@ export default function ProjectDetail() {
             )}
             <Button
               onClick={() => navigate('/projects')}
-              className="font-mono text-sm uppercase tracking-wider bg-transparent text-[#555555] hover:bg-transparent hover:text-[#555555] rounded-none px-0 py-0"
+              className="font-silom text-sm uppercase tracking-wider bg-transparent text-[#555555] hover:bg-transparent hover:text-[#555555] rounded-none px-0 py-0"
             >
               <div
                 className="flex items-center gap-2"

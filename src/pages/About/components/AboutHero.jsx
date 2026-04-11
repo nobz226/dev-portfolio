@@ -5,6 +5,16 @@ export default function AboutHero() {
   return (
     <>
       <section className="relative pt-40 pb-20 overflow-visible">
+      {/* Background image */}
+      <motion.img
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 1.2, delay: 0.3 }}
+        src="/assets/images/aboutHero.svg"
+        alt="background"
+        className="absolute top-0 left-0 pointer-events-none"
+        style={{ width: '100%', height: '100vh', objectFit: 'cover' }}
+      />
       {/* Grid bg */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -35,7 +45,7 @@ export default function AboutHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="font-mono text-base font-medium text-[#555555] max-w-xl leading-relaxed"
+          className="font-mono text-base font-medium text-[#1e1e1e] max-w-xl leading-relaxed"
         >
           Skateboarder. Music producer. Full-stack developer. Every passion feeds the same obsession —
           relentless pursuit of quality and an eye for the invisible detail.

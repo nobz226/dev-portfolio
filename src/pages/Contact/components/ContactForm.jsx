@@ -83,7 +83,7 @@ export default function ContactForm() {
           <p className="font-mono text-base font-medium text-[#555555]">I&apos;ll get back to you within 24 hours.</p>
           <button
             onClick={() => setStatus('idle')}
-            className="font-mono text-sm text-[#2dd4bf] mt-2 flex items-center gap-2 hover:text-[#2dd4bf]"
+            className="font-silom text-sm text-[#2dd4bf] mt-2 flex items-center gap-2 hover:text-[#2dd4bf]"
             onMouseEnter={() => setHoveredArrow('sendAnother')}
             onMouseLeave={() => setHoveredArrow(null)}
             style={{ transform: hoveredArrow === 'sendAnother' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
@@ -155,7 +155,7 @@ export default function ContactForm() {
           <Button
             type="submit"
             disabled={status === 'sending'}
-            className="font-mono uppercase tracking-widest text-sm text-[#2dd4bf] disabled:opacity-60 flex items-center justify-center gap-2 bg-transparent hover:bg-transparent hover:text-[#2dd4bf]"
+            className="font-silom uppercase tracking-widest text-sm text-[#2dd4bf] disabled:opacity-60 flex items-center justify-center gap-2 bg-transparent hover:bg-transparent hover:text-[#2dd4bf]"
           >
             {status === 'sending' ? 'Sending…' : (
               <span className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('sendMessage')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'sendMessage' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
