@@ -111,13 +111,13 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-2 hover:text-[#2dd4bf] hover:bg-transparent"
+                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-0 hover:text-[#2dd4bf] hover:bg-transparent"
                         onMouseEnter={() => setHoveredArrow(`live-${project.slug}`)}
                         onMouseLeave={() => setHoveredArrow(null)}
                         style={{ transform: hoveredArrow === `live-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                       >
                         Live Demo
-                        <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
+                        <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '70px', height: '70px', marginLeft: '-10px' }} />
                       </a>
                     )}
                     {project.repoUrl && (
@@ -125,24 +125,24 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                         href={project.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-2 hover:text-[#2dd4bf] hover:bg-transparent"
+                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-0 hover:text-[#2dd4bf] hover:bg-transparent"
                         onMouseEnter={() => setHoveredArrow(`repo-${project.slug}`)}
                         onMouseLeave={() => setHoveredArrow(null)}
                         style={{ transform: hoveredArrow === `repo-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                       >
                         Source Code
-                        <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
+                        <img src="/assets/images/codeIcon.svg" alt="code" style={{ width: '70px', height: '70px', marginLeft: '-10px' }} />
                       </a>
                     )}
                     <Link
                       to={`/projects/${project.slug}`}
-                      className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-2 hover:text-[#2dd4bf] hover:bg-transparent"
+                      className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-0 hover:text-[#2dd4bf] hover:bg-transparent"
                       onMouseEnter={() => setHoveredArrow(`details-${project.slug}`)}
                       onMouseLeave={() => setHoveredArrow(null)}
                       style={{ transform: hoveredArrow === `details-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                     >
                       Details
-                      <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
+                      <img src="/assets/images/detailsIcon.svg" alt="details" style={{ width: '70px', height: '70px', marginLeft: '-10px' }} />
                     </Link>
                   </div>
 

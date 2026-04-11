@@ -97,12 +97,12 @@ export default function ProjectCard({ project, index }) {
             {project.repoUrl ? (
               <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
                 Code
-                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+                <img src="/assets/images/codeIcon.svg" alt="code" style={{ width: '72px', height: '72px' }} />
               </a>
             ) : (
               <span className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
                 Code
-                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+                <img src="/assets/images/codeIcon.svg" alt="code" style={{ width: '72px', height: '72px' }} />
               </span>
             )}
           </Button>
@@ -113,7 +113,7 @@ export default function ProjectCard({ project, index }) {
           >
             <Link to={`/projects/${project.slug}`} className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('details')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'details' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
               Details
-              <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+              <img src="/assets/images/detailsIcon.svg" alt="details" style={{ width: '72px', height: '72px' }} />
             </Link>
           </Button>
         </div>
