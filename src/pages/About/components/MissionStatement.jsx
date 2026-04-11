@@ -18,8 +18,8 @@ export default function MissionStatement() {
         >
           <p className="font-mono text-lg md:text-xl text-charcoal/90 leading-relaxed">
             To transform complex ideas into high-fidelity web experiences through{' '}
-            <span className="text-snow font-bold">technical honesty</span> and{' '}
-            <span className="text-snow font-bold">artistic intent</span>, leveraging
+            <span className="text-snow font-bold font-silom">technical honesty</span> and{' '}
+            <span className="text-snow font-bold font-sans">artistic intent</span>, leveraging
             AI-accelerated workflows to deliver polished, resilient, and soul-driven
             digital products for clients and agencies alike.
           </p>
@@ -32,12 +32,16 @@ export default function MissionStatement() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-8 flex flex-wrap gap-4"
         >
-          {['Soul', 'Systems', 'AI-Catalysis'].map((tag) => (
+          {[
+            { label: 'Soul', font: 'font-sans' },
+            { label: 'Systems', font: 'font-silom' },
+            { label: 'AI-Catalysis', font: 'font-mono' }
+          ].map((tag) => (
             <span
-              key={tag}
-              className="font-mono text-sm uppercase tracking-widest px-4 py-2 border border-snow text-snow"
+              key={tag.label}
+              className={`${tag.font} text-sm uppercase tracking-widest px-4 py-2 border border-snow text-snow`}
             >
-              {tag}
+              {tag.label}
             </span>
           ))}
         </motion.div>

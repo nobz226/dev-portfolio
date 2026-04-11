@@ -67,7 +67,7 @@ export default function ContactForm() {
         <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
         <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
         <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
-        <span className="font-mono text-sm text-[#666666] ml-2">new_message.txt</span>
+        <span className="font-silom text-sm text-[#666666] ml-2">new_message.txt</span>
       </div>
 
       {status === 'sent' ? (
@@ -96,7 +96,7 @@ export default function ContactForm() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
-              <Label className="font-mono text-sm uppercase tracking-widest text-[#666666]">
+              <Label className="font-sans text-sm uppercase tracking-widest text-[#666666]">
                 Name
               </Label>
               <Input
@@ -109,7 +109,7 @@ export default function ContactForm() {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <Label className="font-mono text-sm uppercase tracking-widest text-[#666666]">
+              <Label className="font-sans text-sm uppercase tracking-widest text-[#666666]">
                 Email
               </Label>
               <Input
@@ -125,7 +125,7 @@ export default function ContactForm() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label className="font-mono text-sm uppercase tracking-widest text-[#666666]">
+            <Label className="font-sans text-sm uppercase tracking-widest text-[#666666]">
               Subject
             </Label>
             <Input
@@ -138,7 +138,7 @@ export default function ContactForm() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label className="font-mono text-sm uppercase tracking-widest text-[#666666]">
+            <Label className="font-sans text-sm uppercase tracking-widest text-[#666666]">
               Message
             </Label>
             <Textarea

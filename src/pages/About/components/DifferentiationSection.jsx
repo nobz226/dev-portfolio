@@ -12,8 +12,8 @@ export default function DifferentiationSection() {
           </h2>
           <p className="font-mono text-base font-medium text-charcoal/75 leading-relaxed mb-6">
             I bridge the gap between{' '}
-            <span className="text-charcoal font-bold">technical rigor</span> and{' '}
-            <span className="text-charcoal font-bold">creative expression</span>. My unique
+            <span className="text-[#1e1e1e] font-bold font-silom">technical rigor</span> and{' '}
+            <span className="text-[#1e1e1e] font-bold font-sans">creative expression</span>. My unique
             edge is my efficiency: I use{' '}
             <span className="text-snow font-bold">AI as a high-speed catalyst</span> to
             handle the repetitive, predictable manual labor — under my strict supervision and review.
@@ -45,14 +45,14 @@ export default function DifferentiationSection() {
               transition={{ duration: 0.5, delay: i * 0.15 }}
               className="bg-snow p-8"
             >
-              <p className="font-mono text-base uppercase tracking-[0.25em] text-cyber-cyan mb-6">
+              <p className="font-silom text-base uppercase tracking-[0.25em] text-cyber-cyan mb-6">
                 {col.label}
               </p>
               <ul className="flex flex-col gap-4">
                 {col.items.map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 bg-cyber-cyan shrink-0" />
-                    <span className="font-mono text-lg text-charcoal/75">{item}</span>
+                    <span className="font-sans text-lg text-charcoal/75">{item}</span>
                   </li>
                 ))}
               </ul>

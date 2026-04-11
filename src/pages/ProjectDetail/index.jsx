@@ -95,7 +95,7 @@ export default function ProjectDetail() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel label="// project details" />
+          <SectionLabel label="// project details" bannerBgColor="#1e1e1e" />
         </motion.div>
         <div className="max-w-4xl mx-auto px-6 pt-10">
           <motion.h1
@@ -136,11 +136,11 @@ export default function ProjectDetail() {
       {/* Description Section */}
       <SectionWrapper label="// description" variant="dark">
         <div className="flex items-center gap-4 mb-8">
-          <span className="font-mono text-sm text-[#f9f7f7] uppercase tracking-widest">
+          <span className="font-silom text-sm text-[#f9f7f7] uppercase tracking-widest">
             {project.category}
           </span>
           {project.featured && (
-            <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 border border-[#f9f7f7]/40 text-[#f9f7f7]">
+            <span className="font-silom text-[10px] uppercase tracking-widest px-3 py-1 border border-[#f9f7f7]/40 text-[#f9f7f7]">
               Featured
             </span>
           )}
@@ -155,7 +155,7 @@ export default function ProjectDetail() {
 
       {/* The Why Section */}
       {project.why && (
-        <SectionWrapper label="// the why" variant="cyan">
+        <SectionWrapper label="// the why" variant="cyan" bannerBgColor="#22b8c7">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
             The Why
           </h2>
@@ -175,7 +175,7 @@ export default function ProjectDetail() {
             {renderParagraphs(project.system)}
           </div>
           <div>
-            <h3 className="font-sans font-bold text-2xl text-[#f9f7f7] mb-6">
+            <h3 className="font-silom font-bold text-2xl text-[#f9f7f7] mb-6">
               Tech Stack
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -183,7 +183,7 @@ export default function ProjectDetail() {
                 <Badge
                   key={t}
                   variant="outline"
-                  className="font-mono text-sm border-[#f9f7f7]/30 text-[#f9f7f7] bg-transparent rounded-none"
+                  className="font-sans text-sm border-[#f9f7f7]/30 text-[#f9f7f7] bg-transparent rounded-none"
                 >
                   {t}
                 </Badge>
@@ -195,7 +195,7 @@ export default function ProjectDetail() {
 
       {/* The Soul Section */}
       {project.soul && (
-        <SectionWrapper label="// the soul" variant="cyan">
+        <SectionWrapper label="// the soul" variant="cyan" bannerBgColor="#22b8c7">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
             The Soul
           </h2>

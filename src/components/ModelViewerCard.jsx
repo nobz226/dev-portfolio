@@ -56,7 +56,7 @@ export default function ModelViewerCard({
           <div>
             {/* Index number with hover effect */}
             <div className="flex items-start gap-4 mb-4">
-              <span className="font-mono text-6xl font-bold text-black/5 group-hover:text-[#2dd4bf]/20 transition-colors duration-500 select-none leading-none">
+              <span className="font-silom text-6xl font-bold text-black group-hover:text-[#2dd4bf] transition-colors duration-500 select-none leading-none">
                 {index}
               </span>
             </div>

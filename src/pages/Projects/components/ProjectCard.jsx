@@ -22,7 +22,7 @@ export default function ProjectCard({ project, index }) {
         <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
         <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
         <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
-        <span className="font-mono text-sm text-[#666666] ml-2">{project.slug}.jsx</span>
+        <span className="font-silom text-sm text-[#666666] ml-2">{project.slug}.jsx</span>
       </div>
 
       {/* Screenshot */}
@@ -43,11 +43,11 @@ export default function ProjectCard({ project, index }) {
       <div className="p-5 flex flex-col flex-1 gap-3">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <span className="font-mono text-sm text-cyber-cyan block mb-1">{project.category}</span>
+            <span className="font-silom text-sm text-cyber-cyan block mb-1">{project.category}</span>
             <h3 className="font-sans font-bold text-lg text-charcoal">{project.title}</h3>
           </div>
           {project.featured && (
-            <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 border border-cyber-cyan/40 text-cyber-cyan shrink-0">
+            <span className="font-silom text-[10px] uppercase tracking-widest px-2 py-1 border border-cyber-cyan/40 text-cyber-cyan shrink-0">
               Featured
             </span>
           )}
@@ -62,7 +62,7 @@ export default function ProjectCard({ project, index }) {
             <Badge
               key={t}
               variant="outline"
-              className="font-mono text-sm border-black/10 text-[#555555] bg-transparent rounded-none"
+              className="font-sans text-sm border-black/10 text-[#555555] bg-transparent rounded-none"
             >
               {t}
             </Badge>

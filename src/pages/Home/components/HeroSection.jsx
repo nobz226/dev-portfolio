@@ -112,8 +112,8 @@ export default function HeroSection() {
               transition={{ duration: 0.5 }}
               className="flex items-center gap-3 mb-6"
             >
-              <span className="font-mono text-base text-[#2dd4bf]">~/portfolio</span>
-              <span className="font-mono text-base text-[#666666]">$</span>
+              <span className="font-mono text-base text-[#1e1e1e]">~/portfolio</span>
+              <span className="font-mono text-base text-[#1e1e1e]">$</span>
               <TerminalText
                 text="whoami"
                 delay={200}
@@ -151,8 +151,8 @@ export default function HeroSection() {
               className="font-mono text-[#555555] max-w-xl text-base md:text-lg font-medium leading-relaxed mb-10"
             >
               Transforming complex ideas into high-fidelity web experiences through{' '}
-              <span className="text-[#1e1e1e] font-bold">technical honesty</span> and{' '}
-              <span className="text-[#1e1e1e] font-bold">artistic intent</span>.
+              <span className="text-[#1e1e1e] font-bold font-silom">technical honesty</span> and{' '}
+              <span className="text-[#1e1e1e] font-bold font-sans">artistic intent</span>.
             </motion.p>
 
             {/* CTAs */}

@@ -92,7 +92,7 @@ export default function TechStack() {
             variants={cardVariants}
             className="bg-black/10 p-8"
           >
-            <p className="font-mono text-sm uppercase tracking-[0.25em] text-[#1e1e1e]/60 mb-8">
+            <p className="font-silom text-sm uppercase tracking-[0.25em] text-[#1e1e1e]/60 mb-8">
               {group.category}
             </p>
             <ul className="flex flex-col gap-4">
@@ -110,7 +110,7 @@ export default function TechStack() {
                     className="text-[#1e1e1e]/40 group-hover:text-[#1e1e1e] transition-colors duration-300 shrink-0"
                     size={24}
                   />
-                  <span className="font-mono text-base text-[#1e1e1e]/70 group-hover:text-[#1e1e1e] transition-colors duration-300">
+                  <span className="font-sans text-base text-[#1e1e1e]/70 group-hover:text-[#1e1e1e] transition-colors duration-300">
                     {label}
                   </span>
                 </motion.li>
