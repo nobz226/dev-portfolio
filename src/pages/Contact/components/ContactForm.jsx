@@ -7,6 +7,7 @@ import { Label } from '../../../components/ui/label'
 
 export default function ContactForm() {
   const [status, setStatus] = useState('idle') // idle | sending | sent
+  const [hoveredArrow, setHoveredArrow] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -82,9 +83,13 @@ export default function ContactForm() {
           <p className="font-mono text-base font-medium text-[#555555]">I&apos;ll get back to you within 24 hours.</p>
           <button
             onClick={() => setStatus('idle')}
-            className="font-mono text-sm text-[#2dd4bf] underline underline-offset-4 mt-2"
+            className="font-mono text-sm text-[#2dd4bf] mt-2 flex items-center gap-2 hover:text-[#2dd4bf]"
+            onMouseEnter={() => setHoveredArrow('sendAnother')}
+            onMouseLeave={() => setHoveredArrow(null)}
+            style={{ transform: hoveredArrow === 'sendAnother' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
           >
-            Send another →
+            Send another
+            <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
           </button>
         </motion.div>
       ) : (
@@ -150,9 +155,14 @@ export default function ContactForm() {
           <Button
             type="submit"
             disabled={status === 'sending'}
-            className="font-mono uppercase tracking-widest text-sm bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none py-5 w-full sm:w-auto transition-all duration-300 disabled:opacity-60"
+            className="font-mono uppercase tracking-widest text-sm text-[#2dd4bf] disabled:opacity-60 flex items-center justify-center gap-2 bg-transparent hover:bg-transparent hover:text-[#2dd4bf]"
           >
-            {status === 'sending' ? 'Sending…' : 'Send Message →'}
+            {status === 'sending' ? 'Sending…' : (
+              <span className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('sendMessage')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'sendMessage' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+                Send Message
+                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+              </span>
+            )}
           </Button>
         </form>
       )}

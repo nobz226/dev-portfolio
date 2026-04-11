@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import SectionWrapper from '../../../components/SectionWrapper'
 
 export default function CareerInternship() {
+  const [hoveredArrow, setHoveredArrow] = useState(null)
   return (
     <SectionWrapper id="career" label="// internship goals">
       <div className="max-w-3xl">
@@ -40,9 +42,12 @@ export default function CareerInternship() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex items-start gap-3 font-mono text-base text-[#f9f7f7]/80"
+                className="flex items-start gap-3 font-mono text-base text-[#f9f7f7]/80 hover:text-[#f9f7f7]/80"
+                onMouseEnter={() => setHoveredArrow(i)}
+                onMouseLeave={() => setHoveredArrow(null)}
+                style={{ transform: hoveredArrow === i ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
               >
-                <span className="text-[#2dd4bf] mt-1 flex-shrink-0">→</span>
+                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px', marginTop: '2px', flexShrink: 0 }} />
                 <span>{item}</span>
               </motion.li>
             ))}

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Badge } from '../../../components/ui/badge'
@@ -7,6 +8,7 @@ import { Button } from '../../../components/ui/button'
  * ProjectCard — displays a single project with title, description, tech stack, and links.
  */
 export default function ProjectCard({ project, index }) {
+  const [hoveredArrow, setHoveredArrow] = useState(null)
   return (
     <motion.article
       initial={{ opacity: 0, y: 32 }}
@@ -72,39 +74,46 @@ export default function ProjectCard({ project, index }) {
             asChild={!!project.liveUrl}
             size="sm"
             disabled={!project.liveUrl}
-            className="font-mono text-sm uppercase tracking-wider bg-cyber-cyan text-charcoal hover:bg-soft-blue rounded-none flex-1 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="font-mono text-sm uppercase tracking-wider text-cyber-cyan rounded-none flex-1 disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-transparent hover:text-cyber-cyan"
           >
             {project.liveUrl ? (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                Live ↗
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('live')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'live' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+                Live
+                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
               </a>
             ) : (
-              <span>Live ↗</span>
+              <span className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('live')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'live' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+                Live
+                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+              </span>
             )}
           </Button>
           <Button
             asChild={!!project.repoUrl}
             size="sm"
-            variant="outline"
             disabled={!project.repoUrl}
-            className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#333333] hover:border-cyber-cyan hover:text-cyber-cyan hover:bg-black/5 rounded-none flex-1 bg-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="font-mono text-sm uppercase tracking-wider text-[#333333] rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-[#333333]"
           >
             {project.repoUrl ? (
-              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                Code ↗
+              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+                Code
+                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
               </a>
             ) : (
-              <span>Code ↗</span>
+              <span className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+                Code
+                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+              </span>
             )}
           </Button>
           <Button
             asChild
             size="sm"
-            variant="outline"
-            className="font-mono text-sm uppercase tracking-wider border-black/10 text-[#333333] hover:border-cyber-cyan hover:text-cyber-cyan hover:bg-black/5 rounded-none flex-1 bg-transparent transition-all duration-300"
+            className="font-mono text-sm uppercase tracking-wider text-[#333333] rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-[#333333]"
           >
-            <Link to={`/projects/${project.slug}`}>
-              Details ↗
+            <Link to={`/projects/${project.slug}`} className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('details')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'details' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+              Details
+              <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
             </Link>
           </Button>
         </div>

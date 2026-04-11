@@ -42,6 +42,7 @@ const featured = [
 
 export default function FeaturedProjects() {
   const [isCardActive, setIsCardActive] = useState(false)
+  const [hoveredArrow, setHoveredArrow] = useState(null)
 
   return (
     <SectionWrapper id="featured" label="// selected work">
@@ -52,10 +53,12 @@ export default function FeaturedProjects() {
           </h2>
           <Button
             asChild
-            variant="outline"
-            className="font-mono uppercase tracking-widest text-sm border-white/20 text-[#aaaaaa] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-6 py-4 bg-transparent w-fit transition-all duration-300"
+            className="font-mono uppercase tracking-widest text-sm text-[#aaaaaa] bg-transparent w-fit hover:bg-transparent hover:text-[#aaaaaa]"
           >
-            <Link to="/projects">View All →</Link>
+            <Link to="/projects" className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('viewAll')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'viewAll' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+              View All
+              <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
+            </Link>
           </Button>
         </div>
 

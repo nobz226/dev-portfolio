@@ -6,6 +6,7 @@ import './ProjectsAccordion.css'
 export default function ProjectsAccordion({ projects, onActiveChange }) {
   const [activeIndex, setActiveIndex] = useState(-1)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const [hoveredArrow, setHoveredArrow] = useState(null)
 
   const handleSlideClick = (index) => {
     if (activeIndex === index) {
@@ -110,9 +111,13 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider pb-1 border-b-2 border-transparent transition-all duration-300 hover:border-b-[#2dd4bf]"
+                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-2 hover:text-[#2dd4bf] hover:bg-transparent"
+                        onMouseEnter={() => setHoveredArrow(`live-${project.slug}`)}
+                        onMouseLeave={() => setHoveredArrow(null)}
+                        style={{ transform: hoveredArrow === `live-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                       >
-                        Live Demo →
+                        Live Demo
+                        <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
                       </a>
                     )}
                     {project.repoUrl && (
@@ -120,16 +125,24 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                         href={project.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider pb-1 border-b-2 border-transparent transition-all duration-300 hover:border-b-[#2dd4bf]"
+                        className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-2 hover:text-[#2dd4bf] hover:bg-transparent"
+                        onMouseEnter={() => setHoveredArrow(`repo-${project.slug}`)}
+                        onMouseLeave={() => setHoveredArrow(null)}
+                        style={{ transform: hoveredArrow === `repo-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                       >
-                        Source Code →
+                        Source Code
+                        <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
                       </a>
                     )}
                     <Link
                       to={`/projects/${project.slug}`}
-                      className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider pb-1 border-b-2 border-transparent transition-all duration-300 hover:border-b-[#2dd4bf]"
+                      className="text-sm font-semibold text-[#2dd4bf] font-mono uppercase tracking-wider flex items-center gap-2 hover:text-[#2dd4bf] hover:bg-transparent"
+                      onMouseEnter={() => setHoveredArrow(`details-${project.slug}`)}
+                      onMouseLeave={() => setHoveredArrow(null)}
+                      style={{ transform: hoveredArrow === `details-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                     >
-                      Details →
+                      Details
+                      <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
                     </Link>
                   </div>
 
@@ -159,7 +172,7 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
         aria-label="Previous project"
         style={{ position: 'absolute', left: '-100px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
       >
-        <img src="/assets/images/accordionArrow.svg" alt="previous" style={{ width: '200px', height: '200px', maxWidth: 'none', maxHeight: 'none', transform: 'scaleX(-1) rotate(180deg)' }} />
+        <img src="/assets/images/accordionArrow.svg" alt="previous" style={{ width: '150px', height: '150px', maxWidth: 'none', maxHeight: 'none', transform: 'scaleX(-1) rotate(180deg)' }} />
       </button>
 
       {/* Next button - absolutely positioned */}
@@ -169,7 +182,7 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
         aria-label="Next project"
         style={{ position: 'absolute', right: '-100px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
       >
-        <img src="/assets/images/accordionArrow.svg" alt="next" style={{ width: '200px', height: '200px', maxWidth: 'none', maxHeight: 'none', transform: 'rotate(180deg)' }} />
+        <img src="/assets/images/accordionArrow.svg" alt="next" style={{ width: '150px', height: '150px', maxWidth: 'none', maxHeight: 'none', transform: 'rotate(180deg)' }} />
       </button>
     </div>
   )
