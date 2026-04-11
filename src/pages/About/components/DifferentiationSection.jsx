@@ -3,7 +3,7 @@ import SectionWrapper from '../../../components/SectionWrapper'
 
 export default function DifferentiationSection() {
   return (
-    <SectionWrapper id="edge" label="// differentiation" variant="cyan">
+    <SectionWrapper id="edge" label="// differentiation" variant="cyan" bannerBgColor="#22B8C7">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Text */}
         <div>

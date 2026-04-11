@@ -20,7 +20,7 @@ export default function AboutHero() {
         transition={{ duration: 0.5 }}
         className="relative z-20"
       >
-        <SectionLabel label="// about me" />
+        <SectionLabel label="// about me" bannerBgColor="#1e1e1e" />
       </motion.div>
       <div className="max-w-6xl mx-auto px-6 pt-10 relative z-10">
         <motion.h1

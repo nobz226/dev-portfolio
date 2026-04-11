@@ -3,8 +3,8 @@
  * a solid cyan right-pointing triangle + a banner with a right-arrow tip.
  * variant controls whether the banner is dark (on dark sections) or light (on cyan sections).
  */
-export default function SectionLabel({ label, variant = 'dark' }) {
-  const bannerBg = variant === 'cyan' ? '#2dd4bf' : '#1e1e1e'
+export default function SectionLabel({ label, variant = 'dark', bannerBgColor = null }) {
+  const bannerBg = bannerBgColor || (variant === 'cyan' ? '#2dd4bf' : '#22B8C7')
   const textColor = '#f9f7f7'
   const triangleColor = variant === 'cyan' ? '#f9f7f7' : '#2dd4bf'
 

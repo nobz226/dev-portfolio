@@ -76,7 +76,7 @@ const itemVariants = {
 
 export default function TechStack() {
   return (
-    <SectionWrapper id="stack" label="// tech stack" variant="cyan">
+    <SectionWrapper id="stack" label="// tech stack" variant="cyan" bannerBgColor="#22B8C7">
       <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#1e1e1e] mb-12 leading-tight">
         Tools &amp; <span className="text-[#f9f7f7]">Technologies</span>
       </h2>

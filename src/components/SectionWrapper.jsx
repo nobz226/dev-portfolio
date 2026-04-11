@@ -14,7 +14,7 @@ const fadeUp = {
  * SectionWrapper — wraps page sections with a consistent layout,
  * optional section label, and a scroll-triggered fade-up animation.
  */
-export default function SectionWrapper({ id, label, children, className = '', variant = 'dark' }) {
+export default function SectionWrapper({ id, label, children, className = '', variant = 'dark', bannerBgColor = null }) {
   const bgColor = variant === 'cyan' ? '#2dd4bf' : '#1e1e1e'
 
   const getClipPath = () => {
@@ -42,7 +42,7 @@ export default function SectionWrapper({ id, label, children, className = '', va
       {/* Label sits above shape */}
       {label && (
         <div className="relative z-10">
-          <SectionLabel label={label} variant={variant} />
+          <SectionLabel label={label} variant={variant} bannerBgColor={bannerBgColor} />
         </div>
       )}
       {/* Content — right padding keeps text inside the arrow cutout on desktop only (1200px+) */}

@@ -45,19 +45,10 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
   }, [activeIndex, onActiveChange])
 
   return (
-    <div className="flex items-center md:gap-5 gap-0 w-full">
-      {/* Previous button */}
-      <button
-        className="hidden md:flex w-10 h-10 md:w-[50px] md:h-[50px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/20 hover:border-cyan-500/60 backdrop-blur-[10px] flex-shrink-0 items-center justify-center font-mono font-semibold text-xl md:text-2xl"
-        onClick={handlePrevious}
-        aria-label="Previous project"
-      >
-        ‹
-      </button>
-
+    <div className="w-full overflow-visible relative flex items-center">
       {/* Accordion Container */}
-      <div className="flex-1 relative md:overflow-hidden overflow-visible md:min-h-[500px]">
-        <div className="flex md:flex-row flex-col h-[500px] md:h-[500px] md:items-stretch relative gap-0">
+      <div className="flex-1 relative md:overflow-hidden overflow-visible md:min-h-[500px] w-full">
+        <div className="flex md:flex-row flex-col h-[500px] md:h-[500px] md:items-stretch relative gap-0 w-full min-w-0">
           {projects.map((project, index) => {
             const isActive = activeIndex === index
             return (
@@ -160,13 +151,25 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
         </div>
       </div>
 
-      {/* Next button */}
+
+      {/* Previous button - absolutely positioned */}
       <button
-        className="hidden md:flex w-10 h-10 md:w-[50px] md:h-[50px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/20 hover:border-cyan-500/60 backdrop-blur-[10px] flex-shrink-0 items-center justify-center font-mono font-semibold text-xl md:text-2xl"
+        className="hidden md:flex w-10 h-10 md:w-[40px] md:h-[40px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/30 hover:border-cyan-500/80 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/30 backdrop-blur-[10px] items-center justify-center font-mono font-semibold text-xl md:text-2xl"
+        onClick={handlePrevious}
+        aria-label="Previous project"
+        style={{ position: 'absolute', left: '-100px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+      >
+        <img src="/assets/images/accordionArrow.svg" alt="previous" style={{ width: '200px', height: '200px', maxWidth: 'none', maxHeight: 'none', transform: 'scaleX(-1) rotate(180deg)' }} />
+      </button>
+
+      {/* Next button - absolutely positioned */}
+      <button
+        className="hidden md:flex w-10 h-10 md:w-[40px] md:h-[40px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/30 hover:border-cyan-500/80 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/30 backdrop-blur-[10px] items-center justify-center font-mono font-semibold text-xl md:text-2xl"
         onClick={handleNext}
         aria-label="Next project"
+        style={{ position: 'absolute', right: '-100px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
       >
-        ›
+        <img src="/assets/images/accordionArrow.svg" alt="next" style={{ width: '200px', height: '200px', maxWidth: 'none', maxHeight: 'none', transform: 'rotate(180deg)' }} />
       </button>
     </div>
   )

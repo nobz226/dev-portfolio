@@ -40,7 +40,7 @@ export default function Projects() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel label="// selected work" />
+          <SectionLabel label="// selected work" bannerBgColor="#1e1e1e" />
         </motion.div>
         <div className="max-w-6xl mx-auto px-6 pt-10 relative z-10">
           <motion.h1

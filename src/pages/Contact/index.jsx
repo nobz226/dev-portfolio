@@ -29,7 +29,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="relative z-10"
         >
-          <SectionLabel label="// contact" />
+          <SectionLabel label="// contact" bannerBgColor="#1e1e1e" />
         </motion.div>
         <div className="max-w-6xl mx-auto px-6 pt-10 relative z-10">
           <motion.h1

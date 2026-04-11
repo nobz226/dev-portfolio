@@ -3,7 +3,7 @@ import SectionWrapper from '../../../components/SectionWrapper'
 
 export default function MissionStatement() {
   return (
-    <SectionWrapper id="mission" label="// mission statement" variant="cyan">
+    <SectionWrapper id="mission" label="// mission statement" variant="cyan" bannerBgColor="#22B8C7">
       <div className="max-w-3xl">
         <h2 className="font-sans font-bold text-4xl md:text-5xl text-charcoal mb-10 leading-tight">
           The Ongoing <span className="text-snow">&ldquo;Why&rdquo;</span>

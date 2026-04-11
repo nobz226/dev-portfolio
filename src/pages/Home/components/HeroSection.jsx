@@ -78,11 +78,14 @@ export default function HeroSection() {
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Hero background image */}
-      <img
+      <motion.img
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 1.2, delay: 0.3 }}
         src="/assets/images/homeHero.svg"
         alt="background"
         className="absolute top-0 left-0 pointer-events-none z-10"
-        style={{ width: '100%', height: '100vh', objectFit: 'cover', opacity: 0.5 }}
+        style={{ width: '100%', height: '100vh', objectFit: 'cover' }}
       />
       {/* Grid background */}
       <div
@@ -176,11 +179,14 @@ export default function HeroSection() {
 
             {/* Scroll indicator arrow */}
             <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
               className="absolute -bottom-32 left-6 flex flex-col items-center"
             >
-              <img
+              <motion.img
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                 src="/assets/images/homeArrow.svg"
                 alt="scroll down"
                 className="w-60 h-60 -mt-2"
