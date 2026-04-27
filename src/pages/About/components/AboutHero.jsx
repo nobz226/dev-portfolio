@@ -5,25 +5,6 @@ export default function AboutHero() {
   return (
     <>
       <section className="relative pt-40 pb-20 overflow-visible">
-      {/* Background image */}
-      <motion.img
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 1.2, delay: 0.3 }}
-        src="/assets/images/aboutHero.svg"
-        alt="background"
-        className="absolute top-0 left-0 pointer-events-none"
-        style={{ width: '100%', height: '100vh', objectFit: 'cover' }}
-      />
-      {/* Grid bg */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(45,212,191,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(45,212,191,0.03) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
