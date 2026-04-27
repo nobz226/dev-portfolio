@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import SectionLabel from './SectionLabel'
 
 const fadeUp = {
@@ -15,12 +16,16 @@ const fadeUp = {
  * optional section label, and a scroll-triggered fade-up animation.
  */
 export default function SectionWrapper({ id, label, children, className = '', variant = 'dark', bannerBgColor = null }) {
-  const bgColor = variant === 'cyan' ? '#2dd4bf' : '#1e1e1e'
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
 
-  const getClipPath = () => {
-    if (typeof window === 'undefined') return 'polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)'
-    return window.innerWidth < 960 ? 'none' : 'polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)'
-  }
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const bgColor = variant === 'cyan' ? '#2dd4bf' : '#1e1e1e'
+  const clipPath = windowWidth < 1000 ? 'none' : 'polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)'
 
   return (
     <motion.section
@@ -36,7 +41,7 @@ export default function SectionWrapper({ id, label, children, className = '', va
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundColor: bgColor,
-          clipPath: getClipPath(),
+          clipPath: clipPath,
         }}
       />
       {/* Label sits above shape */}
