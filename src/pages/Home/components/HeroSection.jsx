@@ -76,30 +76,7 @@ function PortraitRing() {
 export default function HeroSection() {
   return (
     <>
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Hero background image */}
-      <motion.img
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 1.2, delay: 0.3 }}
-        src="/assets/images/homeHero.svg"
-        alt="background"
-        className="absolute top-0 left-0 pointer-events-none z-10"
-        style={{ width: '100%', height: '100vh', objectFit: 'cover' }}
-      />
-      {/* Grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(45,212,191,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(45,212,191,0.04) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
-
-      {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#2dd4bf]/10 blur-3xl pointer-events-none" />
-
+      <section className="relative min-h-screen flex items-center">
       <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
 
@@ -199,7 +176,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
-            className="hero-portrait w-[1100px] h-[700px] lg:w-[1100px] lg:h-[700px] md:-ml-[80px] lg:-ml-[80px] flex items-center justify-center relative overflow-visible"
+            className="hero-portrait w-[1100px] h-[700px] lg:w-[1100px] lg:h-[700px] md:-ml-[200px] lg:-ml-[200px] flex items-center justify-center relative overflow-visible"
           >
             <PortraitRing />
           </motion.div>
