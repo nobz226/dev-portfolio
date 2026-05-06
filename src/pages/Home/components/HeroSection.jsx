@@ -159,7 +159,7 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.5 }}
-              className="absolute -bottom-32 left-6 flex flex-col items-center"
+              className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
             >
               <motion.img
                 animate={{ y: [0, 12, 0] }}
@@ -176,7 +176,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
-            className="hero-portrait w-[1100px] h-[700px] lg:w-[1100px] lg:h-[700px] md:-ml-[200px] lg:-ml-[200px] flex items-center justify-center relative overflow-visible"
+            className="hero-portrait w-[1100px] h-[700px] lg:w-[1100px] lg:h-[700px] md:-ml-[250px] lg:-ml-[300px] flex items-center justify-center relative overflow-visible"
           >
             <PortraitRing />
           </motion.div>

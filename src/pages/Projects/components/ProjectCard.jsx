@@ -74,17 +74,17 @@ export default function ProjectCard({ project, index }) {
             asChild={!!project.liveUrl}
             size="sm"
             disabled={!project.liveUrl}
-            className="font-silom text-sm uppercase tracking-wider text-cyber-cyan rounded-none flex-1 disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-transparent hover:text-cyber-cyan"
+            className="font-silom text-xs uppercase tracking-wider text-cyber-cyan rounded-none flex-1 disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-transparent hover:text-cyber-cyan"
           >
             {project.liveUrl ? (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('live')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'live' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2" onMouseEnter={() => setHoveredArrow('live')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'live' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
                 Live
-                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+                <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
               </a>
             ) : (
-              <span className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('live')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'live' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+              <span className="flex items-center gap-1 md:gap-2" onMouseEnter={() => setHoveredArrow('live')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'live' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
                 Live
-                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+                <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
               </span>
             )}
           </Button>
@@ -95,14 +95,14 @@ export default function ProjectCard({ project, index }) {
             className="font-silom text-sm uppercase tracking-wider text-[#333333] rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-[#333333]"
           >
             {project.repoUrl ? (
-              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2" onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
                 Code
-                <img src="/assets/images/codeIcon.svg" alt="code" style={{ width: '72px', height: '72px' }} />
+                <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
               </a>
             ) : (
-              <span className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+              <span className="flex items-center gap-1 md:gap-2" onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
                 Code
-                <img src="/assets/images/codeIcon.svg" alt="code" style={{ width: '72px', height: '72px' }} />
+                <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
               </span>
             )}
           </Button>
@@ -111,9 +111,9 @@ export default function ProjectCard({ project, index }) {
             size="sm"
             className="font-silom text-sm uppercase tracking-wider text-[#333333] rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-[#333333]"
           >
-            <Link to={`/projects/${project.slug}`} className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('details')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'details' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+            <Link to={`/projects/${project.slug}`} className="flex items-center gap-1 md:gap-2" onMouseEnter={() => setHoveredArrow('details')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'details' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
               Details
-              <img src="/assets/images/detailsIcon.svg" alt="details" style={{ width: '72px', height: '72px' }} />
+              <img src="/assets/images/detailsIcon.svg" alt="details" className="w-12 h-12" />
             </Link>
           </Button>
         </div>
