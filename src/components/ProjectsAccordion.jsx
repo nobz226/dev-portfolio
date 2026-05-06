@@ -171,25 +171,25 @@ className="text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items
       </div>
 
 
-      {/* Previous button - absolutely positioned */}
-      <button
-        className="hidden md:flex w-10 h-10 md:w-[40px] md:h-[40px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/30 hover:border-cyan-500/80 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/30 backdrop-blur-[10px] items-center justify-center font-mono font-semibold text-xl md:text-2xl"
-        onClick={handlePrevious}
-        aria-label="Previous project"
-        style={{ position: 'absolute', left: '-100px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
-      >
-        <img src="/assets/images/accordionArrow.svg" alt="previous" style={{ width: '150px', height: '150px', maxWidth: 'none', maxHeight: 'none', transform: 'scaleX(-1) rotate(180deg)' }} />
-      </button>
+       {/* Previous button - absolutely positioned */}
+       <button
+         className="hidden md:flex w-16 h-16 bg-transparent border-none text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:scale-125 items-center justify-center font-mono font-semibold text-xl md:text-2xl"
+         onClick={handlePrevious}
+         aria-label="Previous project"
+         style={{ position: 'absolute', left: '-64px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+       >
+         <img src="/assets/images/accordionArrow.svg" alt="previous" style={{ width: '56px', height: '56px', maxWidth: 'none', maxHeight: 'none', transform: 'scaleX(-1) rotate(180deg)' }} />
+       </button>
 
-      {/* Next button - absolutely positioned */}
-      <button
-        className="hidden md:flex w-10 h-10 md:w-[40px] md:h-[40px] bg-cyan-500/10 border border-cyan-500/30 rounded-full text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:bg-cyan-500/30 hover:border-cyan-500/80 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/30 backdrop-blur-[10px] items-center justify-center font-mono font-semibold text-xl md:text-2xl"
-        onClick={handleNext}
-        aria-label="Next project"
-        style={{ position: 'absolute', right: '-100px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
-      >
-        <img src="/assets/images/accordionArrow.svg" alt="next" style={{ width: '150px', height: '150px', maxWidth: 'none', maxHeight: 'none', transform: 'rotate(180deg)' }} />
-      </button>
+       {/* Next button - absolutely positioned */}
+       <button
+         className="hidden md:flex w-16 h-16 bg-transparent border-none text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:scale-125 items-center justify-center font-mono font-semibold text-xl md:text-2xl"
+         onClick={handleNext}
+         aria-label="Next project"
+         style={{ position: 'absolute', right: '-64px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
+       >
+         <img src="/assets/images/accordionArrow.svg" alt="next" style={{ width: '56px', height: '56px', maxWidth: 'none', maxHeight: 'none', transform: 'rotate(180deg)' }} />
+       </button>
     </div>
   )
 }

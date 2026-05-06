@@ -20,6 +20,7 @@
 }
 
 :root {
+  overflow-x: hidden;
   --radius: 0.5rem;
   --background: #f9f7f7;
   --foreground: #1e1e1e;
