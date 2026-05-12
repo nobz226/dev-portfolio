@@ -4,8 +4,8 @@
   border-right: 1px solid rgba(45, 212, 191, 0.1);
 }
 
-.accordion-slide.active {
-  background: #19535f !important;
+.accordion-slide.active.accordion-slide {
+  background: #19535f;
 }
 
 .accordion-slide::before {

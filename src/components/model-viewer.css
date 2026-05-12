@@ -21,40 +21,40 @@ model-viewer[reveal='interaction'] > * {
   }
 }
 
-/* Hotspot styling */
-.hotspot {
+/* Hotspot styling (scoped to model-viewer to avoid !important) */
+model-viewer .hotspot {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(45, 212, 191, 0.7) !important;
-  border: 2px solid #2dd4bf !important;
-  border-radius: 50% !important;
-  width: 40px !important;
-  height: 40px !important;
-  font-size: 20px !important;
-  color: #1e1e1e !important;
-  font-weight: 700 !important;
-  cursor: pointer !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background: rgba(45, 212, 191, 0.7);
+  border: 2px solid #2dd4bf;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color: #1e1e1e;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(45, 212, 191, 0.3);
-  font-family: 'Courier Prime', monospace !important;
+  font-family: 'Courier Prime', monospace;
 }
 
-.hotspot:hover {
-  background: rgba(45, 212, 191, 0.95) !important;
-  width: 48px !important;
-  height: 48px !important;
-  font-size: 22px !important;
+model-viewer .hotspot:hover {
+  background: rgba(45, 212, 191, 0.95);
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
   box-shadow: 0 8px 24px rgba(45, 212, 191, 0.5);
   transform: scale(1.1);
 }
 
-.hotspot:active {
+model-viewer .hotspot:active {
   transform: scale(0.95);
 }
 
-/* Hotspot label styling */
-.hotspot-label {
+/* Hotspot label styling (scoped) */
+model-viewer .hotspot-label {
   position: absolute;
   background: rgba(30, 30, 30, 0.95);
   color: #2dd4bf;
@@ -76,7 +76,7 @@ model-viewer[reveal='interaction'] > * {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.hotspot-label::after {
+model-viewer .hotspot-label::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -91,20 +91,20 @@ model-viewer[reveal='interaction'] > * {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .hotspot {
-    width: 36px !important;
-    height: 36px !important;
-    font-size: 18px !important;
+  model-viewer .hotspot {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
   }
 
-  .hotspot:hover {
-    width: 44px !important;
-    height: 44px !important;
-    font-size: 20px !important;
+  model-viewer .hotspot:hover {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
   }
 
   model-viewer {
-    min-height: 250px !important;
+    min-height: 250px;
   }
 }
 
