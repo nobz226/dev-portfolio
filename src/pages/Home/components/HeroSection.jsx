@@ -137,7 +137,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.5 }}
-              className="flex flex-nowrap gap-3 md:gap-4 flex-wrap md:flex-nowrap"
+              className="flex flex-nowrap gap-3 md:gap-4 flex-wrap md:flex-nowrap justify-center md:justify-start"
             >
               <Button
                 asChild
