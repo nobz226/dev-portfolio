@@ -166,7 +166,7 @@ export default function HeroSection() {
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                 src="/assets/images/homeArrow.svg"
                 alt="scroll down"
-                className="w-60 h-60 -mt-2"
+                className="w-40 h-40 md:w-60 md:h-60 -mt-2"
               />
             </motion.div>
           </div>
@@ -176,7 +176,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
-            className="hero-portrait w-[1100px] h-[700px] lg:w-[1100px] lg:h-[700px] md:-ml-[250px] lg:-ml-[300px] flex items-center justify-center relative overflow-visible"
+            className="hero-portrait w-fit h-fit md:w-[1100px] md:h-[700px] md:-ml-[250px] lg:w-[1100px] lg:h-[700px] lg:-ml-[300px] flex items-center justify-center relative overflow-visible scale-[0.85] md:scale-100 origin-center mx-auto md:mx-0"
           >
             <PortraitRing />
           </motion.div>
