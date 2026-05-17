@@ -33,27 +33,15 @@ export default function CoreValues() {
       </h2>
 
       <div className="flex flex-col gap-px bg-black/5">
-        {values.map((v) => {
-          // derive LOD filenames by inserting _med and _low before the .glb extension
-          const high = v.modelSrc
-          const med = high.replace(/\.glb$/i, '_med.glb')
-          const low = high.replace(/\.glb$/i, '_low.glb')
-          const levels = [
-            { src: high, distance: 0 },
-            { src: med, distance: 60 },
-            { src: low, distance: 180 },
-          ]
-
-          return (
-            <ModelLodCard
-              key={v.index}
-              index={v.index}
-              title={v.title}
-              body={v.body}
-              levels={levels}
-            />
-          )
-        })}
+        {values.map((v) => (
+          <ModelLodCard
+            key={v.index}
+            index={v.index}
+            title={v.title}
+            body={v.body}
+            modelSrc={v.modelSrc}
+          />
+        ))}
       </div>
     </SectionWrapper>
   )

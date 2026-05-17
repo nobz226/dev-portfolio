@@ -1,10 +1,40 @@
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import ThreeLodViewer from './ThreeLodViewer'
+import '@google/model-viewer'
+import './model-viewer.css'
 
-/**
- * ModelLodCard — same layout as ModelViewerCard but uses ThreeLodViewer for LOD
- */
-export default function ModelLodCard({ levels = [], title, index, body }) {
+export default function ModelLodCard({
+  modelSrc,
+  title,
+  index,
+  body,
+}) {
+  const modelViewerRef = useRef(null)
+
+  useEffect(() => {
+    const viewer = modelViewerRef.current
+    if (!viewer) return
+
+    let interactionTimeout = null
+
+    const handleInteraction = () => {
+      viewer.autoRotate = false
+      clearTimeout(interactionTimeout)
+      interactionTimeout = setTimeout(() => {
+        viewer.autoRotate = true
+      }, 3000)
+    }
+
+    viewer.addEventListener('mousedown', handleInteraction)
+    viewer.addEventListener('touchstart', handleInteraction)
+
+    return () => {
+      viewer.removeEventListener('mousedown', handleInteraction)
+      viewer.removeEventListener('touchstart', handleInteraction)
+      clearTimeout(interactionTimeout)
+    }
+  }, [])
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -24 }}
@@ -37,9 +67,30 @@ export default function ModelLodCard({ levels = [], title, index, body }) {
             background: 'radial-gradient(circle at 50% 50%, rgba(45,212,191,0.08) 0%, transparent 70%)'
           }} />
 
-          <div className="w-full h-full" style={{ width: '100%', height: '100%', minHeight: '300px' }}>
-            <ThreeLodViewer levels={levels} />
-          </div>
+          <model-viewer
+            ref={modelViewerRef}
+            src={modelSrc}
+            alt={title}
+            auto-rotate
+            orbit-controls
+            camera-controls
+            exposure="1"
+            environment-image="legacy"
+            shadow-intensity="1"
+            camera-orbit="0deg 75deg 105%"
+            class="w-full h-full"
+            style={{
+              width: '100%',
+              height: '100%',
+              minHeight: '300px',
+            }}
+          >
+            <div slot="progress-bar" style={{
+              height: '2px',
+              background: 'linear-gradient(90deg, #2dd4bf, #22b8c7)',
+              width: '100%',
+            }} />
+          </model-viewer>
 
           <div className="absolute inset-0 pointer-events-none group-hover:bg-[#2dd4bf]/5 transition-all duration-300" />
         </div>
