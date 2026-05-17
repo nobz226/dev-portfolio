@@ -76,7 +76,7 @@ function PortraitRing() {
 export default function HeroSection() {
   return (
     <>
-      <section className="relative min-h-screen flex items-center">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
 
