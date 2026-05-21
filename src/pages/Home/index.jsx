@@ -6,7 +6,7 @@ import { useStructuredData } from '../../hooks/useStructuredData'
 
 export default function Home() {
   usePageMeta(
-    'Eduard Rotaru - Full-Stack Developer and Creative Technologist',
+    'Eduard Rotaru - Full-Stack Developer and Digital Creative',
     'Portfolio of Eduard Rotaru, a full-stack developer specializing in React, Next.js, and creative web experiences. Featuring music platforms, art galleries, and e-commerce solutions.'
   )
 
