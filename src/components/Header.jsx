@@ -23,7 +23,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#f9f7f7]/95 backdrop-blur-sm border-b border-black/10'
+          ? 'bg-snow/95 backdrop-blur-sm border-b border-black/10'
           : 'bg-transparent'
       }`}
     >
@@ -31,7 +31,7 @@ export default function Header() {
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-3 mr-auto">
           <img src="/assets/images/logo.svg" alt="Eduard Rotaru" className="h-20 w-auto" />
-          <span className="font-sans font-bold text-3xl text-[#1e1e1e] tracking-tight">Eduard Rotaru</span>
+          <span className="font-sans font-bold text-3xl text-charcoal tracking-tight">Eduard Rotaru</span>
         </NavLink>
 
         {/* Desktop Nav */}
@@ -43,7 +43,7 @@ export default function Header() {
               end={link.to === '/'}
               className={({ isActive }) =>
                 `font-silom text-base font-medium tracking-widest uppercase transition-colors duration-300 relative group ${
-                  isActive ? 'text-[#2dd4bf]' : 'text-[#666666] hover:text-[#1e1e1e]'
+                  isActive ? 'text-cyber-cyan' : 'text-muted-foreground hover:text-charcoal'
                 }`
               }
             >
@@ -51,7 +51,7 @@ export default function Header() {
                 <>
                   {link.label}
                   <span
-                    className={`absolute -bottom-1 left-0 h-px bg-[#2dd4bf] transition-all duration-300 ${
+                    className={`absolute -bottom-1 left-0 h-px bg-cyber-cyan transition-all duration-300 ${
                       isActive ? 'w-full' : 'w-0 group-hover:w-full'
                     }`}
                   />
@@ -69,15 +69,15 @@ export default function Header() {
         >
           <motion.span
             animate={menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-            className="block w-6 h-0.5 bg-[#1e1e1e] origin-center transition-colors"
+            className="block w-6 h-0.5 bg-charcoal origin-center transition-colors"
           />
           <motion.span
             animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="block w-6 h-0.5 bg-[#1e1e1e]"
+            className="block w-6 h-0.5 bg-charcoal"
           />
           <motion.span
             animate={menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-            className="block w-6 h-0.5 bg-[#1e1e1e] origin-center"
+            className="block w-6 h-0.5 bg-charcoal origin-center"
           />
         </button>
       </div>
@@ -90,7 +90,7 @@ export default function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden overflow-hidden bg-[#f9f7f7] border-t border-black/10"
+            className="md:hidden overflow-hidden bg-snow border-t border-black/10"
           >
             <nav className="flex flex-col px-6 py-4 gap-4">
               {navLinks.map((link) => (
@@ -101,7 +101,7 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) =>
                     `font-silom text-base font-medium tracking-widest uppercase py-2 transition-colors duration-300 ${
-                      isActive ? 'text-[#2dd4bf]' : 'text-[#666666]'
+                      isActive ? 'text-cyber-cyan' : 'text-muted-foreground'
                     }`
                   }
                 >

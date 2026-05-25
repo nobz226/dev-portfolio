@@ -27,7 +27,7 @@ export default function TerminalText({ text, delay = 0, speed = 45, className = 
     <span className={`font-mono ${className}`}>
       {displayed}
       {!done && (
-        <span className="inline-block w-0.5 h-[1em] bg-[#2dd4bf] animate-pulse align-middle ml-0.5" />
+        <span className="inline-block w-0.5 h-[1em] bg-cyber-cyan animate-pulse align-middle ml-0.5" />
       )}
     </span>
   )

@@ -42,20 +42,19 @@ const featured = [
 
 export default function FeaturedProjects() {
   const [isCardActive, setIsCardActive] = useState(false)
-  const [hoveredArrow, setHoveredArrow] = useState(null)
 
   return (
     <SectionWrapper id="featured" label="// selected work">
       <div className={`${isCardActive ? 'pb-[800px]' : 'pb-96'} md:pb-0`}>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-          <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] leading-tight">
-            Featured <span className="text-[#2dd4bf]">Projects</span>
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow leading-tight">
+            Featured <span className="text-cyber-cyan">Projects</span>
           </h2>
           <Button
             asChild
             className="font-silom uppercase tracking-widest text-sm text-[#aaaaaa] bg-transparent w-fit hover:bg-transparent hover:text-[#aaaaaa]"
           >
-            <Link to="/projects" className={`flex items-center gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'viewAll' ? 'scale-[1.15]' : 'scale-100'}`} onMouseEnter={() => setHoveredArrow('viewAll')} onMouseLeave={() => setHoveredArrow(null)}>
+            <Link to="/projects" className="flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
               View All
               <img src="/assets/images/arrow2.svg" alt="arrow" className="w-[84px] h-[84px]" />
             </Link>

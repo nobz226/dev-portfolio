@@ -12,8 +12,8 @@ export default function DifferentiationSection() {
           </h2>
           <p className="font-mono text-base font-medium text-charcoal/75 leading-relaxed mb-6">
             I bridge the gap between{' '}
-            <span className="text-[#1e1e1e] font-bold font-silom">technical rigor</span> and{' '}
-            <span className="text-[#1e1e1e] font-bold font-sans">creative expression</span>. My unique
+            <span className="text-charcoal font-bold font-silom">technical rigor</span> and{' '}
+            <span className="text-charcoal font-bold font-sans">creative expression</span>. My unique
             edge is my efficiency: I use{' '}
             <span className="text-snow font-bold">AI as a high-speed catalyst</span> to
             handle the repetitive, predictable manual labor — under my strict supervision and review.

@@ -18,15 +18,15 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-sans font-bold text-5xl md:text-7xl text-[#1e1e1e] leading-none mb-6"
+          className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none mb-6"
         >
-          The Developer <span className="text-[#2dd4bf]">Behind the Code</span>
+          The Developer <span className="text-cyber-cyan">Behind the Code</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="font-mono text-base font-medium text-[#1e1e1e] max-w-xl leading-relaxed"
+          className="font-mono text-base font-medium text-charcoal max-w-xl leading-relaxed"
         >
           Skateboarder. Music producer. Full-stack developer. Every passion feeds the same obsession —
           relentless pursuit of quality and an eye for the invisible detail.

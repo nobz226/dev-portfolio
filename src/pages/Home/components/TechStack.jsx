@@ -77,8 +77,8 @@ const itemVariants = {
 export default function TechStack() {
   return (
     <SectionWrapper id="stack" label="// tech stack" variant="cyan" bannerBgColor="#22B8C7">
-      <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#1e1e1e] mb-12 leading-tight">
-        Tools &amp; <span className="text-[#f9f7f7]">Technologies</span>
+      <h2 className="font-sans font-bold text-4xl md:text-5xl text-charcoal mb-12 leading-tight">
+        Tools &amp; <span className="text-snow">Technologies</span>
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10">
@@ -92,7 +92,7 @@ export default function TechStack() {
             variants={cardVariants}
             className="bg-black/10 p-8"
           >
-            <p className="font-silom text-sm uppercase tracking-[0.25em] text-[#1e1e1e]/60 mb-8">
+            <p className="font-silom text-sm uppercase tracking-[0.25em] text-charcoal/60 mb-8">
               {group.category}
             </p>
             <ul className="flex flex-col gap-4">
@@ -107,10 +107,10 @@ export default function TechStack() {
                   className="flex items-center gap-4 group cursor-default"
                 >
                   <Icon
-                    className="text-[#1e1e1e]/40 group-hover:text-[#1e1e1e] transition-colors duration-300 shrink-0"
+                    className="text-charcoal/40 group-hover:text-charcoal transition-colors duration-300 shrink-0"
                     size={24}
                   />
-                  <span className="font-sans text-base text-[#1e1e1e]/70 group-hover:text-[#1e1e1e] transition-colors duration-300">
+                  <span className="font-sans text-base text-charcoal/70 group-hover:text-charcoal transition-colors duration-300">
                     {label}
                   </span>
                 </motion.li>

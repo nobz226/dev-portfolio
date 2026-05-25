@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Badge } from '../../../components/ui/badge'
@@ -8,7 +7,6 @@ import { Button } from '../../../components/ui/button'
  * ProjectCard — displays a single project with title, description, tech stack, and links.
  */
 export default function ProjectCard({ project, index }) {
-  const [hoveredArrow, setHoveredArrow] = useState(null)
   return (
     <motion.article
       initial={{ opacity: 0, y: 32 }}
@@ -22,7 +20,7 @@ export default function ProjectCard({ project, index }) {
         <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
         <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
         <span className="w-2.5 h-2.5 rounded-full bg-black/10" />
-        <span className="font-silom text-sm text-[#666666] ml-2">{project.slug}.jsx</span>
+        <span className="font-silom text-sm text-muted-foreground ml-2">{project.slug}.jsx</span>
       </div>
 
       {/* Screenshot */}
@@ -53,7 +51,7 @@ export default function ProjectCard({ project, index }) {
           )}
         </div>
 
-        <p className="font-mono text-sm font-medium text-[#555555] leading-relaxed">
+        <p className="font-mono text-sm font-medium text-muted-foreground leading-relaxed">
           {project.description}
         </p>
 
@@ -62,7 +60,7 @@ export default function ProjectCard({ project, index }) {
             <Badge
               key={t}
               variant="outline"
-              className="font-sans text-sm border-black/10 text-[#555555] bg-transparent rounded-none"
+              className="font-sans text-sm border-black/10 text-muted-foreground bg-transparent rounded-none"
             >
               {t}
             </Badge>
@@ -77,12 +75,12 @@ export default function ProjectCard({ project, index }) {
             className="font-silom text-xs uppercase tracking-wider text-cyber-cyan rounded-none flex-1 disabled:opacity-50 disabled:cursor-not-allowed bg-transparent hover:bg-transparent hover:text-cyber-cyan"
           >
             {project.liveUrl ? (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'live' ? 'scale-[1.15]' : 'scale-100'}`} onMouseEnter={() => setHoveredArrow('live')} onMouseLeave={() => setHoveredArrow(null)}>
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
                 Live
                 <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
               </a>
             ) : (
-              <span className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'live' ? 'scale-[1.15]' : 'scale-100'}`} onMouseEnter={() => setHoveredArrow('live')} onMouseLeave={() => setHoveredArrow(null)}>
+              <span className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
                 Live
                 <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
               </span>
@@ -95,12 +93,12 @@ export default function ProjectCard({ project, index }) {
             className="font-silom text-sm uppercase tracking-wider text-[#333333] rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-[#333333]"
           >
             {project.repoUrl ? (
-              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'code' ? 'scale-[1.15]' : 'scale-100'}`} onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)}>
+              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
                 Code
                 <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
               </a>
             ) : (
-              <span className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'code' ? 'scale-[1.15]' : 'scale-100'}`} onMouseEnter={() => setHoveredArrow('code')} onMouseLeave={() => setHoveredArrow(null)}>
+              <span className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
                 Code
                 <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
               </span>
@@ -111,7 +109,7 @@ export default function ProjectCard({ project, index }) {
             size="sm"
             className="font-silom text-sm uppercase tracking-wider text-[#333333] rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-[#333333]"
           >
-            <Link to={`/projects/${project.slug}`} className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'details' ? 'scale-[1.15]' : 'scale-100'}`} onMouseEnter={() => setHoveredArrow('details')} onMouseLeave={() => setHoveredArrow(null)}>
+            <Link to={`/projects/${project.slug}`} className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
               Details
               <img src="/assets/images/detailsIcon.svg" alt="details" className="w-12 h-12" />
             </Link>

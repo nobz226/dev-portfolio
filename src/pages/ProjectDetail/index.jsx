@@ -8,13 +8,12 @@ import SectionWrapper from '../../components/SectionWrapper'
 import { usePageMeta } from '../../hooks/usePageMeta'
 
 // Import all projects
-import { allProjects } from '../Projects/components/ProjectsGrid'
+import { allProjects } from '../../data/projects'
 
 export default function ProjectDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [hoveredArrow, setHoveredArrow] = useState(null)
 
   const project = allProjects.find((p) => p.slug === slug)
 
@@ -41,7 +40,7 @@ export default function ProjectDetail() {
       : String(content).split(/\n\n+/).filter(Boolean)
 
     return paragraphs.map((paragraph) => (
-      <p key={paragraph} className="font-mono text-lg leading-relaxed text-[#f9f7f7]/80">
+      <p key={paragraph} className="font-mono text-lg leading-relaxed text-snow/80">
         {paragraph}
       </p>
     ))
@@ -51,15 +50,15 @@ export default function ProjectDetail() {
     return (
       <main className="min-h-screen pt-40 pb-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="font-sans font-bold text-5xl text-[#1e1e1e] mb-6">
+          <h1 className="font-sans font-bold text-5xl text-charcoal mb-6">
             Project not found
           </h1>
-          <p className="font-mono text-base text-[#555555] mb-8">
+          <p className="font-mono text-base text-muted-foreground mb-8">
             The project you're looking for doesn't exist or has been removed.
           </p>
           <Button
             onClick={() => navigate('/projects')}
-            className="font-mono uppercase tracking-widest text-sm bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none px-8 py-5 transition-all duration-300"
+            className="font-mono uppercase tracking-widest text-sm bg-cyber-cyan text-charcoal hover:bg-soft-blue rounded-none px-8 py-5 transition-all duration-300"
           >
             Back to Projects
           </Button>
@@ -84,7 +83,7 @@ export default function ProjectDetail() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-sans font-bold text-5xl md:text-7xl text-[#1e1e1e] leading-none mb-6 opacity-100 relative z-20"
+            className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none mb-6 opacity-100 relative z-20"
           >
             {project.title}
           </motion.h1>
@@ -118,19 +117,19 @@ export default function ProjectDetail() {
       {/* Description Section */}
       <SectionWrapper label="// description" variant="dark">
         <div className="flex items-center gap-4 mb-8">
-          <span className="font-silom text-sm text-[#f9f7f7] uppercase tracking-widest">
+          <span className="font-silom text-sm text-snow uppercase tracking-widest">
             {project.category}
           </span>
           {project.featured && (
-            <span className="font-silom text-[10px] uppercase tracking-widest px-3 py-1 border border-[#f9f7f7]/40 text-[#f9f7f7]">
+            <span className="font-silom text-[10px] uppercase tracking-widest px-3 py-1 border border-snow/40 text-snow">
               Featured
             </span>
           )}
         </div>
-        <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
+        <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
           Description
         </h2>
-        <p className="font-mono text-lg leading-relaxed text-[#f9f7f7]/80">
+        <p className="font-mono text-lg leading-relaxed text-snow/80">
           {project.description}
         </p>
       </SectionWrapper>
@@ -138,10 +137,10 @@ export default function ProjectDetail() {
       {/* The Why Section */}
       {project.why && (
         <SectionWrapper label="// the why" variant="cyan" bannerBgColor="#22b8c7">
-          <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
             The Why
           </h2>
-          <div className="space-y-6 text-[#1e1e1e]/80">
+          <div className="space-y-6 text-charcoal/80">
             {renderParagraphs(project.why)}
           </div>
         </SectionWrapper>
@@ -150,14 +149,14 @@ export default function ProjectDetail() {
       {/* The System Section */}
       {project.system && (
         <SectionWrapper label="// the system" variant="dark">
-          <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
             The System
           </h2>
-          <div className="space-y-6 text-[#f9f7f7]/80 mb-8">
+          <div className="space-y-6 text-snow/80 mb-8">
             {renderParagraphs(project.system)}
           </div>
           <div>
-            <h3 className="font-silom font-bold text-2xl text-[#f9f7f7] mb-6">
+            <h3 className="font-silom font-bold text-2xl text-snow mb-6">
               Tech Stack
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -165,7 +164,7 @@ export default function ProjectDetail() {
                 <Badge
                   key={t}
                   variant="outline"
-                  className="font-sans text-sm border-[#f9f7f7]/30 text-[#f9f7f7] bg-transparent rounded-none"
+                  className="font-sans text-sm border-snow/30 text-snow bg-transparent rounded-none"
                 >
                   {t}
                 </Badge>
@@ -178,10 +177,10 @@ export default function ProjectDetail() {
       {/* The Soul Section */}
       {project.soul && (
         <SectionWrapper label="// the soul" variant="cyan" bannerBgColor="#22b8c7">
-          <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-6 leading-tight">
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
             The Soul
           </h2>
-          <div className="space-y-6 text-[#1e1e1e]/80">
+          <div className="space-y-6 text-charcoal/80">
             {renderParagraphs(project.soul)}
           </div>
         </SectionWrapper>
@@ -200,15 +199,13 @@ export default function ProjectDetail() {
             {project.liveUrl && (
               <Button
                 asChild
-                className="font-silom text-sm uppercase tracking-wider bg-transparent text-[#2dd4bf] hover:bg-transparent hover:text-[#2dd4bf] rounded-none px-0 py-0"
+                className="font-silom text-sm uppercase tracking-wider bg-transparent text-cyber-cyan hover:bg-transparent hover:text-cyber-cyan rounded-none px-0 py-0"
               >
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'live' ? 'scale-[1.15]' : 'scale-100'}`}
-                  onMouseEnter={() => setHoveredArrow('live')}
-                  onMouseLeave={() => setHoveredArrow(null)}
+                  className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
                 >
                   Live Demo
                   <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
@@ -218,15 +215,13 @@ export default function ProjectDetail() {
             {project.repoUrl && (
               <Button
                 asChild
-                className="font-silom text-sm uppercase tracking-wider bg-transparent text-[#555555] hover:bg-transparent hover:text-[#555555] rounded-none px-0 py-0"
+                className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
               >
                 <a
                   href={project.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'code' ? 'scale-[1.15]' : 'scale-100'}`}
-                  onMouseEnter={() => setHoveredArrow('code')}
-                  onMouseLeave={() => setHoveredArrow(null)}
+                  className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
                 >
                   View Code
                   <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
@@ -235,12 +230,10 @@ export default function ProjectDetail() {
             )}
             <Button
               onClick={() => navigate('/projects')}
-              className="font-silom text-sm uppercase tracking-wider bg-transparent text-[#555555] hover:bg-transparent hover:text-[#555555] rounded-none px-0 py-0"
+              className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
             >
               <div
-                className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left cursor-pointer ${hoveredArrow === 'back' ? 'scale-[1.15]' : 'scale-100'}`}
-                onMouseEnter={() => setHoveredArrow('back')}
-                onMouseLeave={() => setHoveredArrow(null)}
+                className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left cursor-pointer hover:scale-[1.15]"
               >
                 Back to Projects
                 <img src="/assets/images/backArrow.svg" alt="arrow" className="w-12 h-12" />
@@ -269,7 +262,7 @@ export default function ProjectDetail() {
             >
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="absolute -top-12 right-0 text-white font-mono text-sm uppercase tracking-widest hover:text-[#2dd4bf] transition-colors"
+                className="absolute -top-12 right-0 text-white font-mono text-sm uppercase tracking-widest hover:text-cyber-cyan transition-colors"
               >
                 Close (ESC)
               </button>

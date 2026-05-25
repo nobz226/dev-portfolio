@@ -73,7 +73,7 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6 }}
-      className="bg-[#f9f7f7] group hover:bg-[#eeece9] transition-colors duration-300 overflow-hidden"
+      className="bg-snow group hover:bg-[#eeece9] transition-colors duration-300 overflow-hidden"
       ref={containerRef}
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[300px] lg:min-h-[400px]">
@@ -84,10 +84,10 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
                 {index}
               </span>
             </div>
-            <h3 className="font-sans font-bold text-2xl text-[#1e1e1e] mb-3 leading-tight">
+            <h3 className="font-sans font-bold text-2xl text-charcoal mb-3 leading-tight">
               {title}
             </h3>
-            <p className="font-mono text-base font-medium text-[#555555] leading-relaxed">
+            <p className="font-mono text-base font-medium text-muted-foreground leading-relaxed">
               {body}
             </p>
           </div>
@@ -99,7 +99,7 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
           {loadState === 'pending' && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="flex flex-col items-center gap-3">
-                <div className="w-6 h-6 border-2 border-[#2dd4bf] border-t-transparent rounded-full animate-spin" />
+                <div className="w-6 h-6 border-2 border-cyber-cyan border-t-transparent rounded-full animate-spin" />
                 <span className="font-mono text-xs text-black/30 uppercase tracking-widest">Loading</span>
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
             </model-viewer>
           )}
 
-          <div className="absolute inset-0 pointer-events-none group-hover:bg-[#2dd4bf]/5 transition-all duration-300" />
+          <div className="absolute inset-0 pointer-events-none group-hover:bg-cyber-cyan/5 transition-all duration-300" />
         </div>
       </div>
     </motion.div>

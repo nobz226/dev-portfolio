@@ -28,8 +28,8 @@ export default function Footer() {
         <div className="flex items-center gap-3 mr-auto">
           <img src="/assets/images/logo.svg" alt="Eduard Rotaru" className="h-24 w-auto" />
           <div className="flex flex-col gap-0.5">
-            <span className="font-sans font-bold text-3xl text-[#1e1e1e] tracking-tight">Eduard Rotaru</span>
-            <p className="font-mono text-sm font-medium text-[#666666]">Full-Stack Developer</p>
+            <span className="font-sans font-bold text-3xl text-charcoal tracking-tight">Eduard Rotaru</span>
+            <p className="font-mono text-sm font-medium text-muted-foreground">Full-Stack Developer</p>
           </div>
         </div>
 
@@ -40,7 +40,7 @@ export default function Footer() {
               key={path}
               to={path}
               end={path === '/'}
-              className="font-silom text-sm font-medium uppercase tracking-widest text-[#666666] hover:text-[#2dd4bf] transition-colors duration-300"
+              className="font-silom text-sm font-medium uppercase tracking-widest text-muted-foreground hover:text-cyber-cyan transition-colors duration-300"
             >
               {label}
             </NavLink>
@@ -58,7 +58,7 @@ export default function Footer() {
                 target={s.href.startsWith('mailto') ? undefined : '_blank'}
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-8 h-8 flex items-center justify-center border border-black/10 text-[#666666] hover:border-[#2dd4bf] hover:text-[#2dd4bf] transition-all duration-300"
+                className="w-8 h-8 flex items-center justify-center border border-black/10 text-muted-foreground hover:border-cyber-cyan hover:text-cyber-cyan transition-all duration-300"
               >
                 <Icon size={16} />
               </a>
@@ -68,7 +68,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-black/5 py-4 text-center">
-        <p className="font-mono text-sm text-[#666666]/60">
+        <p className="font-mono text-sm text-muted-foreground/60">
           © {new Date().getFullYear()} Eduard Rotaru. Built with React + Vite.
         </p>
       </div>

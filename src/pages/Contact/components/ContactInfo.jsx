@@ -31,11 +31,11 @@ export default function ContactInfo() {
     >
       {/* Intro text */}
       <div>
-        <h2 className="font-sans font-bold text-3xl md:text-4xl text-[#1e1e1e] mb-4 leading-tight">
-          Let&apos;s Build <span className="text-[#2dd4bf]">Something</span>
+        <h2 className="font-sans font-bold text-3xl md:text-4xl text-charcoal mb-4 leading-tight">
+          Let&apos;s Build <span className="text-cyber-cyan">Something</span>
         </h2>
         <p
-          className="font-mono text-base font-medium text-[#555555] leading-relaxed"
+          className="font-mono text-base font-medium text-muted-foreground leading-relaxed"
         >
           Whether you have a project in mind, want to collaborate, or just want to talk
           shop — my inbox is always open.
@@ -52,12 +52,12 @@ export default function ContactInfo() {
               href={c.href}
               target={c.href.startsWith('mailto') ? undefined : '_blank'}
               rel="noopener noreferrer"
-              className="group flex items-center justify-between p-4 border border-black/5 hover:border-[#2dd4bf]/40 transition-all duration-300"
+              className="group flex items-center justify-between p-4 border border-black/5 hover:border-cyber-cyan/40 transition-all duration-300"
             >
-              <span className="font-silom text-sm uppercase tracking-widest text-[#666666] group-hover:text-[#2dd4bf] transition-colors duration-300">
+              <span className="font-silom text-sm uppercase tracking-widest text-muted-foreground group-hover:text-cyber-cyan transition-colors duration-300">
                 {c.label}
               </span>
-              <Icon className="w-5 h-5 text-[#1e1e1e]/50 group-hover:text-[#1e1e1e] transition-colors duration-300" />
+              <Icon className="w-5 h-5 text-charcoal/50 group-hover:text-charcoal transition-colors duration-300" />
             </a>
           )
         })}
@@ -65,21 +65,21 @@ export default function ContactInfo() {
 
       {/* Availability */}
       <div className="bg-[#eeece9] border border-black/5 p-6">
-        <p className="font-sans text-sm uppercase tracking-[0.25em] text-[#2dd4bf] mb-4">
+        <p className="font-sans text-sm uppercase tracking-[0.25em] text-cyber-cyan mb-4">
           Availability
         </p>
         <ul className="flex flex-col gap-3">
           {availability.map((item) => (
             <li key={item.label} className="flex items-center justify-between">
-              <span className="font-mono text-base text-[#555555]">{item.label}</span>
+              <span className="font-mono text-base text-muted-foreground">{item.label}</span>
               <span
                 className={`flex items-center gap-1.5 font-silom text-sm ${
-                  item.available ? 'text-[#2dd4bf]' : 'text-white/20'
+                  item.available ? 'text-cyber-cyan' : 'text-white/20'
                 }`}
               >
                 <span
                   className={`w-1.5 h-1.5 rounded-full ${
-                    item.available ? 'bg-[#2dd4bf]' : 'bg-white/20'
+                    item.available ? 'bg-cyber-cyan' : 'bg-white/20'
                   }`}
                 />
                 {item.available ? 'Open' : 'Closed'}

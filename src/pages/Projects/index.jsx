@@ -39,15 +39,15 @@ export default function Projects() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-sans font-bold text-5xl md:text-7xl text-[#1e1e1e] leading-none mb-6"
+            className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none mb-6"
           >
-            Projects & <span className="text-[#2dd4bf]">Case Studies</span>
+            Projects & <span className="text-cyber-cyan">Case Studies</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-mono text-base font-medium text-[#1e1e1e] max-w-xl leading-relaxed"
+            className="font-mono text-base font-medium text-charcoal max-w-xl leading-relaxed"
           >
             A curated selection of real-world work — engineered to be unbreakable
             and designed to make an impression.

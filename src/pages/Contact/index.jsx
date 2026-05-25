@@ -28,9 +28,9 @@ export default function Contact() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-sans font-bold text-5xl md:text-7xl text-[#1e1e1e] leading-none mb-6"
+            className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none mb-6"
           >
-            Start a <span className="text-[#2dd4bf]">Conversation</span>
+            Start a <span className="text-cyber-cyan">Conversation</span>
           </motion.h1>
         </div>
       </section>

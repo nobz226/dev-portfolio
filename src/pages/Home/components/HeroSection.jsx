@@ -74,13 +74,13 @@ export default function HeroSection() {
               transition={{ duration: 0.5 }}
               className="flex items-center gap-3 mb-6"
             >
-              <span className="font-mono text-base text-[#1e1e1e]">~/portfolio</span>
-              <span className="font-mono text-base text-[#1e1e1e]">$</span>
+              <span className="font-mono text-base text-charcoal">~/portfolio</span>
+              <span className="font-mono text-base text-charcoal">$</span>
               <TerminalText
                 text="whoami"
                 delay={200}
                 speed={80}
-                className="text-base text-[#1e1e1e]"
+                className="text-base text-charcoal"
               />
             </motion.div>
 
@@ -90,8 +90,8 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.9 }}
             >
-              <h1 className="font-sans font-bold text-5xl md:text-7xl lg:text-8xl text-[#1e1e1e] leading-none tracking-tight">
-                <span className="font-silom">System</span> <span className="font-mono text-[#22b8c7]">&</span> <span className="text-[#2dd4bf]">Soul</span>
+              <h1 className="font-sans font-bold text-5xl md:text-7xl lg:text-8xl text-charcoal leading-none tracking-tight">
+                <span className="font-silom">System</span> <span className="font-mono text-soft-blue">&</span> <span className="text-cyber-cyan">Soul</span>
               </h1>
             </motion.div>
 
@@ -100,7 +100,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.1 }}
-              className="font-mono text-lg md:text-xl text-[#2dd4bf] mt-4 mb-6"
+              className="font-mono text-lg md:text-xl text-cyber-cyan mt-4 mb-6"
             >
               Full-Stack Web Developer
             </motion.p>
@@ -110,11 +110,11 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.3 }}
-              className="font-mono text-[#555555] max-w-xl text-base md:text-lg font-medium leading-relaxed mb-10"
+              className="font-mono text-muted-foreground max-w-xl text-base md:text-lg font-medium leading-relaxed mb-10"
             >
               Transforming complex ideas into high-fidelity web experiences through{' '}
-              <span className="text-[#1e1e1e] font-bold font-silom">technical honesty</span> and{' '}
-              <span className="text-[#1e1e1e] font-bold font-sans">artistic intent</span>.
+              <span className="text-charcoal font-bold font-silom">technical honesty</span> and{' '}
+              <span className="text-charcoal font-bold font-sans">artistic intent</span>.
             </motion.p>
 
             {/* CTAs */}
@@ -126,14 +126,14 @@ export default function HeroSection() {
             >
               <Button
                 asChild
-                className="font-silom uppercase tracking-widest text-xs md:text-sm bg-[#2dd4bf] text-[#1e1e1e] hover:bg-[#22b8c7] rounded-none px-4 md:px-8 py-3 md:py-5 transition-all duration-300"
+                className="font-silom uppercase tracking-widest text-xs md:text-sm bg-cyber-cyan text-charcoal hover:bg-soft-blue rounded-none px-4 md:px-8 py-3 md:py-5 transition-all duration-300"
               >
                 <Link to="/projects">View Work</Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
-                className="font-silom uppercase tracking-widest text-xs md:text-sm border-black/20 text-[#555555] hover:border-[#2dd4bf] hover:text-[#2dd4bf] hover:bg-transparent rounded-none px-4 md:px-8 py-3 md:py-5 bg-transparent transition-all duration-300"
+                className="font-silom uppercase tracking-widest text-xs md:text-sm border-black/20 text-muted-foreground hover:border-cyber-cyan hover:text-cyber-cyan hover:bg-transparent rounded-none px-4 md:px-8 py-3 md:py-5 bg-transparent transition-all duration-300"
               >
                 <Link to="/contact">Get In Touch</Link>
               </Button>

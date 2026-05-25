@@ -28,8 +28,8 @@ const values = [
 export default function CoreValues() {
   return (
     <SectionWrapper id="values" label="// core values">
-      <h2 className="font-sans font-bold text-4xl md:text-5xl text-[#f9f7f7] mb-14 leading-tight">
-        What Drives <span className="text-[#2dd4bf]">My Work</span>
+      <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-14 leading-tight">
+        What Drives <span className="text-cyber-cyan">My Work</span>
       </h2>
 
       <div className="flex flex-col gap-px bg-black/5">
