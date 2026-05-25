@@ -5,7 +5,6 @@ import './ProjectsAccordion.css'
 
 export default function ProjectsAccordion({ projects, onActiveChange }) {
   const [activeIndex, setActiveIndex] = useState(-1)
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const handleSlideClick = (index) => {
     if (activeIndex === index) {
       setActiveIndex(-1)
@@ -29,17 +28,12 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
       if (e.key === 'ArrowLeft') handlePrevious()
       if (e.key === 'ArrowRight') handleNext()
     }
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
     document.addEventListener('keydown', handleKeyDown)
-    window.addEventListener('resize', handleResize)
     if (onActiveChange) {
       onActiveChange(activeIndex !== -1)
     }
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
-      window.removeEventListener('resize', handleResize)
     }
   }, [activeIndex, onActiveChange])
 
