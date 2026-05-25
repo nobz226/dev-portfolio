@@ -1,8 +1,8 @@
 # dev-portfolio
 
-Personal portfolio website for **Eduard Rotaru** — a full-stack developer and creative technologist. Built with React 19, Vite, Tailwind CSS v4, shadcn/ui, and Framer Motion. Features a deliberate terminal/hacker aesthetic with 3D model integration.
+Personal portfolio website for **Eduard Rotaru** — a full-stack developer and creative technologist. Designed with a deliberate terminal/hacker aesthetic, featuring 3D model integration, interactive project case studies, and a cohesive pentagon-based visual identity.
 
-**Live:** [eduardrotaru.dev](https://eduardrotaru.dev)
+**Live site:** [eduardrotaru.ca](https://eduardrotaru.ca)
 
 ---
 
@@ -12,14 +12,40 @@ Personal portfolio website for **Eduard Rotaru** — a full-stack developer and 
 |---|---|
 | **Framework** | React 19 (JSX, no TypeScript) |
 | **Build** | Vite 7 |
-| **Styling** | Tailwind CSS 4 + tw-animate-css |
+| **Styling** | Tailwind CSS 4 + `tw-animate-css` + shadcn/tailwind |
 | **UI Primitives** | shadcn/ui (New York style) |
 | **Animation** | Framer Motion 12 |
-| **3D** | @google/model-viewer 4 |
+| **3D Rendering** | @google/model-viewer 4 |
 | **Icons** | lucide-react, react-icons (Simple Icons) |
 | **Routing** | React Router DOM 7 |
 | **Deploy** | Vercel (SPA rewrites) |
 | **Linting** | ESLint 9 |
+
+---
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+# Production build
+npm run build
+
+# Preview production build
+npm run preview
+
+# Run linter
+npm run lint
+```
+
+### Prerequisites
+
+- Node.js 18+
+- npm (or pnpm / yarn)
 
 ---
 
@@ -28,64 +54,73 @@ Personal portfolio website for **Eduard Rotaru** — a full-stack developer and 
 ```
 src/
 ├── App.jsx                          # Root — BrowserRouter with 5 routes
-├── main.jsx                         # Entry point
-├── index.css                        # Tailwind imports, theme vars, animations
+├── main.jsx                         # Entry point (ReactDOM.createRoot)
+├── index.css                        # Tailwind imports, theme variables, keyframe animations
 ├── components/
-│   ├── Header.jsx                   # Fixed nav, scroll-aware, mobile hamburger
-│   ├── Footer.jsx                   # Logo, nav links, social icons
-│   ├── SectionWrapper.jsx           # Reusable section shell with pentagon bg + scroll animation
-│   ├── SectionLabel.jsx             # Branded section header (triangle + banner)
-│   ├── GlitchText.jsx               # CSS glitch animation wrapper
+│   ├── Header.jsx                   # Fixed nav, scroll-aware backdrop, mobile hamburger
+│   ├── Footer.jsx                   # Brand, nav links, social icons (GitHub/LinkedIn/Email)
+│   ├── SectionWrapper.jsx           # Reusable section shell with pentagon clip + scroll animation
+│   ├── SectionLabel.jsx             # Branded header: cyan triangle + arrow-tip banner
+│   ├── GlitchText.jsx               # CSS glitch effect via pseudoelements
 │   ├── TerminalText.jsx             # Typewriter character-by-character effect
-│   ├── ModelViewerCard.jsx          # 3D model viewer (text + <model-viewer>)
-│   ├── ModelLodCard.jsx             # Lower-detail variant of ModelViewerCard
-│   ├── ProjectsAccordion.jsx        # Horizontal accordion carousel for featured projects
+│   ├── ProjectsAccordion.jsx        # Horizontal accordion carousel with arrow-key nav
+│   ├── ModelViewerCard.jsx          # 3D model viewer (text + <model-viewer> side by side)
+│   ├── ModelLodCard.jsx             # Lazy-loaded 3D model viewer (IntersectionObserver)
+│   ├── ProjectsAccordion.css        # Accordion slide styles
+│   ├── model-viewer.css             # Model viewer layout styles
 │   └── ui/                          # shadcn/ui primitives (7 components)
+│       ├── badge.jsx
+│       ├── button.jsx
+│       ├── card.jsx
+│       ├── input.jsx
+│       ├── label.jsx
+│       ├── separator.jsx
+│       └── textarea.jsx
 ├── pages/
 │   ├── Home/
-│   │   ├── index.jsx
+│   │   ├── index.jsx                # Composes hero, featured projects, tech stack
 │   │   └── components/
-│   │       ├── HeroSection.jsx      # Portrait ring + terminal prompt + CTAs
-│   │       ├── FeaturedProjects.jsx  # Accordion wrapper
-│   │       └── TechStack.jsx         # Categorized grid of skills
+│   │       ├── HeroSection.jsx      # Spinning portrait ring, terminal prompt, CTAs
+│   │       ├── FeaturedProjects.jsx  # Accordion wrapper for 3 featured projects
+│   │       └── TechStack.jsx        # 4-column skill grid (Frontend/Backend/Tooling/AI)
 │   ├── About/
-│   │   ├── index.jsx
+│   │   ├── index.jsx                # Composes all about sections
 │   │   └── components/
 │   │       ├── AboutHero.jsx
-│   │       ├── CoreValues.jsx        # 3 model cards (skateboard, laptop, MIDI keyboard)
-│   │       ├── DifferentiationSection.jsx
-│   │       ├── CareerInternship.jsx
+│   │       ├── CoreValues.jsx        # 3D model cards (skateboard, MacBook, MIDI keyboard)
+│   │       ├── DifferentiationSection.jsx  # Technical Rigor vs Creative Soul
+│   │       ├── CareerInternship.jsx  # Internship goals
 │   │       └── MissionStatement.jsx
 │   ├── Projects/
-│   │   ├── index.jsx
+│   │   ├── index.jsx                # Page hero + filtered project grid
 │   │   └── components/
-│   │       ├── ProjectsGrid.jsx      # Tag-filterable grid + all project data
-│   │       └── ProjectCard.jsx
+│   │       ├── ProjectsGrid.jsx      # Tag-filterable grid + all project data (single source of truth)
+│   │       └── ProjectCard.jsx       # Terminal-style card with screenshot, badges, links
 │   ├── ProjectDetail/
-│   │   └── index.jsx                 # Dynamic /projects/:slug with Why/System/Soul
+│   │   └── index.jsx                # Dynamic /projects/:slug with Why/System/Soul sections
 │   └── Contact/
-│       ├── index.jsx
+│       ├── index.jsx                # Page hero + form/info layout
 │       └── components/
 │           ├── ContactForm.jsx       # Formspree-powered contact form
-│           └── ContactInfo.jsx       # Availability + social links
+│           └── ContactInfo.jsx       # Availability badges + social contact links
 ├── hooks/
-│   ├── usePageMeta.js               # Dynamic title, meta, OG tags, canonical
-│   └── useStructuredData.js         # JSON-LD structured data
+│   ├── usePageMeta.js               # Dynamic document title, meta description, OG/Twitter tags, canonical
+│   └── useStructuredData.js         # JSON-LD structured data injection (Person, CollectionPage)
 └── lib/
-    └── utils.js                     # cn() helper (clsx + tailwind-merge)
+    └── utils.js                     # cn() helper combining clsx + tailwind-merge
 ```
 
 ---
 
 ## Routes
 
-| Path | Page | Description |
+| Path | Page | Sections |
 |---|---|---|
-| `/` | Home | Hero with rotating portrait ring, featured projects accordion, tech stack grid |
-| `/about` | About | Bio, 3D core values, differentiation, internship goals, mission statement |
-| `/projects` | Projects | Filterable project grid (All / Full-Stack / Creative / E-Commerce / API) |
-| `/projects/:slug` | Project Detail | Deep dive: The Why, The System, The Soul for each project |
-| `/contact` | Contact | Contact form (Formspree) + availability status + social links |
+| `/` | Home | Hero with animated portrait ring, featured projects accordion, tech stack grid |
+| `/about` | About | Bio hero, 3D core values, differentiation, internship goals, mission statement |
+| `/projects` | Projects | Tag-filtered project grid (All / Full-Stack / Creative / E-Commerce / API) |
+| `/projects/:slug` | Project Detail | Deep-dive with The Why, The System, The Soul + screenshot modal |
+| `/contact` | Contact | Contact form (Formspree), availability status, social links |
 
 ---
 
@@ -95,80 +130,116 @@ src/
 
 | Token | Hex | Usage |
 |---|---|---|
-| Cyber Cyan | `#2dd4bf` | Primary accent, highlights, links |
-| Soft Blue | `#22b8c7` | Secondary accent |
-| Charcoal | `#1e1e1e` | Text, dark backgrounds |
-| Snow | `#f9f7f7` | Page background, light surfaces |
-| Muted | `#666666` | Secondary text |
+| Cyber Cyan | `#2dd4bf` | Primary accent, highlights, active nav |
+| Soft Blue | `#22b8c7` | Secondary accent, alternate section banners |
+| Charcoal | `#1e1e1e` | Primary text, dark backgrounds (section wrappers) |
+| Snow | `#f9f7f7` | Page background, light surfaces, text on dark sections |
+| Muted | `#666666` | Secondary text, captions |
 
 ### Typography
 
 - **font-sans** — Cal Sans (headings, display text)
-- **font-mono** — Courier Prime (code, terminal, badges)
-- **font-silom** — Silom (uppercase labels, branding)
+- **font-mono** — Courier Prime (code, terminal output, badges)
+- **font-silom** — Silom (uppercase labels, branding accents)
 
-### Key Patterns
+### Signature Visual Patterns
 
-- All sections use `SectionWrapper` for consistent pentagon-shaped backgrounds and scroll-triggered fade-up animation
-- All section headers use `SectionLabel` (cyan right-arrow triangle + banner)
-- Terminal card motif: three dot circles + monospace filename in a top bar
-- Hover interactions on links scale the element via `transform: scale(1.15)` with state-based `hoveredArrow`
+- **Section backgrounds** clipped to a pentagon shape (`polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)`)
+- **Section headers** use `SectionLabel`: a cyan right-arrow triangle followed by a banner with an arrow-tip `clipPath`
+- **Terminal card motif**: three muted dot circles + monospace filename in a top bar with bottom border
+- **Hover interactions** on links scale via `transform: scale(1.15)` with React state tracking
+- **Scroll-triggered animations** via Framer Motion `whileInView` with staggered delays
 
 ---
 
 ## 3D Models
 
-Three interactive 3D models (`.glb`) displayed via `<model-viewer>` web component:
+Three interactive `.glb` 3D models displayed via the `<model-viewer>` web component:
 
-| Model | File | Used In |
+| Model | File | Associated Value |
 |---|---|---|
-| Skateboard | `skateboard_-_used.glb` | Core Values — "The Art of Resilience" |
-| MacBook | `macbook_air_notebook_pbr.glb` | Core Values — "Uncompromising Detail" |
-| MIDI Keyboard | `midi_keyboard__piano__instrument.glb` | Core Values — "Intentional Craftsmanship" |
+| Skateboard | `public/assets/3d/skateboard_-_used.glb` | The Art of Resilience |
+| MacBook | `public/assets/3d/macbook_air_notebook_pbr.glb` | Uncompromising Detail |
+| MIDI Keyboard | `public/assets/3d/midi_keyboard__piano__instrument.glb` | Intentional Craftsmanship |
 
-All models auto-rotate, support orbit controls, and pause rotation 3 seconds after user interaction.
+All models auto-rotate, support click-and-drag orbit controls, and pause rotation 3 seconds after the last user interaction. The `ModelLodCard` component lazy-loads both the model library and the 3D asset using `IntersectionObserver` with a 300px root margin.
 
 ---
 
-## Projects
+## Projects (Case Studies)
 
-4 case studies documented in the portfolio:
+| Project | Category | Stack | Links |
+|---|---|---|---|
+| Nobz Beats | Music Platform | React, Vite, Convex, Tailwind | [Live](https://nobz-beats-react.vercel.app/latest) · [Repo](https://github.com/nobz226/nobz-beats) |
+| MD Murals | Art Portfolio | React, Vite, GSAP, Convex | [Live](https://md-murals.vercel.app) · [Repo](https://github.com/nobz226/md-murals) |
+| Ollie North Skateshop | E-Commerce | Next.js 15, React 19, Convex, Clerk, Stripe | [Live](https://ollie-north-skateshop.vercel.app) · [Repo](https://github.com/nobz226/ollie-north-skateshop) |
+| Audio Tools API | Backend API | Flask, Python, FFmpeg, Demucs, PyTorch | [Repo](https://github.com/nobz226/audio-tools-API) |
 
-| Project | Category | Stack |
-|---|---|---|
-| Nobz Beats | Music Platform | React, Vite, Convex, Tailwind |
-| MD Murals | Art Portfolio | React, Vite, GSAP, Convex |
-| Ollie North Skateshop | E-Commerce | Next.js 15, React 19, Convex, Clerk, Stripe |
-| Audio Tools API | Backend API | Flask, Python, FFmpeg, Demucs, PyTorch |
-
-Each project detail page has three narrative sections:
+Each project detail page follows a three-part narrative:
 - **The Why** — motivation and problem being solved
-- **The System** — technical architecture and implementation
-- **The Soul** — design decisions and aesthetic choices
+- **The System** — technical architecture and implementation details
+- **The Soul** — design decisions, aesthetic choices, and philosophical approach
 
 ---
 
 ## Scripts
 
 ```bash
-npm run dev       # Start Vite dev server
-npm run build     # Production build
-npm run preview   # Preview production build
-npm run lint      # ESLint check
+npm run dev       # Start Vite dev server (default: http://localhost:5173)
+npm run build     # Production build → dist/
+npm run preview   # Preview production build locally
+npm run lint      # Run ESLint on the project
 ```
 
 ---
 
-## Deployment
+## Configuration
 
-Deployed on Vercel. `vercel.json` rewrites all paths to `index.html` for SPA routing.
+### Vite (`vite.config.js`)
+
+- Plugins: `@vitejs/plugin-react` + `@tailwindcss/vite`
+- Path alias: `@` → `src/`
+
+### shadcn/ui (`components.json`)
+
+- Style: New York, JSX only (`tsx: false`)
+- CSS variables enabled, neutral base color
+- Icon library: lucide
+
+### Vercel (`vercel.json`)
+
+SPA rewrites — all paths redirect to `index.html` for client-side routing:
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+### Contact Form
+
+The contact form submits to a Formspree endpoint (`https://formspree.io/f/mqegjerp`). To use your own endpoint, update the URL in `src/pages/Contact/components/ContactForm.jsx:31`.
 
 ---
 
-## Key Decisions
+## Credits & Acknowledgments
 
-- **No TypeScript** — plain JSX throughout (`tsx: false` in shadcn config)
-- **No dark mode** — light-mode only (background: `#f9f7f7`)
-- **No additional animation libraries** — Framer Motion handles all motion
-- **Client-side contact form** — Formspree for form submission (no backend)
-- **Shared project data** — `allProjects` array in `ProjectsGrid.jsx` is the single source of truth, imported by `ProjectDetail`
+- **Fonts**: Cal Sans by [@tonsky](https://github.com/tonsky), Courier Prime by [Alan Greene](https://fontlibrary.org/en/font/courier-prime), Silom (pixel/arcade style)
+- **3D Models**: Sourced from [Sketchfab](https://sketchfab.com) and similar open 3D repositories
+- **Icons**: [Lucide](https://lucide.dev) for UI icons, [Simple Icons](https://simpleicons.org) for brand/tech icons via `react-icons`
+- **shadcn/ui**: UI primitives from [shadcn](https://ui.shadcn.com)
+- **Formspree**: Contact form backend
+
+---
+
+## Contact
+
+- **Email**: eduard.rotaru89@gmail.com
+- **GitHub**: [nobz226](https://github.com/nobz226)
+- **LinkedIn**: [Eduard Rotaru](https://www.linkedin.com/in/eduard-rotaru-b63b11124/)
+
+---
+
+## License
+
+All rights reserved. This project is a personal portfolio and is not licensed for reuse or redistribution. Feel free to reference the architecture and patterns for inspiration.
