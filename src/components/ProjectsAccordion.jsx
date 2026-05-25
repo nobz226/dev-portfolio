@@ -158,25 +158,6 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
           })}
         </div>
       </div>
-
-
-       {/* Previous button - absolutely positioned */}
-       <button
-         className="hidden md:flex w-16 h-16 bg-transparent border-none text-cyber-cyan cursor-pointer transition-all duration-300 hover:scale-125 items-center justify-center font-mono font-semibold text-xl md:text-2xl absolute -left-16 top-1/2 -translate-y-1/2 z-10"
-         onClick={handlePrevious}
-         aria-label="Previous project"
-       >
-         <img src="/assets/images/accordionArrow.svg" alt="previous" className="w-14 h-14 max-w-none max-h-none -scale-x-100 rotate-180" />
-       </button>
-
-       {/* Next button - absolutely positioned */}
-       <button
-         className="hidden md:flex w-16 h-16 bg-transparent border-none text-cyber-cyan cursor-pointer transition-all duration-300 hover:scale-125 items-center justify-center font-mono font-semibold text-xl md:text-2xl absolute -right-16 top-1/2 -translate-y-1/2 z-10"
-         onClick={handleNext}
-         aria-label="Next project"
-       >
-         <img src="/assets/images/accordionArrow.svg" alt="next" className="w-14 h-14 max-w-none max-h-none rotate-180" />
-       </button>
     </div>
   )
 }
