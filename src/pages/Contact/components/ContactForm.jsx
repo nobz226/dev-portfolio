@@ -83,13 +83,12 @@ export default function ContactForm() {
           <p className="font-mono text-base font-medium text-[#555555]">I&apos;ll get back to you within 24 hours.</p>
           <button
             onClick={() => setStatus('idle')}
-            className="font-silom text-sm text-[#2dd4bf] mt-2 flex items-center gap-2 hover:text-[#2dd4bf]"
+            className={`font-silom text-sm text-[#2dd4bf] mt-2 flex items-center gap-2 hover:text-[#2dd4bf] transition-transform duration-300 origin-left ${hoveredArrow === 'sendAnother' ? 'scale-[1.15]' : 'scale-100'}`}
             onMouseEnter={() => setHoveredArrow('sendAnother')}
             onMouseLeave={() => setHoveredArrow(null)}
-            style={{ transform: hoveredArrow === 'sendAnother' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
           >
             Send another
-            <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+            <img src="/assets/images/arrow.svg" alt="arrow" className="w-[72px] h-[72px]" />
           </button>
         </motion.div>
       ) : (
@@ -158,9 +157,9 @@ export default function ContactForm() {
             className="font-silom uppercase tracking-widest text-sm text-[#2dd4bf] disabled:opacity-60 flex items-center justify-center gap-2 bg-transparent hover:bg-transparent hover:text-[#2dd4bf]"
           >
             {status === 'sending' ? 'Sending…' : (
-              <span className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('sendMessage')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'sendMessage' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+              <span className={`flex items-center gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'sendMessage' ? 'scale-[1.15]' : 'scale-100'}`} onMouseEnter={() => setHoveredArrow('sendMessage')} onMouseLeave={() => setHoveredArrow(null)}>
                 Send Message
-                <img src="/assets/images/arrow.svg" alt="arrow" style={{ width: '72px', height: '72px' }} />
+                <img src="/assets/images/arrow.svg" alt="arrow" className="w-[72px] h-[72px]" />
               </span>
             )}
           </Button>

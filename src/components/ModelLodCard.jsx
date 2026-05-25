@@ -80,7 +80,7 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
         <div className="p-8 md:p-10 flex flex-col justify-between">
           <div>
             <div className="flex items-start gap-4 mb-4">
-              <span className="font-silom text-6xl font-bold text-black group-hover:text-[#2dd4bf] transition-colors duration-500 select-none leading-none">
+              <span className="font-silom text-6xl font-bold text-cyber-cyan select-none leading-none">
                 {index}
               </span>
             </div>
@@ -94,9 +94,7 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
         </div>
 
         <div className="relative bg-gradient-to-br from-[#f5f3f0] via-[#f1eeeb] to-[#eeece9] flex items-center justify-center overflow-hidden border-l border-black/5">
-          <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'radial-gradient(circle at 50% 50%, rgba(45,212,191,0.08) 0%, transparent 70%)'
-          }} />
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(45,212,191,0.08)_0%,transparent_70%)]" />
 
           {loadState === 'pending' && (
             <div className="absolute inset-0 flex items-center justify-center">
@@ -125,21 +123,10 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
               environment-image="legacy"
               shadow-intensity="1"
               camera-orbit="0deg 75deg 105%"
-              class="w-full h-full"
-              style={{
-                width: '100%',
-                height: '100%',
-                minHeight: '300px',
-                opacity: loadState === 'done' ? 1 : 0,
-                transition: 'opacity 0.4s',
-              }}
+              className={`w-full h-full min-h-[300px] transition-opacity duration-[400ms] ${loadState === 'done' ? 'opacity-100' : 'opacity-0'}`}
               reveal="auto"
             >
-              <div slot="progress-bar" style={{
-                height: '2px',
-                background: 'linear-gradient(90deg, #2dd4bf, #22b8c7)',
-                width: '100%',
-              }} />
+              <div slot="progress-bar" className="h-0.5 w-full bg-gradient-to-r from-cyber-cyan to-soft-blue" />
             </model-viewer>
           )}
 

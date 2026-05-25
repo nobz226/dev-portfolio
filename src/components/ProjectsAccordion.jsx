@@ -84,14 +84,14 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                   </div>
 
                   {/* Project info */}
-                  <div className={`mb-5 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px] md:opacity-0 md:translate-y-[30px]'}`} style={{ transitionDelay: isActive ? '300ms' : '0ms' }}>
+                  <div className={`mb-5 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0 delay-300' : 'opacity-0 translate-y-[30px] md:opacity-0 md:translate-y-[30px]'}`}>
                     <div className="text-xs md:text-sm font-semibold text-white/80 mb-2 font-mono uppercase tracking-wider">{project.title}</div>
                     <h3 className="text-2xl md:text-[28px] font-bold mb-2 text-[#2dd4bf] font-sans">{project.title}</h3>
                     <p className="text-sm md:text-base text-white/80 font-mono leading-relaxed">{project.description}</p>
                   </div>
 
                   {/* Tech badges */}
-                  <div className={`flex flex-wrap gap-2 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px] md:opacity-0 md:translate-y-[30px]'}`} style={{ transitionDelay: isActive ? '500ms' : '0ms' }}>
+                  <div className={`flex flex-wrap gap-2 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0 delay-500' : 'opacity-0 translate-y-[30px] md:opacity-0 md:translate-y-[30px]'}`}>
                     {project.tech.map((t, i) => (
                       <Badge
                         key={`${project.slug}-${t}`}
@@ -105,16 +105,15 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                   </div>
 
                   {/* Project links */}
-                  <div className={`flex gap-4 mt-5 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px] md:opacity-0 md:translate-y-[30px]'}`} style={{ transitionDelay: isActive ? '750ms' : '0ms' }}>
+                  <div className={`flex gap-4 mt-5 transition-all duration-600 z-[3] relative ${isActive ? 'opacity-100 translate-y-0 delay-750' : 'opacity-0 translate-y-[30px] md:opacity-0 md:translate-y-[30px]'}`}>
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-className="text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items-center gap-1 md:gap-2 hover:text-[#2dd4bf] hover:bg-transparent"
+                        className={'text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items-center gap-1 md:gap-2 hover:text-[#2dd4bf] hover:bg-transparent transition-transform duration-300 origin-left ' + (hoveredArrow === 'live-' + project.slug ? 'scale-[1.15]' : 'scale-100')}
                          onMouseEnter={() => setHoveredArrow(`live-${project.slug}`)}
                          onMouseLeave={() => setHoveredArrow(null)}
-                         style={{ transform: hoveredArrow === `live-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                        >
                          Live Demo
                          <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
@@ -125,10 +124,9 @@ className="text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items
                         href={project.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items-center gap-1 md:gap-2 hover:text-[#2dd4bf] hover:bg-transparent"
+                        className={'text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items-center gap-1 md:gap-2 hover:text-[#2dd4bf] hover:bg-transparent transition-transform duration-300 origin-left ' + (hoveredArrow === 'repo-' + project.slug ? 'scale-[1.15]' : 'scale-100')}
                         onMouseEnter={() => setHoveredArrow(`repo-${project.slug}`)}
                         onMouseLeave={() => setHoveredArrow(null)}
-                        style={{ transform: hoveredArrow === `repo-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                       >
                         Source Code
                                                   <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
@@ -136,10 +134,9 @@ className="text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items
                     )}
                     <Link
                       to={`/projects/${project.slug}`}
-                      className="text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items-center gap-1 md:gap-2 hover:text-[#2dd4bf] hover:bg-transparent"
+                      className={'text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items-center gap-1 md:gap-2 hover:text-[#2dd4bf] hover:bg-transparent transition-transform duration-300 origin-left ' + (hoveredArrow === 'details-' + project.slug ? 'scale-[1.15]' : 'scale-100')}
                       onMouseEnter={() => setHoveredArrow(`details-${project.slug}`)}
                       onMouseLeave={() => setHoveredArrow(null)}
-                      style={{ transform: hoveredArrow === `details-${project.slug}` ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                     >
                       Details
                       <img src="/assets/images/detailsIcon.svg" alt="details" className="w-12 h-12" />
@@ -161,7 +158,7 @@ className="text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items
                     <img
                       src={isActive ? '/assets/images/close.svg' : '/assets/images/expand.svg'}
                       alt={isActive ? 'close' : 'expand'}
-                      style={{ width: '100%', height: '100%' }}
+                      className="w-full h-full"
                     />
                   </div>
               </div>
@@ -173,22 +170,20 @@ className="text-xs text-[#2dd4bf] font-silom uppercase tracking-wider flex items
 
        {/* Previous button - absolutely positioned */}
        <button
-         className="hidden md:flex w-16 h-16 bg-transparent border-none text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:scale-125 items-center justify-center font-mono font-semibold text-xl md:text-2xl"
+         className="hidden md:flex w-16 h-16 bg-transparent border-none text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:scale-125 items-center justify-center font-mono font-semibold text-xl md:text-2xl absolute -left-16 top-1/2 -translate-y-1/2 z-10"
          onClick={handlePrevious}
          aria-label="Previous project"
-         style={{ position: 'absolute', left: '-64px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
        >
-         <img src="/assets/images/accordionArrow.svg" alt="previous" style={{ width: '56px', height: '56px', maxWidth: 'none', maxHeight: 'none', transform: 'scaleX(-1) rotate(180deg)' }} />
+         <img src="/assets/images/accordionArrow.svg" alt="previous" className="w-14 h-14 max-w-none max-h-none -scale-x-100 rotate-180" />
        </button>
 
        {/* Next button - absolutely positioned */}
        <button
-         className="hidden md:flex w-16 h-16 bg-transparent border-none text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:scale-125 items-center justify-center font-mono font-semibold text-xl md:text-2xl"
+         className="hidden md:flex w-16 h-16 bg-transparent border-none text-[#2dd4bf] cursor-pointer transition-all duration-300 hover:scale-125 items-center justify-center font-mono font-semibold text-xl md:text-2xl absolute -right-16 top-1/2 -translate-y-1/2 z-10"
          onClick={handleNext}
          aria-label="Next project"
-         style={{ position: 'absolute', right: '-64px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
        >
-         <img src="/assets/images/accordionArrow.svg" alt="next" style={{ width: '56px', height: '56px', maxWidth: 'none', maxHeight: 'none', transform: 'rotate(180deg)' }} />
+         <img src="/assets/images/accordionArrow.svg" alt="next" className="w-14 h-14 max-w-none max-h-none rotate-180" />
        </button>
     </div>
   )

@@ -132,19 +132,17 @@
     margin-bottom: 6rem;
   }
 
-  .hero-bg-image,
-  .about-bg-image,
-  .projects-bg-image,
-  .contact-bg-image {
-    display: none;
-  }
 }
 
-/* Custom clip-path for CoreValues to accommodate About page background image */
-#values {
-  --clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%, 0 80%, 20% 80%, 20% 20%, 0 20%);
+/* Section label banner arrow-tip clip */
+.section-label-banner {
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%);
 }
 
-#values > div:first-child {
-  clip-path: var(--clip-path);
+/* Section wrapper pentagon clip */
+.section-wrapper-clip {
+  clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%);
+}
+.section-wrapper-no-clip {
+  clip-path: none;
 }

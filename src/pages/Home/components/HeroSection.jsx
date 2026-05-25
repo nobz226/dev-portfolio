@@ -21,27 +21,18 @@ function isDark(i) {
 function PortraitRing() {
   const angleStep = (2 * Math.PI) / TOTAL
   return (
-    <div style={{ position: 'relative', width: CONTAINER, height: CONTAINER, flexShrink: 0 }}>
+    <div className="relative w-[520px] h-[520px] shrink-0">
       {/* Circular portrait */}
       <img
         src="/assets/images/eduardrotaru.jpg"
         alt="Eduard Rotaru"
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 420,
-          height: 420,
-          borderRadius: '50%',
-          objectFit: 'cover',
-        }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full object-cover"
       />
       {/* Rotating text ring */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-        style={{ position: 'absolute', inset: 0 }}
+        className="absolute inset-0"
       >
         {ALL_CHARS.map((char, i) => {
           const angle = angleStep * i
@@ -51,17 +42,11 @@ function PortraitRing() {
           return (
             <span
               key={i}
+              className={`absolute text-sm font-mono font-bold leading-none select-none ${isDark(i) ? 'text-charcoal' : 'text-cyber-cyan'}`}
               style={{
-                position: 'absolute',
                 left: x,
                 top: y,
                 transform: `translate(-50%, -50%) rotate(${deg}deg)`,
-                fontSize: '14px',
-                fontFamily: '"Courier Prime", "Courier New", monospace',
-                fontWeight: 700,
-                color: isDark(i) ? '#1e1e1e' : '#2dd4bf',
-                lineHeight: 1,
-                userSelect: 'none',
               }}
             >
               {char === ' ' ? '\u00a0' : char}

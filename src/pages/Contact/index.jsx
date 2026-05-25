@@ -12,7 +12,7 @@ export default function Contact() {
 
   return (
     <>
-      <main style={{ overflow: 'visible' }}>
+      <main className="overflow-visible">
       {/* Hero */}
       <section className="relative pt-40 pb-12 overflow-visible">
         <motion.div

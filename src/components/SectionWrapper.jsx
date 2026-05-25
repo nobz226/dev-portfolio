@@ -24,9 +24,6 @@ export default function SectionWrapper({ id, label, children, className = '', va
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const bgColor = variant === 'cyan' ? '#2dd4bf' : '#1e1e1e'
-  const clipPath = windowWidth < 1000 ? 'none' : 'polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)'
-
   return (
     <motion.section
       id={id}
@@ -38,11 +35,7 @@ export default function SectionWrapper({ id, label, children, className = '', va
     >
       {/* Pentagon background shape */}
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundColor: bgColor,
-          clipPath: clipPath,
-        }}
+        className={`absolute inset-0 pointer-events-none ${variant === 'cyan' ? 'bg-cyber-cyan' : 'bg-charcoal'} ${windowWidth < 1000 ? 'section-wrapper-no-clip' : 'section-wrapper-clip'}`}
       />
       {/* Label sits above shape */}
       {label && (

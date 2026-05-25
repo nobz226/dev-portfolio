@@ -206,10 +206,9 @@ export default function ProjectDetail() {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 md:gap-2"
+                  className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'live' ? 'scale-[1.15]' : 'scale-100'}`}
                   onMouseEnter={() => setHoveredArrow('live')}
                   onMouseLeave={() => setHoveredArrow(null)}
-                  style={{ transform: hoveredArrow === 'live' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                 >
                   Live Demo
                   <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
@@ -225,10 +224,9 @@ export default function ProjectDetail() {
                   href={project.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 md:gap-2"
+                  className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'code' ? 'scale-[1.15]' : 'scale-100'}`}
                   onMouseEnter={() => setHoveredArrow('code')}
                   onMouseLeave={() => setHoveredArrow(null)}
-                  style={{ transform: hoveredArrow === 'code' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
                 >
                   View Code
                   <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
@@ -240,10 +238,9 @@ export default function ProjectDetail() {
               className="font-silom text-sm uppercase tracking-wider bg-transparent text-[#555555] hover:bg-transparent hover:text-[#555555] rounded-none px-0 py-0"
             >
               <div
-                className="flex items-center gap-1 md:gap-2"
+                className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left cursor-pointer ${hoveredArrow === 'back' ? 'scale-[1.15]' : 'scale-100'}`}
                 onMouseEnter={() => setHoveredArrow('back')}
                 onMouseLeave={() => setHoveredArrow(null)}
-                style={{ transform: hoveredArrow === 'back' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center', cursor: 'pointer' }}
               >
                 Back to Projects
                 <img src="/assets/images/backArrow.svg" alt="arrow" className="w-12 h-12" />

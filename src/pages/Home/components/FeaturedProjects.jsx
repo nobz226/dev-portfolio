@@ -55,9 +55,9 @@ export default function FeaturedProjects() {
             asChild
             className="font-silom uppercase tracking-widest text-sm text-[#aaaaaa] bg-transparent w-fit hover:bg-transparent hover:text-[#aaaaaa]"
           >
-            <Link to="/projects" className="flex items-center gap-2" onMouseEnter={() => setHoveredArrow('viewAll')} onMouseLeave={() => setHoveredArrow(null)} style={{ transform: hoveredArrow === 'viewAll' ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}>
+            <Link to="/projects" className={`flex items-center gap-2 transition-transform duration-300 origin-left ${hoveredArrow === 'viewAll' ? 'scale-[1.15]' : 'scale-100'}`} onMouseEnter={() => setHoveredArrow('viewAll')} onMouseLeave={() => setHoveredArrow(null)}>
               View All
-              <img src="/assets/images/arrow2.svg" alt="arrow" style={{ width: '84px', height: '84px' }} />
+              <img src="/assets/images/arrow2.svg" alt="arrow" className="w-[84px] h-[84px]" />
             </Link>
           </Button>
         </div>

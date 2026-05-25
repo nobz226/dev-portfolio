@@ -42,12 +42,11 @@ export default function CareerInternship() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex items-start gap-3 font-silom text-base text-[#f9f7f7]/80 hover:text-[#f9f7f7]/80"
+                className={`flex items-start gap-3 font-silom text-base text-[#f9f7f7]/80 hover:text-[#f9f7f7]/80 transition-transform duration-300 origin-left ${hoveredArrow === i ? 'scale-[1.15]' : 'scale-100'}`}
                 onMouseEnter={() => setHoveredArrow(i)}
                 onMouseLeave={() => setHoveredArrow(null)}
-                style={{ transform: hoveredArrow === i ? 'scale(1.15)' : 'scale(1)', transition: 'transform 300ms', transformOrigin: 'left center' }}
               >
-                <img src="/assets/images/arrow2.svg" alt="arrow" style={{ width: '72px', height: '72px', marginTop: '2px', flexShrink: 0 }} />
+                <img src="/assets/images/arrow2.svg" alt="arrow" className="w-[72px] h-[72px] mt-[2px] shrink-0" />
                 <span>{item}</span>
               </motion.li>
             ))}
