@@ -1,6 +1,6 @@
 # dev-portfolio
 
-Personal portfolio website for **Eduard Rotaru** — a full-stack developer and creative technologist. Designed with a deliberate terminal/hacker aesthetic, featuring 3D model integration, interactive project case studies, and a cohesive pentagon-based visual identity.
+Personal portfolio website for **Eduard Rotaru** — a full-stack developer and digital creative. Designed with a deliberate terminal/hacker aesthetic, featuring 3D model integration, interactive project case studies, and a cohesive pentagon-based visual identity.
 
 **Live site:** [eduardrotaru.ca](https://eduardrotaru.ca)
 
@@ -8,7 +8,7 @@ Personal portfolio website for **Eduard Rotaru** — a full-stack developer and 
 
 ## Current Status & Roadmap
 
-The project is currently undergoing a series of refactorings and optimizations to improve code quality, maintainability, and performance. You can track the progress in [TODO.md](./TODO.md).
+The project is currently undergoing a series of refactorings and optimizations to improve code quality, maintainability, and performance. You can track the progress in OPTIMIZATIONS.md.
 
 ### High Priority Refactors
 - [ ] Centralizing all project data into `src/data/projects.js`.
