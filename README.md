@@ -6,6 +6,18 @@ Personal portfolio website for **Eduard Rotaru** — a full-stack developer and 
 
 ---
 
+## Current Status & Roadmap
+
+The project is currently undergoing a series of refactorings and optimizations to improve code quality, maintainability, and performance. You can track the progress in [TODO.md](./TODO.md).
+
+### High Priority Refactors
+- [ ] Centralizing all project data into `src/data/projects.js`.
+- [ ] Replacing hardcoded color hex values with semantic Tailwind classes (e.g., `text-cyber-cyan`).
+- [ ] Cleaning up dead code (orphaned CSS and unused components).
+- [ ] Replacing state-based hover patterns with pure CSS `hover:` classes.
+
+---
+
 ## Tech Stack
 
 | Category | Tools |

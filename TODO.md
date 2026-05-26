@@ -19,7 +19,7 @@
   - `text-[#22b8c7]` → `text-soft-blue`
   - `text-[#555555]` → `text-muted-foreground`
   - `text-[#666666]` → `text-muted-foreground`
-  - `bg-[#f9f7f7]` → `bg-snow`
+  - `bg-[#f10f7f7]` → `bg-snow`
   - `bg-[#1e1e1e]` → `bg-charcoal`
   - etc.
 - [ ] **Extract `allProjects` to a shared data file**
