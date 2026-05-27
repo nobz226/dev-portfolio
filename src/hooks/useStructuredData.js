@@ -12,9 +12,5 @@ export function useStructuredData(structuredData) {
       document.head.appendChild(script)
     }
     script.textContent = JSON.stringify(structuredData)
-
-    return () => {
-      // Cleanup
-    }
   }, [structuredData])
 }

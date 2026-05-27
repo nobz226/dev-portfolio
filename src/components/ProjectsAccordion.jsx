@@ -1,32 +1,43 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from './ui/badge'
 import './ProjectsAccordion.css'
 
 export default function ProjectsAccordion({ projects, onActiveChange }) {
   const [activeIndex, setActiveIndex] = useState(-1)
-  const handleSlideClick = (index) => {
-    if (activeIndex === index) {
-      setActiveIndex(-1)
-    } else {
-      setActiveIndex(index)
+  const [accordionFocused, setAccordionFocused] = useState(false)
+  const accordionRef = useRef(null)
+
+  const handleSlideClick = useCallback((index) => {
+    setActiveIndex((prev) => (prev === index ? -1 : index))
+  }, [])
+
+  const handlePrevious = useCallback(() => {
+    setActiveIndex((prev) => {
+      if (prev === -1) return projects.length - 1
+      return (prev - 1 + projects.length) % projects.length
+    })
+  }, [projects.length])
+
+  const handleNext = useCallback(() => {
+    setActiveIndex((prev) => {
+      if (prev === -1) return 0
+      return (prev + 1) % projects.length
+    })
+  }, [projects.length])
+
+  const handleSlideKeyDown = useCallback((e, index) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      handleSlideClick(index)
     }
-  }
-
-  const handlePrevious = () => {
-    const prevIndex = activeIndex === -1 ? projects.length - 1 : (activeIndex - 1 + projects.length) % projects.length
-    setActiveIndex(prevIndex)
-  }
-
-  const handleNext = () => {
-    const nextIndex = activeIndex === -1 ? 0 : (activeIndex + 1) % projects.length
-    setActiveIndex(nextIndex)
-  }
+  }, [handleSlideClick])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'ArrowLeft') handlePrevious()
-      if (e.key === 'ArrowRight') handleNext()
+      if (!accordionFocused) return
+      if (e.key === 'ArrowLeft') { e.preventDefault(); handlePrevious() }
+      if (e.key === 'ArrowRight') { e.preventDefault(); handleNext() }
     }
     document.addEventListener('keydown', handleKeyDown)
     if (onActiveChange) {
@@ -35,19 +46,36 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [activeIndex, onActiveChange])
+  }, [activeIndex, onActiveChange, handleNext, handlePrevious, accordionFocused])
 
   return (
     <div className="w-full overflow-visible relative flex items-center">
       {/* Accordion Container */}
-      <div className="flex-1 relative md:overflow-hidden overflow-visible md:min-h-[500px] w-full">
+      <div
+        ref={accordionRef}
+        tabIndex={0}
+        role="region"
+        aria-label="Projects accordion"
+        onFocus={() => setAccordionFocused(true)}
+        onBlur={(e) => {
+          if (!accordionRef.current?.contains(e.relatedTarget)) {
+            setAccordionFocused(false)
+          }
+        }}
+        className="flex-1 relative md:overflow-hidden overflow-visible md:min-h-[500px] w-full"
+      >
         <div className="flex md:flex-row flex-col h-[500px] md:h-[500px] md:items-stretch relative gap-0 w-full min-w-0">
           {projects.map((project, index) => {
             const isActive = activeIndex === index
             return (
               <div
                 key={project.slug}
-                className={`accordion-slide relative cursor-pointer bg-gradient-to-br from-[#1e1e1e] to-[#2d2d2d] transition-all duration-800 overflow-hidden ${
+                role="button"
+                tabIndex={isActive ? -1 : 0}
+                aria-expanded={isActive}
+                aria-label={`${project.title}: ${project.description}`}
+                onKeyDown={(e) => handleSlideKeyDown(e, index)}
+                className={`accordion-slide relative cursor-pointer bg-gradient-to-br from-charcoal to-accordion-dark transition-all duration-800 overflow-hidden ${
                   isActive
                     ? 'active md:flex-[2.5] grayscale-0'
                     : 'flex-1 grayscale-[80%] brightness-70 hover:grayscale-[30%] hover:brightness-[0.85]'

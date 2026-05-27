@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
-import SectionWrapper from '../../../components/SectionWrapper'
+import SectionWrapper from '@/components/SectionWrapper'
 
 export default function DifferentiationSection() {
   return (
-    <SectionWrapper id="edge" label="// differentiation" variant="cyan" bannerBgColor="#22B8C7">
+    <SectionWrapper id="edge" label="// differentiation" variant="cyan" labelVariant="soft-blue">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Text */}
         <div>

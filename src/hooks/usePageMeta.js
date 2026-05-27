@@ -46,10 +46,6 @@ export function usePageMeta(title, description, ogImage = '/favicon.svg', canoni
       document.head.appendChild(canonical_tag)
     }
     canonical_tag.href = canonical || window.location.href
-
-    return () => {
-      // Cleanup can be added here if needed
-    }
   }, [title, description, ogImage, canonical])
 }
 

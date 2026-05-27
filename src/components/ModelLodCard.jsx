@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, memo } from 'react'
 import { motion } from 'framer-motion'
 import './model-viewer.css'
 
-export default function ModelLodCard({ modelSrc, title, index, body }) {
+function ModelLodCard({ modelSrc, title, index, body }) {
   const [inView, setInView] = useState(false)
   const [libReady, setLibReady] = useState(false)
   const [loadState, setLoadState] = useState('pending')
@@ -73,7 +73,7 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6 }}
-      className="bg-snow group hover:bg-[#eeece9] transition-colors duration-300 overflow-hidden"
+      className="bg-snow group hover:bg-warm-gray transition-colors duration-300 overflow-hidden"
       ref={containerRef}
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[300px] lg:min-h-[400px]">
@@ -93,11 +93,11 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
           </div>
         </div>
 
-        <div className="relative bg-gradient-to-br from-[#f5f3f0] via-[#f1eeeb] to-[#eeece9] flex items-center justify-center overflow-hidden border-l border-black/5">
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(45,212,191,0.08)_0%,transparent_70%)]" />
+        <div className="relative bg-gradient-to-br from-card-bg via-card-bg-mid to-warm-gray flex items-center justify-center overflow-hidden border-l border-black/5">
+          <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(circle at 50% 50%,rgba(var(--color-cyber-cyan-rgb),0.08) 0%,transparent 70%)` }} />
 
           {loadState === 'pending' && (
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center" aria-live="polite">
               <div className="flex flex-col items-center gap-3">
                 <div className="w-6 h-6 border-2 border-cyber-cyan border-t-transparent rounded-full animate-spin" />
                 <span className="font-mono text-xs text-black/30 uppercase tracking-widest">Loading</span>
@@ -106,7 +106,7 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
           )}
 
           {loadState === 'error' && (
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center" aria-live="assertive">
               <span className="font-mono text-xs text-black/20">Failed to load</span>
             </div>
           )}
@@ -136,3 +136,5 @@ export default function ModelLodCard({ modelSrc, title, index, body }) {
     </motion.div>
   )
 }
+
+export default memo(ModelLodCard)

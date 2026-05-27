@@ -8,7 +8,7 @@ import {
 } from 'react-icons/si'
 import { TbApi, TbBrain, TbDatabase } from 'react-icons/tb'
 import { VscTerminalCmd } from 'react-icons/vsc'
-import SectionWrapper from '../../../components/SectionWrapper'
+import SectionWrapper from '@/components/SectionWrapper'
 
 const stack = [
   {
@@ -76,7 +76,7 @@ const itemVariants = {
 
 export default function TechStack() {
   return (
-    <SectionWrapper id="stack" label="// tech stack" variant="cyan" bannerBgColor="#22B8C7">
+    <SectionWrapper id="stack" label="// tech stack" variant="cyan" labelVariant="soft-blue">
       <h2 className="font-sans font-bold text-4xl md:text-5xl text-charcoal mb-12 leading-tight">
         Tools &amp; <span className="text-snow">Technologies</span>
       </h2>
@@ -107,8 +107,10 @@ export default function TechStack() {
                   className="flex items-center gap-4 group cursor-default"
                 >
                   <Icon
+                    aria-hidden="true"
                     className="text-charcoal/40 group-hover:text-charcoal transition-colors duration-300 shrink-0"
                     size={24}
+                    focusable="false"
                   />
                   <span className="font-sans text-base text-charcoal/70 group-hover:text-charcoal transition-colors duration-300">
                     {label}

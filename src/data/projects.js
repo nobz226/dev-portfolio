@@ -86,7 +86,7 @@ export const allProjects = [
     repoUrl: 'https://github.com/nobz226/audio-tools-API',
     screenshot: '/assets/images/api.gif',
     accordionScreenshot: '/assets/images/api.jpg',
-    featured: true,
+    featured: false,
     tags: ['API'],
   },
 ]

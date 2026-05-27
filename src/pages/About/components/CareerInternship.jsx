@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import SectionWrapper from '../../../components/SectionWrapper'
+import SectionWrapper from '@/components/SectionWrapper'
 
 export default function CareerInternship() {
   return (

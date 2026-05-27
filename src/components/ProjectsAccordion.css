@@ -5,7 +5,7 @@
 }
 
 .accordion-slide.active.accordion-slide {
-  background: #19535f;
+  background: var(--color-accordion-bg);
 }
 
 .accordion-slide::before {

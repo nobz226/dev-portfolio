@@ -1,17 +1,12 @@
 import { motion } from 'framer-motion'
 import { Mail, Linkedin, Github } from 'lucide-react'
+import { SOCIAL } from '@/data/config'
 
 const iconMap = {
   Email: Mail,
   LinkedIn: Linkedin,
   GitHub: Github,
 }
-
-const contactDetails = [
-  { label: 'Email', href: 'mailto:eduard.rotaru89@gmail.com' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/eduard-rotaru-b63b11124/' },
-  { label: 'GitHub', href: 'https://github.com/nobz226' },
-]
 
 const availability = [
   { label: 'Freelance Projects', available: true },
@@ -44,7 +39,7 @@ export default function ContactInfo() {
 
       {/* Contact links */}
       <div className="flex flex-col gap-3">
-        {contactDetails.map((c) => {
+        {Object.values(SOCIAL).map((c) => {
           const Icon = iconMap[c.label]
           return (
             <a
@@ -64,7 +59,7 @@ export default function ContactInfo() {
       </div>
 
       {/* Availability */}
-      <div className="bg-[#eeece9] border border-black/5 p-6">
+      <div className="bg-warm-gray border border-black/5 p-6">
         <p className="font-sans text-sm uppercase tracking-[0.25em] text-cyber-cyan mb-4">
           Availability
         </p>

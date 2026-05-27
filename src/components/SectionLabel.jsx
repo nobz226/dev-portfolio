@@ -1,22 +1,22 @@
-/**
- * SectionLabel — branding guide section header:
- * a solid cyan right-pointing triangle + a banner with a right-arrow tip.
- * variant controls whether the banner is dark (on dark sections) or light (on cyan sections).
- */
+const variantConfig = {
+  dark: { banner: 'bg-soft-blue', triangle: 'border-l-cyber-cyan' },
+  cyan: { banner: 'bg-cyber-cyan', triangle: 'border-l-snow' },
+  charcoal: { banner: 'bg-charcoal', triangle: 'border-l-cyber-cyan' },
+  'soft-blue': { banner: 'bg-soft-blue', triangle: 'border-l-snow' },
+}
+
 export default function SectionLabel({ label, variant = 'dark', bannerBgColor = null }) {
-  const bannerBg = bannerBgColor || (variant === 'cyan' ? '#2dd4bf' : '#22B8C7')
-  const triangleColor = variant === 'cyan' ? '#f9f7f7' : '#2dd4bf'
+  const config = variantConfig[variant] || variantConfig.dark
+  const bannerBg = bannerBgColor || config.banner
 
   return (
-    <div className="flex items-center mb-0">
-      {/* Right-pointing triangle */}
+    <div className="flex items-center mb-0" aria-hidden="true">
       <div
-        className={`w-0 h-0 border-t-[24px] border-t-transparent border-b-[24px] border-b-transparent border-l-[28px] shrink-0 ${triangleColor === '#f9f7f7' ? 'border-l-snow' : 'border-l-cyber-cyan'}`}
+        className={`w-0 h-0 border-t-[24px] border-t-transparent border-b-[24px] border-b-transparent border-l-[28px] shrink-0 ${bannerBgColor ? '' : config.triangle}`}
       />
-      {/* Banner with arrow tip */}
       <div
-        className="flex items-center h-12 pl-[18px] pr-10 section-label-banner"
-        style={{ backgroundColor: bannerBg }}
+        className={`flex items-center h-12 pl-[18px] pr-10 section-label-banner ${bannerBgColor ? '' : bannerBg}`}
+        style={bannerBgColor ? { backgroundColor: bannerBgColor } : undefined}
       >
         <span className="font-mono text-[13px] font-bold tracking-[0.25em] uppercase text-snow whitespace-nowrap">
           {label}

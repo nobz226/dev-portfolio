@@ -15,11 +15,23 @@
   --color-soft-blue: #22b8c7;
   --color-charcoal: #1e1e1e;
   --color-snow: #f9f7f7;
+  --color-warm-gray: #eeece9;
+  --color-muted-light: #999999;
+  --color-text-dark: #333333;
+  --color-text-dim: #aaaaaa;
+  --color-accordion-bg: #19535f;
+  --color-card-bg: #f5f3f0;
+  --color-card-bg-mid: #f1eeeb;
+  --color-accordion-dark: #2d2d2d;
   --font-sans: "Cal Sans", system-ui, sans-serif;
   --font-mono: "Courier Prime", "Courier New", monospace;
 }
 
 :root {
+  --color-cyber-cyan-rgb: 45 212 191;
+  --color-charcoal-rgb: 30 30 30;
+  --color-card-bg-rgb: 245 243 240;
+  --color-warm-gray-rgb: 238 236 233;
   overflow-x: hidden;
   --radius: 0.5rem;
   --background: #f9f7f7;

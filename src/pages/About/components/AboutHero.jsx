@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import SectionLabel from '../../../components/SectionLabel'
+import SectionLabel from '@/components/SectionLabel'
 
 export default function AboutHero() {
   return (
@@ -11,7 +11,7 @@ export default function AboutHero() {
         transition={{ duration: 0.5 }}
         className="relative z-20"
       >
-        <SectionLabel label="// about me" bannerBgColor="#1e1e1e" />
+        <SectionLabel label="// about me" variant="charcoal" />
       </motion.div>
       <div className="max-w-6xl mx-auto px-6 pt-10 relative z-10">
         <motion.h1

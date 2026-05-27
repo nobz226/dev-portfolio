@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import ContactForm from './components/ContactForm'
 import ContactInfo from './components/ContactInfo'
-import SectionLabel from '../../components/SectionLabel'
-import { usePageMeta } from '../../hooks/usePageMeta'
+import SectionLabel from '@/components/SectionLabel'
+import { usePageMeta } from '@/hooks/usePageMeta'
 
 export default function Contact() {
   usePageMeta(
@@ -21,7 +21,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="relative z-10"
         >
-          <SectionLabel label="// contact" bannerBgColor="#1e1e1e" />
+          <SectionLabel label="// contact" variant="charcoal" />
         </motion.div>
         <div className="max-w-6xl mx-auto px-6 pt-10 relative z-10">
           <motion.h1

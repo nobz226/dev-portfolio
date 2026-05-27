@@ -1,8 +1,9 @@
 import HeroSection from './components/HeroSection'
 import FeaturedProjects from './components/FeaturedProjects'
 import TechStack from './components/TechStack'
-import { usePageMeta } from '../../hooks/usePageMeta'
-import { useStructuredData } from '../../hooks/useStructuredData'
+import { usePageMeta } from '@/hooks/usePageMeta'
+import { useStructuredData } from '@/hooks/useStructuredData'
+import { PERSONAL, SOCIAL } from '@/data/config'
 
 export default function Home() {
   usePageMeta(
@@ -13,19 +14,19 @@ export default function Home() {
   useStructuredData({
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Eduard Rotaru',
-    url: 'https://eduardrotaru.dev',
-    image: 'https://eduardrotaru.dev/favicon.svg',
-    jobTitle: 'Full-Stack Developer',
+    name: PERSONAL.name,
+    url: `https://${PERSONAL.domain}`,
+    image: `https://${PERSONAL.domain}/favicon.svg`,
+    jobTitle: PERSONAL.title,
     worksFor: {
       '@type': 'Organization',
       name: 'Freelance',
     },
     sameAs: [
-      'https://github.com/nobz226',
-      'https://www.linkedin.com/in/eduard-rotaru-b63b11124/',
+      SOCIAL.GitHub.href,
+      SOCIAL.LinkedIn.href,
     ],
-    email: 'eduard.rotaru89@gmail.com',
+    email: PERSONAL.email,
     description:
       'Full-stack developer specializing in React, Next.js, and creative web experiences with 9+ years of QA background.',
   })

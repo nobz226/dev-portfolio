@@ -3,7 +3,7 @@ import CoreValues from './components/CoreValues'
 import DifferentiationSection from './components/DifferentiationSection'
 import MissionStatement from './components/MissionStatement'
 import CareerInternship from './components/CareerInternship'
-import { usePageMeta } from '../../hooks/usePageMeta'
+import { usePageMeta } from '@/hooks/usePageMeta'
 
 export default function About() {
   usePageMeta(

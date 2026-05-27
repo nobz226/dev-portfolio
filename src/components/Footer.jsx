@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { Github, Linkedin, Mail } from 'lucide-react'
+import { NAV_LINKS, SOCIAL } from '@/data/config'
 
 const iconMap = {
   GitHub: Github,
@@ -7,22 +8,9 @@ const iconMap = {
   Email: Mail,
 }
 
-const socialLinks = [
-  { label: 'GitHub', href: 'https://github.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
-  { label: 'Email', href: 'mailto:eduard.rotaru89@gmail.com' },
-]
-
-const navLinks = [
-  { path: '/', label: 'Home' },
-  { path: '/about', label: 'About' },
-  { path: '/projects', label: 'Projects' },
-  { path: '/contact', label: 'Contact' },
-]
-
 export default function Footer() {
   return (
-    <footer className="border-t border-black/10 bg-[#eeece9] mt-auto">
+    <footer className="border-t border-black/10 bg-warm-gray mt-auto">
       <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Brand */}
         <div className="flex items-center gap-3 mr-auto">
@@ -35,11 +23,11 @@ export default function Footer() {
 
         {/* Nav */}
         <nav className="flex gap-6">
-          {navLinks.map(({ path, label }) => (
+          {NAV_LINKS.map(({ to, label }) => (
             <NavLink
-              key={path}
-              to={path}
-              end={path === '/'}
+              key={to}
+              to={to}
+              end={to === '/'}
               className="font-silom text-sm font-medium uppercase tracking-widest text-muted-foreground hover:text-cyber-cyan transition-colors duration-300"
             >
               {label}
@@ -49,7 +37,7 @@ export default function Footer() {
 
         {/* Socials */}
         <div className="flex items-center gap-4">
-          {socialLinks.map((s) => {
+          {Object.values(SOCIAL).map((s) => {
             const Icon = iconMap[s.label]
             return (
               <a

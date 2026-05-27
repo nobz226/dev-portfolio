@@ -1,5 +1,5 @@
-import ModelLodCard from '../../../components/ModelLodCard'
-import SectionWrapper from '../../../components/SectionWrapper'
+import ModelLodCard from '@/components/ModelLodCard'
+import SectionWrapper from '@/components/SectionWrapper'
 
 const values = [
   {

@@ -1,14 +1,26 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Button } from '../../components/ui/button'
-import { Badge } from '../../components/ui/badge'
-import SectionLabel from '../../components/SectionLabel'
-import SectionWrapper from '../../components/SectionWrapper'
-import { usePageMeta } from '../../hooks/usePageMeta'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import SectionLabel from '@/components/SectionLabel'
+import SectionWrapper from '@/components/SectionWrapper'
+import { usePageMeta } from '@/hooks/usePageMeta'
 
 // Import all projects
-import { allProjects } from '../../data/projects'
+import { allProjects } from '@/data/projects'
+
+function renderParagraphs(content, keyPrefix = 'p') {
+  const paragraphs = Array.isArray(content)
+    ? content
+    : String(content).split(/\n\n+/).filter(Boolean)
+
+  return paragraphs.map((paragraph, i) => (
+    <p key={`${keyPrefix}-${i}`} className="font-mono text-lg leading-relaxed text-snow/80">
+      {paragraph}
+    </p>
+  ))
+}
 
 export default function ProjectDetail() {
   const { slug } = useParams()
@@ -25,26 +37,52 @@ export default function ProjectDetail() {
       : 'The project you are looking for does not exist.'
   )
 
-  // Handle ESC key to close modal
+  const goBack = useCallback(() => navigate('/projects'), [navigate])
+  const closeModal = useCallback(() => setIsModalOpen(false), [])
+
+  // Focus trap + ESC for modal
+  const modalRef = useRef(null)
+  const triggerRef = useRef(null)
+
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setIsModalOpen(false)
+      if (e.key === 'Escape') {
+        setIsModalOpen(false)
+        triggerRef.current?.focus()
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  const renderParagraphs = (content) => {
-    const paragraphs = Array.isArray(content)
-      ? content
-      : String(content).split(/\n\n+/).filter(Boolean)
+  // Focus trap when modal opens
+  useEffect(() => {
+    if (!isModalOpen) return
+    const modal = modalRef.current
+    if (!modal) return
 
-    return paragraphs.map((paragraph) => (
-      <p key={paragraph} className="font-mono text-lg leading-relaxed text-snow/80">
-        {paragraph}
-      </p>
-    ))
-  }
+    const focusableEls = modal.querySelectorAll(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+    )
+    const first = focusableEls[0]
+    const last = focusableEls[focusableEls.length - 1]
+
+    const handleTab = (e) => {
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last?.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first?.focus()
+        }
+      }
+    }
+
+    first?.focus()
+    modal.addEventListener('keydown', handleTab)
+    return () => modal.removeEventListener('keydown', handleTab)
+  }, [isModalOpen])
 
   if (!project) {
     return (
@@ -57,7 +95,7 @@ export default function ProjectDetail() {
             The project you're looking for doesn't exist or has been removed.
           </p>
           <Button
-            onClick={() => navigate('/projects')}
+            onClick={goBack}
             className="font-mono uppercase tracking-widest text-sm bg-cyber-cyan text-charcoal hover:bg-soft-blue rounded-none px-8 py-5 transition-all duration-300"
           >
             Back to Projects
@@ -76,7 +114,7 @@ export default function ProjectDetail() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <SectionLabel label="// project details" bannerBgColor="#1e1e1e" />
+          <SectionLabel label="// project details" variant="charcoal" />
         </motion.div>
         <div className="max-w-4xl mx-auto px-6 pt-10">
           <motion.h1
@@ -105,10 +143,10 @@ export default function ProjectDetail() {
                 src={project.screenshot}
                 alt={`${project.title} screenshot`}
                 className="w-full h-auto cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => { triggerRef.current = document.activeElement; setIsModalOpen(true) }}
               />
             ) : (
-              <span className="font-mono text-base text-[#999999] py-20">screenshot</span>
+              <span className="font-mono text-base text-muted-light py-20">screenshot</span>
             )}
           </motion.div>
         </div>
@@ -136,12 +174,12 @@ export default function ProjectDetail() {
 
       {/* The Why Section */}
       {project.why && (
-        <SectionWrapper label="// the why" variant="cyan" bannerBgColor="#22b8c7">
+        <SectionWrapper label="// the why" variant="cyan" labelVariant="soft-blue">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
             The Why
           </h2>
           <div className="space-y-6 text-charcoal/80">
-            {renderParagraphs(project.why)}
+            {renderParagraphs(project.why, 'why')}
           </div>
         </SectionWrapper>
       )}
@@ -153,7 +191,7 @@ export default function ProjectDetail() {
             The System
           </h2>
           <div className="space-y-6 text-snow/80 mb-8">
-            {renderParagraphs(project.system)}
+            {renderParagraphs(project.system, 'system')}
           </div>
           <div>
             <h3 className="font-silom font-bold text-2xl text-snow mb-6">
@@ -176,12 +214,12 @@ export default function ProjectDetail() {
 
       {/* The Soul Section */}
       {project.soul && (
-        <SectionWrapper label="// the soul" variant="cyan" bannerBgColor="#22b8c7">
+        <SectionWrapper label="// the soul" variant="cyan" labelVariant="soft-blue">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
             The Soul
           </h2>
           <div className="space-y-6 text-charcoal/80">
-            {renderParagraphs(project.soul)}
+            {renderParagraphs(project.soul, 'soul')}
           </div>
         </SectionWrapper>
       )}
@@ -229,7 +267,7 @@ export default function ProjectDetail() {
               </Button>
             )}
             <Button
-              onClick={() => navigate('/projects')}
+              onClick={goBack}
               className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
             >
               <div
@@ -247,10 +285,14 @@ export default function ProjectDetail() {
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${project.title} screenshot fullscreen`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setIsModalOpen(false)}
+            onClick={closeModal}
             className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
           >
             <motion.div
@@ -261,7 +303,7 @@ export default function ProjectDetail() {
               className="relative max-w-5xl w-full max-h-screen"
             >
               <button
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => { closeModal(); triggerRef.current?.focus() }}
                 className="absolute -top-12 right-0 text-white font-mono text-sm uppercase tracking-widest hover:text-cyber-cyan transition-colors"
               >
                 Close (ESC)

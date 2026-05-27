@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import TerminalText from '../../../components/TerminalText'
-import { Button } from '../../../components/ui/button'
+import TerminalText from '@/components/TerminalText'
+import { Button } from '@/components/ui/button'
 
 // "<there is a ghost in the machine/> " = 35 chars
 // Dark positions: 0 (<), 32 (/), 33 (>)
@@ -21,7 +21,7 @@ function isDark(i) {
 function PortraitRing() {
   const angleStep = (2 * Math.PI) / TOTAL
   return (
-    <div className="relative w-[520px] h-[520px] shrink-0">
+    <div className="relative w-[520px] h-[520px] shrink-0" aria-hidden="true">
       {/* Circular portrait */}
       <img
         src="/assets/images/eduardrotaru.jpg"
@@ -30,6 +30,7 @@ function PortraitRing() {
       />
       {/* Rotating text ring */}
       <motion.div
+        aria-hidden="true"
         animate={{ rotate: 360 }}
         transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
         className="absolute inset-0"
