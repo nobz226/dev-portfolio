@@ -126,16 +126,17 @@ export default function ProjectDetail() {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-36 shrink-0"
+              className="max-w-[120px] md:w-36 shrink-0"
             >
               {prevProject ? (
                 <Link
                   to={`/projects/${prevProject.slug}`}
-                  className="group flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.05] w-fit"
+                  className="group flex items-center gap-1 md:gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
                 >
-                  <img src="/assets/images/backArrow.svg" alt="previous" className="w-12 h-12 shrink-0" />
-                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight hidden md:inline">
-                    {prevProject.title}
+                  <img src="/assets/images/backArrow.svg" alt="previous" className="w-8 h-8 md:w-12 md:h-12 shrink-0" />
+                  <span className="font-silom text-xs md:text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
+                    <span className="md:hidden">Previous</span>
+                    <span className="hidden md:inline">{prevProject.title}</span>
                   </span>
                 </Link>
               ) : (
@@ -147,7 +148,7 @@ export default function ProjectDetail() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none opacity-100 relative z-20 text-center flex-1"
+              className="font-sans font-bold text-3xl md:text-7xl text-charcoal leading-none opacity-100 relative z-20 text-center flex-1 min-w-0"
             >
               {project.title}
             </motion.h1>
@@ -156,17 +157,18 @@ export default function ProjectDetail() {
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-36 shrink-0 flex justify-end"
+              className="max-w-[120px] md:w-36 shrink-0 flex justify-end"
             >
               {nextProject ? (
                 <Link
                   to={`/projects/${nextProject.slug}`}
-                  className="group flex items-center gap-2 transition-transform duration-300 origin-right hover:scale-[1.05] w-fit"
+                  className="group flex items-center gap-1 md:gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
                 >
-                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight hidden md:inline">
-                    {nextProject.title}
+                  <span className="font-silom text-xs md:text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate text-right">
+                    <span className="md:hidden">Next</span>
+                    <span className="hidden md:inline">{nextProject.title}</span>
                   </span>
-                  <img src="/assets/images/backArrow.svg" alt="next" className="w-12 h-12 shrink-0 -scale-x-100" />
+                  <img src="/assets/images/backArrow.svg" alt="next" className="w-8 h-8 md:w-12 md:h-12 shrink-0 -scale-x-100" />
                 </Link>
               ) : (
                 <div />
@@ -280,27 +282,10 @@ export default function ProjectDetail() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex items-center justify-between gap-4"
+            className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-3"
           >
-            {/* Previous */}
-            <div className="w-36 shrink-0">
-              {prevProject ? (
-                <Link
-                  to={`/projects/${prevProject.slug}`}
-                  className="group flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.05] w-fit"
-                >
-                  <img src="/assets/images/backArrow.svg" alt="previous" className="w-12 h-12 shrink-0" />
-                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight hidden md:inline">
-                    {prevProject.title}
-                  </span>
-                </Link>
-              ) : (
-                <div />
-              )}
-            </div>
-
-            {/* Centered actions */}
-            <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center">
+            {/* Mobile: action buttons row */}
+            <div className="flex md:hidden items-center justify-center gap-3 w-full">
               {project.liveUrl && (
                 <Button
                   asChild
@@ -310,7 +295,99 @@ export default function ProjectDetail() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
+                    className="flex items-center gap-1 transition-transform duration-300 hover:scale-[1.15]"
+                  >
+                    Live Demo
+                    <img src="/assets/images/arrow.svg" alt="arrow" className="w-8 h-8" />
+                  </a>
+                </Button>
+              )}
+              {project.repoUrl && (
+                <Button
+                  asChild
+                  className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
+                >
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 transition-transform duration-300 hover:scale-[1.15]"
+                  >
+                    View Code
+                    <img src="/assets/images/codeIcon.svg" alt="code" className="w-8 h-8" />
+                  </a>
+                </Button>
+              )}
+              <Button
+                onClick={goBack}
+                className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
+              >
+                <div className="flex items-center gap-1 transition-transform duration-300 cursor-pointer hover:scale-[1.15]">
+                  Back
+                  <img src="/assets/images/backArrow.svg" alt="arrow" className="w-8 h-8" />
+                </div>
+              </Button>
+            </div>
+
+            {/* Mobile: prev / next row */}
+            <div className="flex md:hidden items-center justify-between gap-3 w-full">
+              <div className="max-w-[120px] shrink-0">
+                {prevProject ? (
+                  <Link
+                    to={`/projects/${prevProject.slug}`}
+                    className="group flex items-center gap-1 transition-transform duration-300 hover:scale-[1.05] w-fit"
+                  >
+                    <img src="/assets/images/backArrow.svg" alt="previous" className="w-8 h-8 shrink-0" />
+                    <span className="font-silom text-xs text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
+                      Previous
+                    </span>
+                  </Link>
+                ) : <div />}
+              </div>
+              <div className="max-w-[120px] shrink-0 flex justify-end">
+                {nextProject ? (
+                  <Link
+                    to={`/projects/${nextProject.slug}`}
+                    className="group flex items-center gap-1 transition-transform duration-300 hover:scale-[1.05] w-fit"
+                  >
+                    <span className="font-silom text-xs text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
+                      Next
+                    </span>
+                    <img src="/assets/images/backArrow.svg" alt="next" className="w-8 h-8 shrink-0 -scale-x-100" />
+                  </Link>
+                ) : <div />}
+              </div>
+            </div>
+
+            {/* Desktop: Previous */}
+            <div className="hidden md:block w-36 shrink-0">
+              {prevProject ? (
+                <Link
+                  to={`/projects/${prevProject.slug}`}
+                  className="group flex items-center gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
+                >
+                  <img src="/assets/images/backArrow.svg" alt="previous" className="w-12 h-12 shrink-0" />
+                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
+                    {prevProject.title}
+                  </span>
+                </Link>
+              ) : (
+                <div />
+              )}
+            </div>
+
+            {/* Desktop: Centered actions */}
+            <div className="hidden md:flex items-center gap-6 justify-center">
+              {project.liveUrl && (
+                <Button
+                  asChild
+                  className="font-silom text-sm uppercase tracking-wider bg-transparent text-cyber-cyan hover:bg-transparent hover:text-cyber-cyan rounded-none px-0 py-0"
+                >
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
                   >
                     Live Demo
                     <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
@@ -326,7 +403,7 @@ export default function ProjectDetail() {
                     href={project.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
+                    className="flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
                   >
                     View Code
                     <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
@@ -337,23 +414,21 @@ export default function ProjectDetail() {
                 onClick={goBack}
                 className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
               >
-                <div
-                  className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left cursor-pointer hover:scale-[1.15]"
-                >
+                <div className="flex items-center gap-2 transition-transform duration-300 origin-left cursor-pointer hover:scale-[1.15]">
                   Back to Projects
                   <img src="/assets/images/backArrow.svg" alt="arrow" className="w-12 h-12" />
                 </div>
               </Button>
             </div>
 
-            {/* Next */}
-            <div className="w-36 shrink-0 flex justify-end">
+            {/* Desktop: Next */}
+            <div className="hidden md:block w-36 shrink-0 flex justify-end">
               {nextProject ? (
                 <Link
                   to={`/projects/${nextProject.slug}`}
-                  className="group flex items-center gap-2 transition-transform duration-300 origin-right hover:scale-[1.05] w-fit"
+                  className="group flex items-center gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
                 >
-                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight hidden md:inline">
+                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate text-right">
                     {nextProject.title}
                   </span>
                   <img src="/assets/images/backArrow.svg" alt="next" className="w-12 h-12 shrink-0 -scale-x-100" />
