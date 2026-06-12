@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
@@ -36,6 +36,10 @@ export default function ProjectDetail() {
       ? `${project.description} Built with ${project.tech.join(', ')}`
       : 'The project you are looking for does not exist.'
   )
+
+  const currentIndex = allProjects.findIndex((p) => p.slug === slug)
+  const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null
+  const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null
 
   const goBack = useCallback(() => navigate('/projects'), [navigate])
   const closeModal = useCallback(() => setIsModalOpen(false), [])
@@ -116,15 +120,59 @@ export default function ProjectDetail() {
         >
           <SectionLabel label="// project details" variant="charcoal" />
         </motion.div>
-        <div className="max-w-4xl mx-auto px-6 pt-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none mb-6 opacity-100 relative z-20"
-          >
-            {project.title}
-          </motion.h1>
+        <div className="max-w-5xl mx-auto px-6 pt-10">
+          <div className="flex items-center justify-between gap-3">
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="w-36 shrink-0"
+            >
+              {prevProject ? (
+                <Link
+                  to={`/projects/${prevProject.slug}`}
+                  className="group flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.05] w-fit"
+                >
+                  <img src="/assets/images/backArrow.svg" alt="previous" className="w-12 h-12 shrink-0" />
+                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight hidden md:inline">
+                    {prevProject.title}
+                  </span>
+                </Link>
+              ) : (
+                <div />
+              )}
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none opacity-100 relative z-20 text-center flex-1"
+            >
+              {project.title}
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="w-36 shrink-0 flex justify-end"
+            >
+              {nextProject ? (
+                <Link
+                  to={`/projects/${nextProject.slug}`}
+                  className="group flex items-center gap-2 transition-transform duration-300 origin-right hover:scale-[1.05] w-fit"
+                >
+                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight hidden md:inline">
+                    {nextProject.title}
+                  </span>
+                  <img src="/assets/images/backArrow.svg" alt="next" className="w-12 h-12 shrink-0 -scale-x-100" />
+                </Link>
+              ) : (
+                <div />
+              )}
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -224,59 +272,96 @@ export default function ProjectDetail() {
         </SectionWrapper>
       )}
 
-      {/* Links Section */}
-      <section className="relative py-16 px-6">
+      {/* Bottom Navigation — centered actions + flanking prev/next */}
+      <section className="relative py-16 px-6 border-t border-black/5">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex gap-4 flex-wrap"
+            className="flex items-center justify-between gap-4"
           >
-            {project.liveUrl && (
-              <Button
-                asChild
-                className="font-silom text-sm uppercase tracking-wider bg-transparent text-cyber-cyan hover:bg-transparent hover:text-cyber-cyan rounded-none px-0 py-0"
-              >
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
+            {/* Previous */}
+            <div className="w-36 shrink-0">
+              {prevProject ? (
+                <Link
+                  to={`/projects/${prevProject.slug}`}
+                  className="group flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.05] w-fit"
                 >
-                  Live Demo
-                  <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
-                </a>
-              </Button>
-            )}
-            {project.repoUrl && (
+                  <img src="/assets/images/backArrow.svg" alt="previous" className="w-12 h-12 shrink-0" />
+                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight hidden md:inline">
+                    {prevProject.title}
+                  </span>
+                </Link>
+              ) : (
+                <div />
+              )}
+            </div>
+
+            {/* Centered actions */}
+            <div className="flex items-center gap-4 md:gap-6 flex-wrap justify-center">
+              {project.liveUrl && (
+                <Button
+                  asChild
+                  className="font-silom text-sm uppercase tracking-wider bg-transparent text-cyber-cyan hover:bg-transparent hover:text-cyber-cyan rounded-none px-0 py-0"
+                >
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
+                  >
+                    Live Demo
+                    <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
+                  </a>
+                </Button>
+              )}
+              {project.repoUrl && (
+                <Button
+                  asChild
+                  className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
+                >
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
+                  >
+                    View Code
+                    <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
+                  </a>
+                </Button>
+              )}
               <Button
-                asChild
+                onClick={goBack}
                 className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
               >
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
+                <div
+                  className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left cursor-pointer hover:scale-[1.15]"
                 >
-                  View Code
-                  <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
-                </a>
+                  Back to Projects
+                  <img src="/assets/images/backArrow.svg" alt="arrow" className="w-12 h-12" />
+                </div>
               </Button>
-            )}
-            <Button
-              onClick={goBack}
-              className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
-            >
-              <div
-                className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left cursor-pointer hover:scale-[1.15]"
-              >
-                Back to Projects
-                <img src="/assets/images/backArrow.svg" alt="arrow" className="w-12 h-12" />
-              </div>
-            </Button>
+            </div>
+
+            {/* Next */}
+            <div className="w-36 shrink-0 flex justify-end">
+              {nextProject ? (
+                <Link
+                  to={`/projects/${nextProject.slug}`}
+                  className="group flex items-center gap-2 transition-transform duration-300 origin-right hover:scale-[1.05] w-fit"
+                >
+                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight hidden md:inline">
+                    {nextProject.title}
+                  </span>
+                  <img src="/assets/images/backArrow.svg" alt="next" className="w-12 h-12 shrink-0 -scale-x-100" />
+                </Link>
+              ) : (
+                <div />
+              )}
+            </div>
           </motion.div>
         </div>
       </section>

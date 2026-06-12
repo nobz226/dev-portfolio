@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import ProjectCard from './ProjectCard'
+import { useState, useRef } from 'react'
+import ProjectListItem from './ProjectCard'
 import { allProjects } from '@/data/projects'
 
 const allTags = ['All', ...new Set(allProjects.flatMap((p) => p.tags))]
 
 export default function ProjectsGrid() {
   const [active, setActive] = useState('All')
+  const listRef = useRef(null)
 
   const filtered =
     active === 'All' ? allProjects : allProjects.filter((p) => p.tags.includes(active))
@@ -30,17 +31,20 @@ export default function ProjectsGrid() {
         ))}
       </div>
 
-      {/* Grid */}
-      <div
-        role="status"
-        aria-live="polite"
-        className="sr-only"
-      >
-        {filtered.length === 0 ? 'No projects match this filter.' : `Showing ${filtered.length} project${filtered.length === 1 ? '' : 's'} with filter: ${active}.`}
+      {/* Screen reader status */}
+      <div role="status" aria-live="polite" className="sr-only">
+        {filtered.length === 0
+          ? 'No projects match this filter.'
+          : `Showing ${filtered.length} project${filtered.length === 1 ? '' : 's'} with filter: ${active}.`}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-[20px] bg-black/5">
+
+      {/* Stacked cards on mobile, scrollable list on desktop */}
+      <div
+        ref={listRef}
+        className="divide-y divide-black/10 md:max-h-[600px] md:overflow-y-auto md:scroll-smooth"
+      >
         {filtered.map((project, i) => (
-          <ProjectCard key={project.slug} project={project} index={i} />
+          <ProjectListItem key={project.slug} project={project} index={i} />
         ))}
       </div>
     </div>

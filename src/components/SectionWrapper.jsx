@@ -15,7 +15,7 @@ const fadeUp = {
  * SectionWrapper — wraps page sections with a consistent layout,
  * optional section label, and a scroll-triggered fade-up animation.
  */
-function SectionWrapper({ id, label, children, className = '', variant = 'dark', labelVariant, bannerBgColor = null }) {
+function SectionWrapper({ id, label, children, className = '', variant = 'dark', labelVariant, bannerBgColor = null, contentClassName = '' }) {
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function SectionWrapper({ id, label, children, className = '', variant = 'dark',
         </div>
       )}
       {/* Content — right padding keeps text inside the arrow cutout on desktop only (1200px+) */}
-      <div className="relative z-10 max-w-5xl mx-auto pl-6 pr-6 xl:pr-24 py-16">
+      <div className={`relative z-10 max-w-5xl mx-auto pl-6 pr-6 xl:pr-24 py-16 ${contentClassName}`}>
         {children}
       </div>
     </motion.section>
