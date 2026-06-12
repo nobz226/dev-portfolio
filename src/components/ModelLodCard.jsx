@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, memo } from 'react'
 import { motion } from 'framer-motion'
-import './model-viewer.css'
+
 
 function ModelLodCard({ modelSrc, title, index, body }) {
   const [inView, setInView] = useState(false)
@@ -123,7 +123,7 @@ function ModelLodCard({ modelSrc, title, index, body }) {
               environment-image="legacy"
               shadow-intensity="1"
               camera-orbit="0deg 75deg 105%"
-              className={`w-full h-full min-h-[300px] transition-opacity duration-[400ms] ${loadState === 'done' ? 'opacity-100' : 'opacity-0'}`}
+              className={`w-full h-full min-h-[300px] animate-subtle-glow focus:outline-2 focus:outline-cyber-cyan focus:outline-offset-2 transition-opacity duration-[400ms] ${loadState === 'done' ? 'opacitiy-100' : 'opacity-0'}`}
               reveal="auto"
             >
               <div slot="progress-bar" className="h-0.5 w-full bg-gradient-to-r from-cyber-cyan to-soft-blue" />

@@ -25,6 +25,7 @@
   --color-accordion-dark: #2d2d2d;
   --font-sans: "Cal Sans", system-ui, sans-serif;
   --font-mono: "Courier Prime", "Courier New", monospace;
+  --animate-subtle-glow: subtle-glow 3s ease-in-out infinite;
 }
 
 :root {
@@ -157,4 +158,17 @@
 }
 .section-wrapper-no-clip {
   clip-path: none;
+}
+
+model-viewer {
+  --progress-bar-height: 2px;
+  --progress-bar-color: var(--color-cyber-cyan);
+}
+model-viewer[environment-image='legacy'] {
+  --environment-image: none;
+}
+
+@keyframes subtle-glow {
+  0%, 100% {filter: brightness(1); }
+  50% {filter: brightness(1.02); }
 }
