@@ -102,12 +102,12 @@ export default function HexPattern() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 top-28 bottom-0 select-none"
+      className="pointer-events-none absolute inset-x-0 top-28 md:top-[45%] lg:top-[35%] xl:top-28 bottom-0 select-none"
     >
       <svg
         viewBox={`0 0 ${svgW} ${svgH}`}
         preserveAspectRatio="xMidYMid meet"
-        className="ml-auto w-[55%] h-full opacity-90"
+        className="ml-auto w-[55%] md:w-[85%] lg:w-[70%] xl:w-[55%] h-full opacity-90"
         xmlns="http://www.w3.org/2000/svg"
       >
         {Array.from({ length: COLS }, (_, col) =>
