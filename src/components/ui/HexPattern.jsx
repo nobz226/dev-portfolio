@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 const HEX_SIZE = 52
@@ -71,6 +72,18 @@ function hexCenter(col, row, r, gap) {
 }
 
 export default function HexPattern() {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  )
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  if (isMobile) return null
+
   const r = HEX_SIZE
   const gap = GAP
 
