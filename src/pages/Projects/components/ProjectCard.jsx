@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import TerminalBar from '@/components/TerminalBar'
 
 function ProjectListItem({ project }) {
   return (
@@ -12,15 +11,13 @@ function ProjectListItem({ project }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: 0.05 }}
-      className="bg-snow group hover:bg-warm-gray transition-colors duration-300"
+      className="group"
     >
-      <TerminalBar filename={`${project.slug}.jsx`} />
-
       <div className="flex flex-col md:flex-row gap-0">
         {/* Screenshot thumbnail */}
         <Link
           to={`/projects/${project.slug}`}
-          className="md:w-64 shrink-0 bg-black/5 overflow-hidden flex items-center justify-center border-b md:border-b-0 md:border-r border-black/5"
+          className="md:w-64 shrink-0 overflow-hidden flex items-center justify-center"
         >
           {project.screenshot ? (
             <img
@@ -31,7 +28,7 @@ function ProjectListItem({ project }) {
             />
           ) : (
             <div className="flex items-center justify-center h-48 md:h-full w-full">
-              <span className="font-mono text-sm text-muted-light">screenshot</span>
+              <span className="font-mono text-sm text-snow/50">screenshot</span>
             </div>
           )}
         </Link>
@@ -41,7 +38,7 @@ function ProjectListItem({ project }) {
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
               <span className="font-silom text-sm text-cyber-cyan block mb-1">{project.category}</span>
-              <h3 className="font-sans font-bold text-xl text-charcoal truncate">{project.title}</h3>
+              <h3 className="font-sans font-bold text-xl text-snow truncate">{project.title}</h3>
             </div>
             {project.featured && (
               <span className="font-silom text-[10px] uppercase tracking-widest px-2 py-1 border border-cyber-cyan/40 text-cyber-cyan shrink-0">
@@ -50,7 +47,7 @@ function ProjectListItem({ project }) {
             )}
           </div>
 
-          <p className="font-mono text-sm font-medium text-muted-foreground leading-relaxed line-clamp-3">
+          <p className="font-mono text-sm font-medium text-snow/70 leading-relaxed line-clamp-3">
             {project.description}
           </p>
 
@@ -59,7 +56,7 @@ function ProjectListItem({ project }) {
               <Badge
                 key={t}
                 variant="outline"
-                className="font-sans text-sm border-black/10 text-muted-foreground bg-transparent rounded-none"
+                className="font-sans text-sm border-snow/20 text-snow/70 bg-transparent rounded-none"
               >
                 {t}
               </Badge>
@@ -89,7 +86,7 @@ function ProjectListItem({ project }) {
               asChild={!!project.repoUrl}
               size="sm"
               aria-disabled={!project.repoUrl}
-              className={`font-silom text-sm uppercase tracking-wider text-text-dark rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-text-dark ${!project.repoUrl ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`font-silom text-sm uppercase tracking-wider text-snow/80 rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-snow ${!project.repoUrl ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {project.repoUrl ? (
                 <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
@@ -106,7 +103,7 @@ function ProjectListItem({ project }) {
             <Button
               asChild
               size="sm"
-              className="font-silom text-sm uppercase tracking-wider text-text-dark rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-text-dark"
+              className="font-silom text-sm uppercase tracking-wider text-snow/80 rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-snow"
             >
               <Link to={`/projects/${project.slug}`} className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
                 Details

@@ -41,7 +41,7 @@ export default function ProjectsGrid() {
       {/* Stacked cards on mobile, scrollable list on desktop */}
       <div
         ref={listRef}
-        className="divide-y divide-black/10 md:max-h-[600px] md:overflow-y-auto md:scroll-smooth"
+        className="flex flex-col gap-8 md:max-h-[600px] md:overflow-y-auto md:overflow-x-hidden md:scroll-smooth"
       >
         {filtered.map((project, i) => (
           <ProjectListItem key={project.slug} project={project} index={i} />
