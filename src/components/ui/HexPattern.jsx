@@ -6,18 +6,21 @@ const GAP = 4
 const COLS = 8
 const ROWS = 7
 
-const CYAN = '#2dd4bf'
-const BLUE = '#22b8c7'
-const DARK = '#1e1e1e'
+const CYAN = '#f5f3f0'
+const BLUE = '#eeece9'
+const DARK = '#999999'
+const BRIGHT_CYAN = '#2dd4bf'
+const BRIGHT_BLUE = '#22b8c7'
+
 
 const ACTIVE_HEXES = [
-  [5, 0, 1.00, DARK,  0.0],
-  [6, 0, 0.70, BLUE,  0.1],
+  [5, 0, 1.00, BRIGHT_BLUE,  0.0],
+  [6, 0, 0.70, BRIGHT_CYAN,  0.1],
   [7, 0, 0.40, CYAN,  0.2],
-  [5, 1, 0.85, CYAN,  0.15],
+  [5, 1, 0.85, DARK,  0.15],
   [6, 1, 1.00, DARK,  0.05],
-  [7, 1, 0.55, BLUE,  0.25],
-  [4, 1, 0.30, BLUE,  0.3],
+  [7, 1, 0.55, BRIGHT_BLUE,  0.25],
+  [4, 1, 0.30, BRIGHT_CYAN,  0.3],
   [3, 1, 0.18, CYAN,  0.4],
   [2, 1, 0.12, BLUE,  0.5],
   [4, 2, 0.60, CYAN,  0.2],
@@ -37,22 +40,22 @@ const ACTIVE_HEXES = [
   [0, 3, 0.08, CYAN,  0.7],
   [4, 4, 0.50, CYAN,  0.35],
   [5, 4, 1.00, DARK,  0.0],
-  [6, 4, 0.75, CYAN,  0.25],
+  [6, 4, 0.75, BRIGHT_BLUE,  0.25],
   [7, 4, 0.40, BLUE,  0.4],
   [3, 4, 0.25, BLUE,  0.45],
   [2, 4, 0.15, CYAN,  0.55],
   [1, 4, 0.10, DARK,  0.65],
   [5, 5, 0.65, BLUE,  0.15],
   [6, 5, 0.90, DARK,  0.05],
-  [7, 5, 0.30, CYAN,  0.3],
-  [4, 5, 0.22, CYAN,  0.45],
-  [3, 5, 0.14, BLUE,  0.55],
+  [7, 5, 0.30, BRIGHT_BLUE,  0.3],
+  [4, 5, 0.22, BRIGHT_CYAN,  0.45],
+  [3, 5, 0.14, BRIGHT_BLUE,  0.55],
   [2, 5, 0.08, DARK,  0.65],
-  [6, 6, 0.50, BLUE,  0.2],
-  [7, 6, 0.70, CYAN,  0.1],
-  [5, 6, 0.20, DARK,  0.4],
-  [4, 6, 0.12, CYAN,  0.5],
-  [7, 0, 0.25, BLUE,  0.45],
+  [6, 6, 0.50, BRIGHT_CYAN,  0.2],
+  [7, 6, 0.70, BRIGHT_BLUE,  0.1],
+  [5, 6, 0.20, BRIGHT_CYAN,  0.4],
+  [4, 6, 0.12, BRIGHT_BLUE,  0.5],
+  [7, 0, 0.25, BRIGHT_CYAN,  0.45],
 ]
 
 function hexPath(cx, cy, r) {
