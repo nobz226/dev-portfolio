@@ -24,17 +24,17 @@ function ProjectListItem({ project }) {
               src={project.screenshot}
               alt={`${project.title} screenshot`}
               loading="lazy"
-              className="w-full h-48 md:h-full object-cover object-top-left group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-64 md:h-full object-cover object-top-left group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
-            <div className="flex items-center justify-center h-48 md:h-full w-full">
+            <div className="flex items-center justify-center h-64 md:h-full w-full">
               <span className="font-mono text-sm text-snow/50">screenshot</span>
             </div>
           )}
         </Link>
 
         {/* Content */}
-        <div className="p-5 flex flex-col gap-3 flex-1 min-w-0">
+        <div className="p-6 md:p-5 flex flex-col gap-3 flex-1 min-w-0">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
               <span className="font-silom text-sm text-cyber-cyan block mb-1">{project.category}</span>
