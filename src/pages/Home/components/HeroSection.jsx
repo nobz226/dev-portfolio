@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import TerminalText from '@/components/TerminalText'
 import { Button } from '@/components/ui/button'
+import HexPattern from '@/components/ui/HexPattern'
 
 // "<there is a ghost in the machine/> " = 35 chars
 // Dark positions: 0 (<), 32 (/), 33 (>)
@@ -63,6 +64,7 @@ export default function HeroSection() {
   return (
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden">
+        <HexPattern />
       <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
 
