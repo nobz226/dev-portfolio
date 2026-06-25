@@ -55,7 +55,7 @@ export default function Projects() {
         </div>
       </section>
 
-      <SectionWrapper label={null} contentClassName="max-w-7xl">
+      <SectionWrapper label={null} contentClassName="max-w-7xl px-8 md:px-12">
         <ProjectsGrid />
       </SectionWrapper>
     </main>
