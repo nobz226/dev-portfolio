@@ -34,7 +34,8 @@ export default function ProjectDetail() {
     project ? `${project.title} - Eduard Rotaru` : 'Project Not Found',
     project
       ? `${project.description} Built with ${project.tech.join(', ')}`
-      : 'The project you are looking for does not exist.'
+      : 'The project you are looking for does not exist.',
+    project?.screenshot || '/og-image.png'
   )
 
   const currentIndex = allProjects.findIndex((p) => p.slug === slug)

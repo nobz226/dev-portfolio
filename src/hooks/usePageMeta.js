@@ -1,51 +1,56 @@
 import { useEffect } from 'react'
 
-export function usePageMeta(title, description, ogImage = '/favicon.svg', canonical = '') {
+export function usePageMeta(title, description, ogImage = '/og-image.png', canonical = '') {
   useEffect(() => {
-    // Set page title
     document.title = title || 'Eduard Rotaru - Full-Stack Developer'
 
-    // Set meta description
-    let metaDescription = document.querySelector('meta[name="description"]')
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta')
-      metaDescription.name = 'description'
-      document.head.appendChild(metaDescription)
-    }
-    metaDescription.content =
-      description ||
-      'Full-stack developer portfolio showcasing projects in web development, design, and creative technology.'
-
-    // Set Open Graph tags
-    const ogTags = [
-      { property: 'og:title', content: title || 'Eduard Rotaru' },
-      { property: 'og:description', content: description || 'Full-stack developer portfolio' },
-      { property: 'og:image', content: ogImage },
-      { property: 'og:type', content: 'website' },
-      { property: 'twitter:card', content: 'summary_large_image' },
-      { property: 'twitter:title', content: title || 'Eduard Rotaru' },
-      { property: 'twitter:description', content: description || 'Full-stack developer portfolio' },
-      { property: 'twitter:image', content: ogImage },
-    ]
-
-    ogTags.forEach(({ property, content }) => {
-      let meta = document.querySelector(`meta[property="${property}"], meta[name="${property}"]`)
-      if (!meta) {
-        meta = document.createElement('meta')
-        meta.setAttribute(property.startsWith('twitter') ? 'name' : 'property', property)
-        document.head.appendChild(meta)
+    const upsertMeta = (attr, key, content) => {
+      const selector = attr === 'property'
+        ? `meta[property="${key}"]`
+        : `meta[name="${key}"]`
+      let el = document.querySelector(selector)
+      if (!el) {
+        el = document.createElement('meta')
+        el.setAttribute(attr, key)
+        document.head.appendChild(el)
       }
-      meta.content = content
-    })
-
-    // Set canonical URL
-    let canonical_tag = document.querySelector("link[rel='canonical']")
-    if (!canonical_tag) {
-      canonical_tag = document.createElement('link')
-      canonical_tag.rel = 'canonical'
-      document.head.appendChild(canonical_tag)
+      el.content = content
     }
-    canonical_tag.href = canonical || window.location.href
+
+    const upsertLink = (rel, href) => {
+      let el = document.querySelector(`link[rel="${rel}"]`)
+      if (!el) {
+        el = document.createElement('link')
+        el.rel = rel
+        document.head.appendChild(el)
+      }
+      el.href = href
+    }
+
+    const url = canonical || window.location.href
+
+    // Description
+    upsertMeta('name', 'description',
+      description || 'Full-stack developer portfolio showcasing projects in web development, design, and creative technology.')
+
+    // Open Graph
+    upsertMeta('property', 'og:title', title || 'Eduard Rotaru')
+    upsertMeta('property', 'og:description', description || 'Full-stack developer portfolio')
+    upsertMeta('property', 'og:image', ogImage)
+    upsertMeta('property', 'og:image:width', '1200')
+    upsertMeta('property', 'og:image:height', '630')
+    upsertMeta('property', 'og:url', url)
+    upsertMeta('property', 'og:type', 'website')
+    upsertMeta('property', 'og:locale', 'en_US')
+    upsertMeta('property', 'og:site_name', 'Eduard Rotaru')
+
+    // Twitter Card
+    upsertMeta('name', 'twitter:card', 'summary_large_image')
+    upsertMeta('name', 'twitter:title', title || 'Eduard Rotaru')
+    upsertMeta('name', 'twitter:description', description || 'Full-stack developer portfolio')
+    upsertMeta('name', 'twitter:image', ogImage)
+
+    // Canonical
+    upsertLink('canonical', url)
   }, [title, description, ogImage, canonical])
 }
-
