@@ -132,12 +132,11 @@ export default function ProjectDetail() {
               {prevProject ? (
                 <Link
                   to={`/projects/${prevProject.slug}`}
-                  className="group flex items-center gap-1 md:gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
+                  className="group flex flex-col items-center gap-1 md:gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
                 >
                   <img src="/assets/images/backArrow.svg" alt="previous" className="w-8 h-8 md:w-12 md:h-12 shrink-0" />
                   <span className="font-silom text-xs md:text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
-                    <span className="md:hidden">Previous</span>
-                    <span className="hidden md:inline">{prevProject.title}</span>
+                    <span className="hidden md:inline">Previous Project</span>
                   </span>
                 </Link>
               ) : (
@@ -163,13 +162,12 @@ export default function ProjectDetail() {
               {nextProject ? (
                 <Link
                   to={`/projects/${nextProject.slug}`}
-                  className="group flex items-center gap-1 md:gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
+                  className="group flex flex-col items-center gap-1 md:gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
                 >
-                  <span className="font-silom text-xs md:text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate text-right">
-                    <span className="md:hidden">Next</span>
-                    <span className="hidden md:inline">{nextProject.title}</span>
-                  </span>
                   <img src="/assets/images/backArrow.svg" alt="next" className="w-8 h-8 md:w-12 md:h-12 shrink-0 -scale-x-100" />
+                  <span className="font-silom text-xs md:text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate text-right">
+                    <span className="hidden md:inline">Next Project</span>
+                  </span>
                 </Link>
               ) : (
                 <div />
@@ -336,7 +334,7 @@ export default function ProjectDetail() {
                 {prevProject ? (
                   <Link
                     to={`/projects/${prevProject.slug}`}
-                    className="group flex items-center gap-1 transition-transform duration-300 hover:scale-[1.05] w-fit"
+                    className="group flex flex-col items-center gap-1 transition-transform duration-300 hover:scale-[1.05] w-fit"
                   >
                     <img src="/assets/images/backArrow.svg" alt="previous" className="w-8 h-8 shrink-0" />
                     <span className="font-silom text-xs text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
@@ -349,12 +347,12 @@ export default function ProjectDetail() {
                 {nextProject ? (
                   <Link
                     to={`/projects/${nextProject.slug}`}
-                    className="group flex items-center gap-1 transition-transform duration-300 hover:scale-[1.05] w-fit"
+                    className="group flex flex-col items-center gap-1 transition-transform duration-300 hover:scale-[1.05] w-fit"
                   >
+                    <img src="/assets/images/backArrow.svg" alt="next" className="w-8 h-8 shrink-0 -scale-x-100" />
                     <span className="font-silom text-xs text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
                       Next
                     </span>
-                    <img src="/assets/images/backArrow.svg" alt="next" className="w-8 h-8 shrink-0 -scale-x-100" />
                   </Link>
                 ) : <div />}
               </div>
@@ -365,11 +363,11 @@ export default function ProjectDetail() {
               {prevProject ? (
                 <Link
                   to={`/projects/${prevProject.slug}`}
-                  className="group flex items-center gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
+                  className="group flex flex-col items-center gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
                 >
                   <img src="/assets/images/backArrow.svg" alt="previous" className="w-12 h-12 shrink-0" />
                   <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
-                    {prevProject.title}
+                    Previous Project
                   </span>
                 </Link>
               ) : (
@@ -427,12 +425,12 @@ export default function ProjectDetail() {
               {nextProject ? (
                 <Link
                   to={`/projects/${nextProject.slug}`}
-                  className="group flex items-center gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
+                  className="group flex flex-col items-center gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
                 >
-                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate text-right">
-                    {nextProject.title}
-                  </span>
                   <img src="/assets/images/backArrow.svg" alt="next" className="w-12 h-12 shrink-0 -scale-x-100" />
+                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate text-right">
+                    Next Project
+                  </span>
                 </Link>
               ) : (
                 <div />
