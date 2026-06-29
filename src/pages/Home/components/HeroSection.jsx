@@ -146,7 +146,7 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.5 }}
-              className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+              className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-20"
             >
               <motion.img
                 animate={{ y: [0, 12, 0] }}
