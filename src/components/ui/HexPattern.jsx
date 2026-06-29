@@ -73,7 +73,7 @@ function hexCenter(col, row, r, gap) {
   return { x, y }
 }
 
-export default function HexPattern() {
+export default function HexPattern({ embedded = false }) {
   const [isMobile, setIsMobile] = useState(
     typeof window !== 'undefined' ? window.innerWidth < 768 : false
   )
@@ -101,52 +101,61 @@ export default function HexPattern() {
   const svgW = COLS * w * 0.75 + r + 20
   const svgH = ROWS * h + h / 2 + 20
 
+  const hexElements = Array.from({ length: COLS }, (_, col) =>
+    Array.from({ length: ROWS }, (_, row) => {
+      const key = `${col},${row}`
+      const active = activeMap.get(key)
+      if (!active) return null
+
+      const { x, y } = hexCenter(col, row, r, gap)
+      const d = hexPath(x, y, r - gap / 2)
+
+      return (
+        <motion.path
+          key={key}
+          d={d}
+          fill={active.color}
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: active.opacity, scale: 1 }}
+          transition={{
+            delay: active.delay,
+            duration: 0.55,
+            ease: 'easeOut',
+          }}
+          style={{ transformOrigin: `${x}px ${y}px` }}
+        />
+      )
+    })
+  )
+
+  const svg = (
+    <svg
+      viewBox={`0 0 ${svgW} ${svgH}`}
+      preserveAspectRatio="xMidYMid meet"
+      className="w-full h-full opacity-90"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {hexElements}
+    </svg>
+  )
+
+  if (embedded) return svg
+
   return (
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-x-0 top-32 bottom-0 select-none"
     >
-      <svg
-        viewBox={`0 0 ${svgW} ${svgH}`}
-        preserveAspectRatio="xMidYMid meet"
-        className="ml-auto w-[55%] h-full opacity-90"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {Array.from({ length: COLS }, (_, col) =>
-          Array.from({ length: ROWS }, (_, row) => {
-            const key = `${col},${row}`
-            const active = activeMap.get(key)
-            if (!active) return null
-
-            const { x, y } = hexCenter(col, row, r, gap)
-            const d = hexPath(x, y, r - gap / 2)
-
-            return (
-              <motion.path
-                key={key}
-                d={d}
-                fill={active.color}
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: active.opacity, scale: 1 }}
-                transition={{
-                  delay: active.delay,
-                  duration: 0.55,
-                  ease: 'easeOut',
-                }}
-                style={{ transformOrigin: `${x}px ${y}px` }}
-              />
-            )
-          })
-        )}
-      </svg>
-
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(to right, #f9f7f7 0%, #f9f7f7 30%, transparent 60%)',
-        }}
-      />
+      <div className="ml-auto w-[55%] h-full relative">
+        {svg}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to right, #f9f7f7 0%, #f9f7f7 30%, transparent 60%)',
+          }}
+        />
+      </div>
     </div>
   )
 }

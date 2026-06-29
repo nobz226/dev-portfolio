@@ -64,7 +64,6 @@ export default function HeroSection() {
   return (
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <HexPattern />
       <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
 
@@ -166,7 +165,16 @@ export default function HeroSection() {
             transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
             className="hero-portrait w-fit h-fit md:w-[1100px] md:h-[700px] md:-ml-[250px] lg:w-[1100px] lg:h-[700px] lg:-ml-[300px] flex items-center justify-center relative overflow-visible scale-[0.85] md:scale-100 origin-center mx-auto md:mx-0"
           >
-            <PortraitRing />
+            <div
+              aria-hidden="true"
+              className="absolute pointer-events-none select-none z-0"
+              style={{ right: '208px', top: '50%', translate: '0 -50%', width: '720px', aspectRatio: '720 / 726' }}
+            >
+              <HexPattern embedded />
+            </div>
+            <div className="relative z-10">
+              <PortraitRing />
+            </div>
           </motion.div>
 
         </div>
