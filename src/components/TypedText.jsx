@@ -114,7 +114,7 @@ export default function TypedText({
     const cycles = glitchCycles ?? preset.glitchCycles;
     const interval = glitchInterval ?? preset.glitchInterval ?? 35;
     const chance = glitchChance ?? preset.glitchChance ?? 0.4;
-    const cycleVariance = glitchCycleVariance ?? preset.glitchCycleVariance ?? 1;
+    const _cycleVariance = glitchCycleVariance ?? preset.glitchCycleVariance ?? 1;
     const symbolsStart = glitchSymbolsStart ?? preset.glitchSymbolsStart ?? DEFAULT_SYMBOLS;
     const symbolsEnd = glitchSymbolsEnd ?? preset.glitchSymbolsEnd ?? DEFAULT_SYMBOLS;
     const symbolsVariance = glitchSymbolsVariance ?? preset.glitchSymbolsVariance ?? 1;
