@@ -1,3 +1,6 @@
+import { useState, useCallback } from 'react'
+import TypedText from '@/components/TypedText'
+
 const variantConfig = {
   dark: { banner: 'bg-soft-blue', triangle: 'border-l-cyber-cyan' },
   cyan: { banner: 'bg-cyber-cyan', triangle: 'border-l-snow' },
@@ -8,9 +11,14 @@ const variantConfig = {
 export default function SectionLabel({ label, variant = 'dark', bannerBgColor = null }) {
   const config = variantConfig[variant] || variantConfig.dark
   const bannerBg = bannerBgColor || config.banner
+  const [hoverKey, setHoverKey] = useState(0)
+
+  const handleMouseEnter = useCallback(() => {
+    setHoverKey(k => k + 1)
+  }, [])
 
   return (
-    <div className="flex items-center mb-0" aria-hidden="true">
+    <div className="flex items-center mb-0" aria-hidden="true" onMouseEnter={handleMouseEnter}>
       <div
         className={`w-0 h-0 border-t-[24px] border-t-transparent border-b-[24px] border-b-transparent border-l-[28px] shrink-0 ${bannerBgColor ? '' : config.triangle}`}
       />
@@ -19,7 +27,13 @@ export default function SectionLabel({ label, variant = 'dark', bannerBgColor = 
         style={bannerBgColor ? { backgroundColor: bannerBgColor } : undefined}
       >
         <span className="font-mono text-[13px] font-bold tracking-[0.25em] uppercase text-snow whitespace-nowrap">
-          {label}
+          <TypedText
+            key={hoverKey}
+            as="span"
+            text={label}
+            variant="scramble"
+            startOnView
+          />
         </span>
       </div>
     </div>
