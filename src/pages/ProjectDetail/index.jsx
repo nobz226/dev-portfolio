@@ -136,6 +136,7 @@ export default function ProjectDetail() {
                 >
                   <img src="/assets/images/backArrow.svg" alt="previous" className="w-8 h-8 md:w-12 md:h-12 shrink-0" />
                   <span className="font-silom text-xs md:text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
+                    <span className="md:hidden">Previous</span>
                     <span className="hidden md:inline">Previous Project</span>
                   </span>
                 </Link>
@@ -166,6 +167,7 @@ export default function ProjectDetail() {
                 >
                   <img src="/assets/images/backArrow.svg" alt="next" className="w-8 h-8 md:w-12 md:h-12 shrink-0 -scale-x-100" />
                   <span className="font-silom text-xs md:text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate text-right">
+                    <span className="md:hidden">Next</span>
                     <span className="hidden md:inline">Next Project</span>
                   </span>
                 </Link>

@@ -94,8 +94,10 @@ export default function HeroSection() {
               transition={{ duration: 0.7, delay: 0.9 }}
             >
               <h1 className="font-sans font-bold text-5xl md:text-7xl lg:text-8xl text-charcoal leading-none tracking-tight">
-                <TypedText as="span" text="System " className="font-silom" variant="glitch" typingSpeed={80} glitchInterval={120} />
-                <TypedText as="span" text="& " className="font-mono text-soft-blue" variant="glitch" typingSpeed={80} glitchInterval={120} />
+                <TypedText as="span" text="System" className="font-silom" variant="glitch" typingSpeed={80} glitchInterval={120} />
+                {' '}
+                <TypedText as="span" text="&" className="font-mono text-soft-blue" variant="glitch" typingSpeed={80} glitchInterval={120} />
+                {' '}
                 <TypedText as="span" text="Soul" className="text-cyber-cyan" variant="glitch" typingSpeed={80} glitchInterval={120} />
               </h1>
             </motion.div>
@@ -127,7 +129,7 @@ export default function HeroSection() {
               {' '}
               <TypedText as="span" text="and" variant="scramble" />
               {' '}
-              <TypedText as="span" text="artistic intent" className="text-charcoal font-bold font-sans" variant="scramble" />
+              <TypedText as="span" text="artistic intent" className="text-charcoal font-bold font-sans text-nowrap" variant="scramble" />
               <TypedText as="span" text="." variant="scramble" />
             </motion.p>
 
