@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import TerminalText from '@/components/TerminalText'
+import TypedText from '@/components/TypedText'
 import { Button } from '@/components/ui/button'
 import HexPattern from '@/components/ui/HexPattern'
 
@@ -93,7 +94,9 @@ export default function HeroSection() {
               transition={{ duration: 0.7, delay: 0.9 }}
             >
               <h1 className="font-sans font-bold text-5xl md:text-7xl lg:text-8xl text-charcoal leading-none tracking-tight">
-                <span className="font-silom">System</span> <span className="font-mono text-soft-blue">&</span> <span className="text-cyber-cyan">Soul</span>
+                <TypedText as="span" text="System " className="font-silom" variant="glitch" typingSpeed={80} glitchInterval={120} />
+                <TypedText as="span" text="& " className="font-mono text-soft-blue" variant="glitch" typingSpeed={80} glitchInterval={120} />
+                <TypedText as="span" text="Soul" className="text-cyber-cyan" variant="glitch" typingSpeed={80} glitchInterval={120} />
               </h1>
             </motion.div>
 
@@ -104,7 +107,11 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 1.1 }}
               className="font-mono text-lg md:text-xl text-cyber-cyan mt-4 mb-6"
             >
-              Full-Stack Web Developer
+              <TypedText
+                as="span"
+                text="Full-Stack Web Developer"
+                variant="scramble"
+              />
             </motion.p>
 
             {/* Tagline */}
@@ -114,9 +121,14 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 1.3 }}
               className="font-mono text-muted-foreground max-w-xl text-base md:text-lg font-medium leading-relaxed mb-10"
             >
-              Transforming complex ideas into high-fidelity web experiences through{' '}
-              <span className="text-charcoal font-bold font-silom">technical honesty</span> and{' '}
-              <span className="text-charcoal font-bold font-sans">artistic intent</span>.
+              <TypedText as="span" text="Transforming complex ideas into high-fidelity web experiences through" variant="scramble" />
+              {' '}
+              <TypedText as="span" text="technical honesty" className="text-charcoal font-bold font-silom" variant="scramble" />
+              {' '}
+              <TypedText as="span" text="and" variant="scramble" />
+              {' '}
+              <TypedText as="span" text="artistic intent" className="text-charcoal font-bold font-sans" variant="scramble" />
+              <TypedText as="span" text="." variant="scramble" />
             </motion.p>
 
             {/* CTAs */}
