@@ -15,5 +15,7 @@ export const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Projects', to: '/projects' },
-  { label: 'Contact', to: '/contact' }, //test comment
+  { label: 'Contact', to: '/contact' },
 ]
+
+

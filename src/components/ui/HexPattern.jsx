@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useWindowWidth } from '@/hooks/useWindowWidth'
 
 const HEX_SIZE = 52
 const GAP = 4
@@ -74,15 +74,8 @@ function hexCenter(col, row, r, gap) {
 }
 
 export default function HexPattern({ embedded = false }) {
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.innerWidth < 768 : false
-  )
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
+  const windowWidth = useWindowWidth()
+  const isMobile = windowWidth < 768
 
   if (isMobile) return null
 

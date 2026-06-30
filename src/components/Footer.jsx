@@ -1,12 +1,6 @@
 import { NavLink } from 'react-router-dom'
-import { Github, Linkedin, Mail } from 'lucide-react'
 import { NAV_LINKS, SOCIAL } from '@/data/config'
-
-const iconMap = {
-  GitHub: Github,
-  LinkedIn: Linkedin,
-  Email: Mail,
-}
+import { SOCIAL_ICONS } from '@/lib/helpers'
 
 export default function Footer() {
   return (
@@ -38,7 +32,7 @@ export default function Footer() {
         {/* Socials */}
         <div className="flex items-center gap-4">
           {Object.values(SOCIAL).map((s) => {
-            const Icon = iconMap[s.label]
+            const Icon = SOCIAL_ICONS[s.label]
             return (
               <a
                 key={s.label}

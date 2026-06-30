@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import { useState, useEffect, memo } from 'react'
+import { memo } from 'react'
 import SectionLabel from './SectionLabel'
+import { useWindowWidth } from '@/hooks/useWindowWidth'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -16,13 +17,7 @@ const fadeUp = {
  * optional section label, and a scroll-triggered fade-up animation.
  */
 function SectionWrapper({ id, label, children, className = '', variant = 'dark', labelVariant, bannerBgColor = null, contentClassName = '' }) {
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth)
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  const windowWidth = useWindowWidth()
 
   return (
     <motion.section

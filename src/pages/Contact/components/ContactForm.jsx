@@ -1,10 +1,8 @@
 import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
 import TerminalBar from '@/components/TerminalBar'
+import FormField from '@/components/FormField'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -106,77 +104,30 @@ export default function ContactForm() {
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="flex flex-col gap-2">
-              <Label className="font-sans text-sm uppercase tracking-widest text-muted-foreground">
-                Name
-              </Label>
-              <Input
-                required
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your name"
-                aria-invalid={!!errors.name}
-                aria-describedby={errors.name ? 'name-error' : undefined}
-                className="font-mono text-base bg-snow border-black/10 text-charcoal placeholder:text-black/25 rounded-none focus-visible:ring-cyber-cyan focus-visible:border-cyber-cyan"
-              />
-              {errors.name && (
-                <span id="name-error" role="alert" className="font-mono text-xs text-red-500">{errors.name}</span>
-              )}
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label className="font-sans text-sm uppercase tracking-widest text-muted-foreground">
-                Email
-              </Label>
-              <Input
-                required
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="your@email.com"
-                aria-invalid={!!errors.email}
-                aria-describedby={errors.email ? 'email-error' : undefined}
-                className="font-mono text-base bg-snow border-black/10 text-charcoal placeholder:text-black/25 rounded-none focus-visible:ring-cyber-cyan focus-visible:border-cyber-cyan"
-              />
-              {errors.email && (
-                <span id="email-error" role="alert" className="font-mono text-xs text-red-500">{errors.email}</span>
-              )}
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <Label className="font-sans text-sm uppercase tracking-widest text-muted-foreground">
-              Subject
-            </Label>
-            <Input
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              placeholder="What's this about?"
-              className="font-mono text-base bg-snow border-black/10 text-charcoal placeholder:text-black/25 rounded-none focus-visible:ring-cyber-cyan focus-visible:border-cyber-cyan"
+            <FormField
+              label="Name" name="name" required
+              value={formData.name} onChange={handleChange}
+              placeholder="Your name" error={errors.name}
+            />
+            <FormField
+              label="Email" name="email" type="email" required
+              value={formData.email} onChange={handleChange}
+              placeholder="your@email.com" error={errors.email}
             />
           </div>
 
-          <div className="flex flex-col gap-2">
-            <Label className="font-sans text-sm uppercase tracking-widest text-muted-foreground">
-              Message
-            </Label>
-            <Textarea
-              required
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows={6}
-              placeholder="Tell me about your project…"
-              aria-invalid={!!errors.message}
-              aria-describedby={errors.message ? 'message-error' : undefined}
-              className="font-mono text-base bg-snow border-black/10 text-charcoal placeholder:text-black/25 rounded-none focus-visible:ring-cyber-cyan focus-visible:border-cyber-cyan resize-none"
-            />
-            {errors.message && (
-              <span id="message-error" role="alert" className="font-mono text-xs text-red-500">{errors.message}</span>
-            )}
-          </div>
+          <FormField
+            label="Subject" name="subject"
+            value={formData.subject} onChange={handleChange}
+            placeholder="What's this about?"
+          />
+
+          <FormField
+            label="Message" name="message" required
+            value={formData.message} onChange={handleChange}
+            placeholder="Tell me about your project…"
+            error={errors.message} rows={6}
+          />
 
           {status === 'error' && (
             <div role="alert" aria-live="polite" className="font-mono text-sm text-red-500 -mt-2">

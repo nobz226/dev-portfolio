@@ -42,8 +42,14 @@ export default function Projects() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none mb-6"
           >
-            <TypedText as="span" text="Projects & " variant="glitch" />
-            <TypedText as="span" text="Case Studies" className="text-cyber-cyan" variant="glitch" />
+            <span className="md:hidden">
+              <TypedText as="span" text="Projects &" variant="glitch" /><br />
+              <TypedText as="span" text="Case Studies" className="text-cyber-cyan" variant="glitch" />
+            </span>
+            <span className="hidden md:inline">
+              <TypedText as="span" text="Projects & " variant="glitch" />
+              <TypedText as="span" text="Case Studies" className="text-cyber-cyan" variant="glitch" />
+            </span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}

@@ -1,12 +1,6 @@
 import { motion } from 'framer-motion'
-import { Mail, Linkedin, Github } from 'lucide-react'
 import { SOCIAL } from '@/data/config'
-
-const iconMap = {
-  Email: Mail,
-  LinkedIn: Linkedin,
-  GitHub: Github,
-}
+import { SOCIAL_ICONS } from '@/lib/helpers'
 
 const availability = [
   { label: 'Freelance Projects', available: true },
@@ -40,7 +34,7 @@ export default function ContactInfo() {
       {/* Contact links */}
       <div className="flex flex-col gap-3">
         {Object.values(SOCIAL).map((c) => {
-          const Icon = iconMap[c.label]
+          const Icon = SOCIAL_ICONS[c.label]
           return (
             <a
               key={c.label}

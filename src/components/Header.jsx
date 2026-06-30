@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NAV_LINKS } from '@/data/config'
+import { useFocusTrap } from '@/hooks/useFocusTrap'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -11,42 +12,12 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Focus trap when mobile menu is open
-  useEffect(() => {
-    if (!menuOpen) return
-    const menu = menuRef.current
-    if (!menu) return
-
-    const focusableEls = menu.querySelectorAll(
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    )
-    const first = focusableEls[0]
-    const last = focusableEls[focusableEls.length - 1]
-
-    const handleTab = (e) => {
-      if (e.key === 'Tab') {
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault()
-          last?.focus()
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault()
-          first?.focus()
-        }
-      }
-      if (e.key === 'Escape') {
-        setMenuOpen(false)
-        hamburgerRef.current?.focus()
-      }
-    }
-
-    menu.addEventListener('keydown', handleTab)
-    first?.focus()
-    return () => menu.removeEventListener('keydown', handleTab)
-  }, [menuOpen])
+  const closeMenu = useCallback(() => setMenuOpen(false), [])
+  useFocusTrap(menuRef, menuOpen, closeMenu, hamburgerRef)
 
   return (
     <header

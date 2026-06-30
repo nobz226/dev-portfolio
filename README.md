@@ -6,15 +6,12 @@ Personal portfolio website for **Eduard Rotaru** — a full-stack developer and 
 
 ---
 
-## Current Status & Roadmap
+## Project Notes
 
-The project is currently undergoing a series of refactorings and optimizations to improve code quality, maintainability, and performance. You can track the progress in OPTIMIZATIONS.md.
-
-### High Priority Refactors
-- [ ] Centralizing all project data into `src/data/projects.js`.
-- [ ] Replacing hardcoded color hex values with semantic Tailwind classes (e.g., `text-cyber-cyan`).
-- [ ] Cleaning up dead code (orphaned CSS and unused components).
-- [ ] Replacing state-based hover patterns with pure CSS `hover:` classes.
+- The source of truth for portfolio case studies is `src/data/projects.js`.
+- The contact form posts to `VITE_FORMSPREE_ENDPOINT`; there is no hardcoded endpoint in the source tree.
+- Historical audit notes live in `CODE_AUDIT.md` and `CODE_AUDIT_REPORT.md`.
+- There is no separate `OPTIMIZATIONS.md` file in the current workspace.
 
 ---
 
@@ -65,61 +62,47 @@ npm run lint
 
 ```
 src/
-├── App.jsx                          # Root — BrowserRouter with 5 routes
+├── App.jsx                          # BrowserRouter with 5 lazy routes
 ├── main.jsx                         # Entry point (ReactDOM.createRoot)
-├── index.css                        # Tailwind imports, theme variables, keyframe animations
+├── index.css                        # Tailwind v4 imports, theme tokens, utility classes
 ├── components/
-│   ├── Header.jsx                   # Fixed nav, scroll-aware backdrop, mobile hamburger
-│   ├── Footer.jsx                   # Brand, nav links, social icons (GitHub/LinkedIn/Email)
-│   ├── SectionWrapper.jsx           # Reusable section shell with pentagon clip + scroll animation
-│   ├── SectionLabel.jsx             # Branded header: cyan triangle + arrow-tip banner
-│   ├── GlitchText.jsx               # CSS glitch effect via pseudoelements
-│   ├── TerminalText.jsx             # Typewriter character-by-character effect
-│   ├── ProjectsAccordion.jsx        # Horizontal accordion carousel with arrow-key nav
-│   ├── ModelViewerCard.jsx          # 3D model viewer (text + <model-viewer> side by side)
-│   ├── ModelLodCard.jsx             # Lazy-loaded 3D model viewer (IntersectionObserver)
-│   ├── ProjectsAccordion.css        # Accordion slide styles
-│   ├── model-viewer.css             # Model viewer layout styles
-│   └── ui/                          # shadcn/ui primitives (7 components)
+│   ├── Header.jsx                   # Fixed nav, scroll-aware backdrop, mobile menu
+│   ├── Footer.jsx                   # Brand, nav links, social icons
+│   ├── Loader.jsx                   # Suspense fallback
+│   ├── SectionWrapper.jsx           # Section shell with pentagon clip + scroll animation
+│   ├── SectionLabel.jsx             # Branded section header banner
+│   ├── TerminalBar.jsx              # Terminal-style top bar used in cards and forms
+│   ├── TerminalText.jsx             # Typewriter / terminal text effect
+│   ├── TypedText.jsx                # Accessible typed text component with variants
+│   ├── ModelLodCard.jsx             # Lazy-loaded 3D model viewer
+│   ├── ProjectsAccordion.jsx        # Horizontal accordion carousel
+│   ├── ProjectsAccordion.css        # Accordion-specific styles
+│   ├── FormField.jsx                # Shared contact form field wrapper
+│   └── ui/
+│       ├── HexPattern.jsx
 │       ├── badge.jsx
 │       ├── button.jsx
-│       ├── card.jsx
 │       ├── input.jsx
 │       ├── label.jsx
-│       ├── separator.jsx
 │       └── textarea.jsx
 ├── pages/
 │   ├── Home/
-│   │   ├── index.jsx                # Composes hero, featured projects, tech stack
-│   │   └── components/
-│   │       ├── HeroSection.jsx      # Spinning portrait ring, terminal prompt, CTAs
-│   │       ├── FeaturedProjects.jsx  # Accordion wrapper for 3 featured projects
-│   │       └── TechStack.jsx        # 4-column skill grid (Frontend/Backend/Tooling/AI)
 │   ├── About/
-│   │   ├── index.jsx                # Composes all about sections
-│   │   └── components/
-│   │       ├── AboutHero.jsx
-│   │       ├── CoreValues.jsx        # 3D model cards (skateboard, MacBook, MIDI keyboard)
-│   │       ├── DifferentiationSection.jsx  # Technical Rigor vs Creative Soul
-│   │       ├── CareerInternship.jsx  # Internship goals
-│   │       └── MissionStatement.jsx
 │   ├── Projects/
-│   │   ├── index.jsx                # Page hero + filtered project grid
-│   │   └── components/
-│   │       ├── ProjectsGrid.jsx      # Tag-filterable grid + all project data (single source of truth)
-│   │       └── ProjectCard.jsx       # Terminal-style card with screenshot, badges, links
 │   ├── ProjectDetail/
-│   │   └── index.jsx                # Dynamic /projects/:slug with Why/System/Soul sections
 │   └── Contact/
-│       ├── index.jsx                # Page hero + form/info layout
-│       └── components/
-│           ├── ContactForm.jsx       # Formspree-powered contact form
-│           └── ContactInfo.jsx       # Availability badges + social contact links
 ├── hooks/
-│   ├── usePageMeta.js               # Dynamic document title, meta description, OG/Twitter tags, canonical
-│   └── useStructuredData.js         # JSON-LD structured data injection (Person, CollectionPage)
-└── lib/
-    └── utils.js                     # cn() helper combining clsx + tailwind-merge
+│   ├── useFocusTrap.js              # Keyboard focus trap for overlays and menus
+│   ├── usePageMeta.js               # Dynamic title, meta, OG/Twitter tags, canonical
+│   ├── useStructuredData.js         # JSON-LD structured data injection
+│   └── useWindowWidth.js            # Shared viewport-width hook for responsive effects
+├── data/
+│   ├── config.js                    # PERSONAL, SOCIAL, NAV_LINKS constants
+│   └── projects.js                  # allProjects array (4 projects)
+├── lib/
+│   ├── helpers.jsx                  # Shared icon map and paragraph rendering helpers
+│   └── utils.js                     # cn() helper combining clsx + tailwind-merge
+└── ...                              # Route modules live under the page folders above
 ```
 
 ---
@@ -147,6 +130,12 @@ src/
 | Charcoal | `#1e1e1e` | Primary text, dark backgrounds (section wrappers) |
 | Snow | `#f9f7f7` | Page background, light surfaces, text on dark sections |
 | Muted | `#666666` | Secondary text, captions |
+| Warm Gray | `#eeece9` | Footer and alternate surfaces |
+| Text Dark | `#333333` | Body copy |
+| Muted Light | `#999999` | Softer labels and metadata |
+| Text Dim | `#aaaaaa` | Low-emphasis text |
+| Accordion BG | `#19535f` | Active accordion panel background |
+| Card BG | `#f5f3f0` | Card backgrounds |
 
 ### Typography
 
@@ -201,6 +190,7 @@ npm run dev       # Start Vite dev server (default: http://localhost:5173)
 npm run build     # Production build → dist/
 npm run preview   # Preview production build locally
 npm run lint      # Run ESLint on the project
+npm run og:generate # Generate Open Graph assets
 ```
 
 ---
@@ -230,7 +220,7 @@ SPA rewrites — all paths redirect to `index.html` for client-side routing:
 
 ### Contact Form
 
-The contact form submits to a Formspree endpoint (`https://formspree.io/f/mqegjerp`). To use your own endpoint, update the URL in `src/pages/Contact/components/ContactForm.jsx:31`.
+The contact form submits to `import.meta.env.VITE_FORMSPREE_ENDPOINT`. Set that environment variable before running the app.
 
 ---
 

@@ -1,26 +1,16 @@
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import SectionLabel from '@/components/SectionLabel'
 import SectionWrapper from '@/components/SectionWrapper'
 import { usePageMeta } from '@/hooks/usePageMeta'
+import { useFocusTrap } from '@/hooks/useFocusTrap'
 
-// Import all projects
 import { allProjects } from '@/data/projects'
-
-function renderParagraphs(content, keyPrefix = 'p') {
-  const paragraphs = Array.isArray(content)
-    ? content
-    : String(content).split(/\n\n+/).filter(Boolean)
-
-  return paragraphs.map((paragraph, i) => (
-    <p key={`${keyPrefix}-${i}`} className="font-mono text-lg leading-relaxed text-snow/80">
-      {paragraph}
-    </p>
-  ))
-}
+import { renderParagraphs } from '@/lib/helpers'
+import ProjectNav from './components/ProjectNav'
 
 export default function ProjectDetail() {
   const { slug } = useParams()
@@ -49,45 +39,7 @@ export default function ProjectDetail() {
   const modalRef = useRef(null)
   const triggerRef = useRef(null)
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setIsModalOpen(false)
-        triggerRef.current?.focus()
-      }
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [])
-
-  // Focus trap when modal opens
-  useEffect(() => {
-    if (!isModalOpen) return
-    const modal = modalRef.current
-    if (!modal) return
-
-    const focusableEls = modal.querySelectorAll(
-      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
-    )
-    const first = focusableEls[0]
-    const last = focusableEls[focusableEls.length - 1]
-
-    const handleTab = (e) => {
-      if (e.key === 'Tab') {
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault()
-          last?.focus()
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault()
-          first?.focus()
-        }
-      }
-    }
-
-    first?.focus()
-    modal.addEventListener('keydown', handleTab)
-    return () => modal.removeEventListener('keydown', handleTab)
-  }, [isModalOpen])
+  useFocusTrap(modalRef, isModalOpen, closeModal, triggerRef)
 
   if (!project) {
     return (
@@ -275,172 +227,7 @@ export default function ProjectDetail() {
         </SectionWrapper>
       )}
 
-      {/* Bottom Navigation — centered actions + flanking prev/next */}
-      <section className="relative py-16 px-6 border-t border-black/5">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-3"
-          >
-            {/* Mobile: action buttons row */}
-            <div className="flex md:hidden items-center justify-center gap-3 w-full">
-              {project.liveUrl && (
-                <Button
-                  asChild
-                  className="font-silom text-sm uppercase tracking-wider bg-transparent text-cyber-cyan hover:bg-transparent hover:text-cyber-cyan rounded-none px-0 py-0"
-                >
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 transition-transform duration-300 hover:scale-[1.15]"
-                  >
-                    Live Demo
-                    <img src="/assets/images/arrow.svg" alt="arrow" className="w-8 h-8" />
-                  </a>
-                </Button>
-              )}
-              {project.repoUrl && (
-                <Button
-                  asChild
-                  className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
-                >
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 transition-transform duration-300 hover:scale-[1.15]"
-                  >
-                    View Code
-                    <img src="/assets/images/codeIcon.svg" alt="code" className="w-8 h-8" />
-                  </a>
-                </Button>
-              )}
-              <Button
-                onClick={goBack}
-                className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
-              >
-                <div className="flex items-center gap-1 transition-transform duration-300 cursor-pointer hover:scale-[1.15]">
-                  Back
-                  <img src="/assets/images/backArrow.svg" alt="arrow" className="w-8 h-8" />
-                </div>
-              </Button>
-            </div>
-
-            {/* Mobile: prev / next row */}
-            <div className="flex md:hidden items-center justify-between gap-3 w-full">
-              <div className="max-w-[120px] shrink-0">
-                {prevProject ? (
-                  <Link
-                    to={`/projects/${prevProject.slug}`}
-                    className="group flex flex-col items-center gap-1 transition-transform duration-300 hover:scale-[1.05] w-fit"
-                  >
-                    <img src="/assets/images/backArrow.svg" alt="previous" className="w-8 h-8 shrink-0" />
-                    <span className="font-silom text-xs text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
-                      Previous
-                    </span>
-                  </Link>
-                ) : <div />}
-              </div>
-              <div className="max-w-[120px] shrink-0 flex justify-end">
-                {nextProject ? (
-                  <Link
-                    to={`/projects/${nextProject.slug}`}
-                    className="group flex flex-col items-center gap-1 transition-transform duration-300 hover:scale-[1.05] w-fit"
-                  >
-                    <img src="/assets/images/backArrow.svg" alt="next" className="w-8 h-8 shrink-0 -scale-x-100" />
-                    <span className="font-silom text-xs text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
-                      Next
-                    </span>
-                  </Link>
-                ) : <div />}
-              </div>
-            </div>
-
-            {/* Desktop: Previous */}
-            <div className="hidden md:block w-36 shrink-0">
-              {prevProject ? (
-                <Link
-                  to={`/projects/${prevProject.slug}`}
-                  className="group flex flex-col items-center gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
-                >
-                  <img src="/assets/images/backArrow.svg" alt="previous" className="w-12 h-12 shrink-0" />
-                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate">
-                    Previous Project
-                  </span>
-                </Link>
-              ) : (
-                <div />
-              )}
-            </div>
-
-            {/* Desktop: Centered actions */}
-            <div className="hidden md:flex items-center gap-6 justify-center">
-              {project.liveUrl && (
-                <Button
-                  asChild
-                  className="font-silom text-sm uppercase tracking-wider bg-transparent text-cyber-cyan hover:bg-transparent hover:text-cyber-cyan rounded-none px-0 py-0"
-                >
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
-                  >
-                    Live Demo
-                    <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
-                  </a>
-                </Button>
-              )}
-              {project.repoUrl && (
-                <Button
-                  asChild
-                  className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
-                >
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]"
-                  >
-                    View Code
-                    <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
-                  </a>
-                </Button>
-              )}
-              <Button
-                onClick={goBack}
-                className="font-silom text-sm uppercase tracking-wider bg-transparent text-muted-foreground hover:bg-transparent hover:text-muted-foreground rounded-none px-0 py-0"
-              >
-                <div className="flex items-center gap-2 transition-transform duration-300 origin-left cursor-pointer hover:scale-[1.15]">
-                  Back to Projects
-                  <img src="/assets/images/backArrow.svg" alt="arrow" className="w-12 h-12" />
-                </div>
-              </Button>
-            </div>
-
-            {/* Desktop: Next */}
-            <div className="hidden md:block w-36 shrink-0 flex justify-end">
-              {nextProject ? (
-                <Link
-                  to={`/projects/${nextProject.slug}`}
-                  className="group flex flex-col items-center gap-2 transition-transform duration-300 hover:scale-[1.05] w-fit"
-                >
-                  <img src="/assets/images/backArrow.svg" alt="next" className="w-12 h-12 shrink-0 -scale-x-100" />
-                  <span className="font-silom text-sm text-muted-foreground group-hover:text-cyber-cyan transition-colors leading-tight truncate text-right">
-                    Next Project
-                  </span>
-                </Link>
-              ) : (
-                <div />
-              )}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <ProjectNav project={project} prevProject={prevProject} nextProject={nextProject} goBack={goBack} />
 
       {/* Screenshot Modal */}
       <AnimatePresence>

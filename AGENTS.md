@@ -41,19 +41,18 @@ src/
 ├── App.jsx                          # BrowserRouter + Suspense + 5 lazy routes
 ├── index.css                        # Tailwind imports, custom theme, keyframes, utilities
 ├── components/                      # Shared/reusable components
-│   ├── Header.jsx                  # Fixed nav, scroll-aware, mobile hamburger w/ focus trap
+│   ├── Header.jsx                  # Fixed nav, scroll-aware, mobile menu w/ focus trap
 │   ├── Footer.jsx                  # Brand + nav + social icons
 │   ├── SectionWrapper.jsx          # Pentagon clip bg + scroll fade-up (React.memo)
 │   ├── SectionLabel.jsx            # Arrow-tip banner section header
-│   ├── GlitchText.jsx              # CSS pseudo-element glitch effect
-│   ├── TerminalText.jsx            # Char-by-char typewriter
 │   ├── TerminalBar.jsx             # Terminal 3-dot bar + filename
+│   ├── TerminalText.jsx            # Char-by-char typewriter
+│   ├── TypedText.jsx               # Accessible typed text with variants
 │   ├── Loader.jsx                  # Spinner
 │   ├── ProjectsAccordion.jsx       # Horizontal accordion carousel
 │   ├── ModelLodCard.jsx            # Lazy 3D model (IntersectionObserver + @google/model-viewer)
 │   ├── ProjectsAccordion.css       # Accordion-specific styles
-│   ├── model-viewer.css            # Model viewer layout styles
-│   └── ui/{badge,button,input,label,textarea}.jsx   # shadcn primitives
+│   └── ui/{HexPattern,badge,button,input,label,textarea}.jsx   # shadcn primitives and decorative utilities
 ├── pages/                          # Route-based modules
 │   ├── Home/   index.jsx + components/{HeroSection,FeaturedProjects,TechStack}.jsx
 │   ├── About/  index.jsx + components/{AboutHero,CoreValues,DifferentiationSection,CareerInternship,MissionStatement}.jsx
@@ -61,12 +60,16 @@ src/
 │   ├── ProjectDetail/index.jsx     # /projects/:slug
 │   └── Contact/  index.jsx + components/{ContactForm,ContactInfo}.jsx
 ├── hooks/
+│   ├── useFocusTrap.js             # Keyboard focus trap for overlays and menus
 │   ├── usePageMeta.js              # Dynamic title, meta/OG/Twitter tags, canonical
-│   └── useStructuredData.js         # JSON-LD structured data
+│   ├── useStructuredData.js        # JSON-LD structured data
+│   └── useWindowWidth.js           # Shared viewport-width hook for responsive effects
 ├── data/
 │   ├── config.js                   # PERSONAL, SOCIAL, NAV_LINKS constants
 │   └── projects.js                 # allProjects array (4 projects)
-└── lib/utils.js                    # cn() helper
+└── lib/
+  ├── helpers.jsx                 # Shared icon map and paragraph rendering helpers
+  └── utils.js                    # cn() helper
 ```
 
 Every page follows: `src/pages/[PageName]/index.jsx` + `components/` folder.
@@ -131,12 +134,12 @@ Heading scale: `text-5xl md:text-7xl lg:text-8xl` (hero), `text-3xl md:text-4xl`
 
 ## Component Conventions
 
-- **Default exports only** — never named exports
+- **Default exports for pages and shared view components** — utility modules, hooks, and generated shadcn primitives may use named exports
 - **`React.memo`** on SectionWrapper, ModelLodCard, ProjectCard
 - **JSDoc**: one-line `/** ComponentName — description */` for shared components
 - **Props**: flat shapes, no deeply nested config objects
 - **No PropTypes, no TypeScript**
-- **Styles**: Tailwind utility classes only; no CSS modules, no styled-components
+- **Styles**: Prefer Tailwind utility classes; use inline styles only for small geometry or browser-API driven cases that already exist in the codebase
 
 ### Animation Patterns
 
@@ -161,6 +164,8 @@ Heading scale: `text-5xl md:text-7xl lg:text-8xl` (hero), `text-3xl md:text-4xl`
 **`src/data/config.js`** — exports `PERSONAL`, `SOCIAL`, `NAV_LINKS` constants.
 **`src/data/projects.js`** — exports `allProjects` array. Each project has: `{ slug, title, category, description, why, system, soul, tech[], liveUrl, repoUrl, screenshot, featured, tags[] }`. `why`/`system`/`soul` can be string or string[].
 
+The contact form reads `import.meta.env.VITE_FORMSPREE_ENDPOINT`, so set that environment variable before running the app.
+
 ---
 
 ## Environment
@@ -181,6 +186,14 @@ Contact form states: `idle → sending → sent | error`.
 - **Lazy 3D models** — `IntersectionObserver` + dynamic `import('@google/model-viewer')` with `rootMargin: '300px'`
 - **3D models** in `public/assets/3d/`: skateboard, macbook, midi keyboard (all .glb)
 
+## Scripts
+
+- `npm run dev`
+- `npm run build`
+- `npm run preview`
+- `npm run lint`
+- `npm run og:generate`
+
 ---
 
 ## Critical Rules (Do Not)
@@ -194,6 +207,6 @@ Contact form states: `idle → sending → sent | error`.
 - **Do not override `SectionWrapper` clip-path** — don't nest conflicting shapes inside it
 - **Do not replace inline hex values with arbitrary Tailwind values** — stick to the palette
 - **No inline CSS** — don't use the `style` prop; use Tailwind classes or `cn()` instead
-- **No em dashes in copy text** — replace `—` with `—` or an alternative character in visible copy
+- **Avoid em dashes** in visible copy text when a simpler hyphen or rephrase will do
 - **No code duplication** — extract repeated markup/patterns into reusable components; prefer composition over copy-paste
 - **No tests** configured in this project
