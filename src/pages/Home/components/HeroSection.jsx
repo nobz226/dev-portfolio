@@ -117,13 +117,9 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: animated blob portrait */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.7, ease: 'easeOut' }}
-            className="hero-portrait w-fit h-fit md:w-[1100px] md:h-[700px] md:-ml-[250px] lg:w-[1100px] lg:h-[700px] lg:-ml-[300px] flex items-center justify-center relative overflow-visible scale-[0.85] md:scale-100 origin-center mx-auto md:mx-0"
-          >
+          {/* Right: hex pattern + portrait */}
+          <div className="hero-portrait w-fit h-fit md:w-[1100px] md:h-[700px] md:-ml-[250px] lg:w-[1100px] lg:h-[700px] lg:-ml-[300px] flex items-center justify-center relative overflow-visible scale-[0.85] md:scale-100 origin-center mx-auto md:mx-0">
+            {/* Hex pattern background — hexagon paths animate on mount with staggered delays */}
             <div
               aria-hidden="true"
               className="absolute pointer-events-none select-none z-0"
@@ -131,10 +127,16 @@ export default function HeroSection() {
             >
               <HexPattern embedded />
             </div>
-            <div className="relative z-10">
+            {/* Portrait ring — fades in after "System & Soul" heading animation completes */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 2.5, ease: 'easeOut' }}
+              className="relative z-10"
+            >
               <PortraitRing />
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
         </div>
       </div>
