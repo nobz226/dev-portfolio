@@ -39,11 +39,15 @@ export default function HeroSection() {
               transition={{ duration: 0.7, delay: 0.9 }}
             >
               <h1 className="font-sans font-bold text-5xl md:text-7xl lg:text-8xl text-charcoal leading-none tracking-tight">
-                <TypedText as="span" text="System" className="font-silom" variant="glitch" typingSpeed={80} glitchInterval={120} />
-                {' '}
-                <TypedText as="span" text="&" className="font-mono text-soft-blue" variant="glitch" typingSpeed={80} glitchInterval={120} />
-                {' '}
-                <TypedText as="span" text="Soul" className="text-cyber-cyan" variant="glitch" typingSpeed={80} glitchInterval={120} />
+                <TypedText
+                  as="span"
+                  variant="terminal"
+                  text={[
+                    { text: "System", className: "font-silom" },
+                    { text: " & ", className: "font-mono text-soft-blue" },
+                    { text: "Soul", className: "text-cyber-cyan" },
+                  ]}
+                />
               </h1>
             </motion.div>
 

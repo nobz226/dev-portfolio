@@ -17,6 +17,13 @@ import { useLayoutEffect, useRef } from "react";
 
 const DEFAULT_SYMBOLS = "!<>-_\\/[]{}—=+*^?#_@";
 
+if (typeof document !== "undefined" && !document.getElementById("typedtext-blink")) {
+  const s = document.createElement("style");
+  s.id = "typedtext-blink";
+  s.textContent = "@keyframes typedtext-blink{0%,100%{opacity:1}50%{opacity:0}}";
+  document.head.appendChild(s);
+}
+
 const VARIANTS = {
   // Header 1: clean typewriter, no glitch
   plain: {
@@ -34,6 +41,13 @@ const VARIANTS = {
     glitchSymbolsStart: DEFAULT_SYMBOLS + "■▇▆▅▄▃▃▁▉▊▌▍▎▏",
     glitchSymbolsEnd: DEFAULT_SYMBOLS + "■▇▆▅▄▃▃▁▉▊▌▍▎▏",
     glitchSymbolsVariance: 1,
+  },
+  // Terminal: clean typewriter with a blinking underscore cursor after each typed char
+  terminal: {
+    typingSpeed: 100,
+    glitch: false,
+    cursor: true,
+    cursorDelay: 1200,
   },
   // Paragraph: long, dense "decoding" scramble that resolves dashes -> digits -> letters
   scramble: {
@@ -58,6 +72,7 @@ export default function TypedText({
   className = "",
   startOnView = false,
   onComplete,
+  cursor,
   // individual overrides — fall back to the chosen variant's preset
   typingSpeed,
   glitchCycles,
@@ -75,19 +90,23 @@ export default function TypedText({
     const el = containerRef.current;
     if (!el || !text) return;
 
+    const fullText = Array.isArray(text) ? text.map(p => p.text).join("") : text;
+
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
     // If the user prefers reduced motion, just show the plain text — no animation.
     if (prefersReducedMotion) {
-      el.textContent = text;
+      el.textContent = fullText;
       onComplete?.();
       return;
     }
 
     const preset = VARIANTS[variant] || VARIANTS.plain;
     const isGlitchy = glitchChance != null || glitchCycles != null || preset.glitch;
+    const hasCursor = cursor != null ? cursor : preset.cursor;
+    const cursorDelay = hasCursor ? preset.cursorDelay || 800 : 0;
 
     const speed = typingSpeed ?? preset.typingSpeed ?? 30;
     const cycles = glitchCycles ?? preset.glitchCycles;
@@ -106,10 +125,13 @@ export default function TypedText({
 
       el.textContent = "";
 
+      const parts = Array.isArray(text) ? text : [{ text, className: "" }];
+      const fullText = parts.map(p => p.text).join("");
+
       // Screen-reader-only full text, always present immediately.
       const srText = document.createElement("span");
       srText.className = "sr-only";
-      srText.textContent = text;
+      srText.textContent = fullText;
       el.appendChild(srText);
 
       const animationWrapper = document.createElement("span");
@@ -117,30 +139,43 @@ export default function TypedText({
       el.appendChild(animationWrapper);
 
       const charSpans = [];
-      text.split(/(\s+)/).forEach(segment => {
-        if (/^\s+$/.test(segment)) {
-          segment.split("").forEach(char => {
-            const span = document.createElement("span");
-            span.textContent = char;
-            span.className = "opacity-0 transition-opacity duration-[180ms] ease-in";
-            animationWrapper.appendChild(span);
-            charSpans.push(span);
-          });
-        } else if (segment) {
-          const wordWrap = document.createElement("span");
-          wordWrap.style.whiteSpace = "nowrap";
-          segment.split("").forEach(char => {
-            const span = document.createElement("span");
-            span.textContent = char;
-            span.className = "opacity-0 transition-opacity duration-[180ms] ease-in";
-            wordWrap.appendChild(span);
-            charSpans.push(span);
-          });
-          animationWrapper.appendChild(wordWrap);
-        }
+      parts.forEach(part => {
+        const segClassName = part.className || "";
+        part.text.split(/(\s+)/).forEach(segment => {
+          if (/^\s+$/.test(segment)) {
+            segment.split("").forEach(char => {
+              const span = document.createElement("span");
+              span.textContent = char;
+              span.className = "opacity-0 transition-opacity duration-[180ms] ease-in";
+              animationWrapper.appendChild(span);
+              charSpans.push(span);
+            });
+          } else if (segment) {
+            const wordWrap = document.createElement("span");
+            wordWrap.style.whiteSpace = "nowrap";
+            if (segClassName) wordWrap.className = segClassName;
+            segment.split("").forEach(char => {
+              const span = document.createElement("span");
+              span.textContent = char;
+              span.className = "opacity-0 transition-opacity duration-[180ms] ease-in";
+              wordWrap.appendChild(span);
+              charSpans.push(span);
+            });
+            animationWrapper.appendChild(wordWrap);
+          }
+        });
       });
 
       let i = 0;
+      let cursorSpan;
+      if (hasCursor) {
+        cursorSpan = document.createElement("span");
+        cursorSpan.textContent = "_";
+        cursorSpan.style.animation = "typedtext-blink 1s step-end infinite";
+        cursorSpan.style.fontWeight = "bold";
+        cursorSpan.style.color = "#2dd4bf";
+        animationWrapper.insertBefore(cursorSpan, animationWrapper.firstChild);
+      }
 
       function typeNext() {
         if (cancelled) return;
@@ -149,6 +184,11 @@ export default function TypedText({
           const currentSpan = charSpans[i];
           currentSpan.classList.remove("opacity-0");
           currentSpan.classList.add("opacity-100");
+
+          if (cursorSpan) {
+            cursorSpan.style.display = "";
+            currentSpan.after(cursorSpan);
+          }
 
           if (isGlitchy && currentSpan.textContent !== " " && Math.random() < chance) {
             const originalChar = currentSpan.textContent;
@@ -178,11 +218,12 @@ export default function TypedText({
           const t = setTimeout(typeNext, speed);
           timeouts.push(t);
         } else {
+          charSpans.forEach(span => { span.style.marginRight = ""; });
           onComplete?.();
         }
       }
 
-      const t = setTimeout(typeNext, speed);
+      const t = setTimeout(typeNext, cursorDelay || speed);
       timeouts.push(t);
     }
 

@@ -21,8 +21,14 @@ export default function AboutHero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none mb-6"
           >
-            <TypedText as="span" text="The Developer " variant="glitch" />
-            <TypedText as="span" text="Behind the Code" className="text-cyber-cyan" variant="glitch" />
+            <TypedText
+              as="span"
+              variant="terminal"
+              text={[
+                { text: "The Developer ", className: "" },
+                { text: "Behind the Code", className: "text-cyber-cyan" },
+              ]}
+            />
           </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}

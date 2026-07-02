@@ -31,8 +31,14 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-sans font-bold text-5xl md:text-7xl text-charcoal leading-none mb-6"
           >
-            <TypedText as="span" text="Start a " variant="glitch" />
-            <TypedText as="span" text="Conversation" className="text-cyber-cyan" variant="glitch" />
+            <TypedText
+              as="span"
+              variant="terminal"
+              text={[
+                { text: "Start a ", className: "" },
+                { text: "Conversation", className: "text-cyber-cyan" },
+              ]}
+            />
           </motion.h1>
         </div>
       </section>
