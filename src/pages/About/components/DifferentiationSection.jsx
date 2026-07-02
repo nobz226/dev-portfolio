@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import SectionWrapper from '@/components/SectionWrapper'
+import TypedText from '@/components/TypedText'
 
 export default function DifferentiationSection() {
   return (
@@ -8,7 +9,16 @@ export default function DifferentiationSection() {
         {/* Text */}
         <div>
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-charcoal mb-8 leading-tight">
-            How I Stand <span className="text-snow">Apart</span>
+            <TypedText
+              as="span"
+              variant="terminal"
+              startOnView
+              cursorColor="#f9f7f7"
+              text={[
+                { text: "How I Stand ", className: "" },
+                { text: "Apart", className: "text-snow" },
+              ]}
+            />
           </h2>
           <p className="font-mono text-base font-medium text-charcoal/75 leading-relaxed mb-6">
             I bridge the gap between{' '}

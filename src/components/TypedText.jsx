@@ -73,6 +73,7 @@ export default function TypedText({
   startOnView = false,
   onComplete,
   cursor,
+  cursorColor,
   // individual overrides — fall back to the chosen variant's preset
   typingSpeed,
   glitchCycles,
@@ -173,7 +174,7 @@ export default function TypedText({
         cursorSpan.textContent = "_";
         cursorSpan.style.animation = "typedtext-blink 1s step-end infinite";
         cursorSpan.style.fontWeight = "bold";
-        cursorSpan.style.color = "#2dd4bf";
+        cursorSpan.style.color = cursorColor || "#2dd4bf";
         animationWrapper.insertBefore(cursorSpan, animationWrapper.firstChild);
       }
 

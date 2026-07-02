@@ -11,6 +11,7 @@ import { useFocusTrap } from '@/hooks/useFocusTrap'
 import { allProjects } from '@/data/projects'
 import { renderParagraphs } from '@/lib/helpers'
 import ProjectNav from './components/ProjectNav'
+import TypedText from '@/components/TypedText'
 
 export default function ProjectDetail() {
   const { slug } = useParams()
@@ -103,7 +104,7 @@ export default function ProjectDetail() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="font-sans font-bold text-3xl md:text-7xl text-charcoal leading-none opacity-100 relative z-20 text-center flex-1 min-w-0"
             >
-              {project.title}
+              <TypedText as="span" text={project.title} variant="terminal" />
             </motion.h1>
 
             <motion.div
@@ -168,7 +169,7 @@ export default function ProjectDetail() {
           )}
         </div>
         <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
-          Description
+          <TypedText as="span" text="Description" variant="terminal" startOnView />
         </h2>
         <p className="font-mono text-lg leading-relaxed text-snow/80">
           {project.description}
@@ -179,7 +180,7 @@ export default function ProjectDetail() {
       {project.why && (
         <SectionWrapper label="// the why" variant="cyan" labelVariant="soft-blue">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
-            The Why
+            <TypedText as="span" text="The Why" variant="terminal" startOnView cursorColor="#f9f7f7" />
           </h2>
           <div className="space-y-6 text-charcoal/80">
             {renderParagraphs(project.why, 'why')}
@@ -191,7 +192,7 @@ export default function ProjectDetail() {
       {project.system && (
         <SectionWrapper label="// the system" variant="dark">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
-            The System
+            <TypedText as="span" text="The System" variant="terminal" startOnView />
           </h2>
           <div className="space-y-6 text-snow/80 mb-8">
             {renderParagraphs(project.system, 'system')}
@@ -219,7 +220,7 @@ export default function ProjectDetail() {
       {project.soul && (
         <SectionWrapper label="// the soul" variant="cyan" labelVariant="soft-blue">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
-            The Soul
+            <TypedText as="span" text="The Soul" variant="terminal" startOnView cursorColor="#f9f7f7" />
           </h2>
           <div className="space-y-6 text-charcoal/80">
             {renderParagraphs(project.soul, 'soul')}

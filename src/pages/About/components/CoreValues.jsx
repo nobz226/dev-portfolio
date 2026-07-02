@@ -1,5 +1,6 @@
 import ModelLodCard from '@/components/ModelLodCard'
 import SectionWrapper from '@/components/SectionWrapper'
+import TypedText from '@/components/TypedText'
 
 const values = [
   {
@@ -29,7 +30,15 @@ export default function CoreValues() {
   return (
     <SectionWrapper id="values" label="// core values">
       <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-14 leading-tight">
-        What Drives <span className="text-cyber-cyan">My Work</span>
+        <TypedText
+          as="span"
+          variant="terminal"
+          startOnView
+          text={[
+            { text: "What Drives ", className: "" },
+            { text: "My Work", className: "text-cyber-cyan" },
+          ]}
+        />
       </h2>
 
       <div className="flex flex-col gap-px bg-black/5">

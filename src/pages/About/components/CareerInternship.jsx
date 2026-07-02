@@ -1,12 +1,21 @@
 import { motion } from 'framer-motion'
 import SectionWrapper from '@/components/SectionWrapper'
+import TypedText from '@/components/TypedText'
 
 export default function CareerInternship() {
   return (
     <SectionWrapper id="career" label="// internship goals">
       <div className="max-w-3xl">
         <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-8 leading-tight">
-          Seeking <span className="text-cyber-cyan">Internship Opportunities</span>
+          <TypedText
+            as="span"
+            variant="terminal"
+            startOnView
+            text={[
+              { text: "Seeking ", className: "" },
+              { text: "Internship Opportunities", className: "text-cyber-cyan" },
+            ]}
+          />
         </h2>
 
         <motion.div

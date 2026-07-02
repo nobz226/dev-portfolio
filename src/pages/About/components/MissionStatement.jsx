@@ -1,12 +1,22 @@
 import { motion } from 'framer-motion'
 import SectionWrapper from '@/components/SectionWrapper'
+import TypedText from '@/components/TypedText'
 
 export default function MissionStatement() {
   return (
     <SectionWrapper id="mission" label="// mission statement" variant="cyan" labelVariant="soft-blue">
       <div className="max-w-3xl">
         <h2 className="font-sans font-bold text-4xl md:text-5xl text-charcoal mb-10 leading-tight">
-          The Ongoing <span className="text-snow">&ldquo;Why&rdquo;</span>
+          <TypedText
+            as="span"
+            variant="terminal"
+            startOnView
+            cursorColor="#f9f7f7"
+            text={[
+              { text: "The Ongoing ", className: "" },
+              { text: "\u201cWhy\u201d", className: "text-snow" },
+            ]}
+          />
         </h2>
 
         <motion.blockquote

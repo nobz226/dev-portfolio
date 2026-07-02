@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import ProjectsAccordion from '@/components/ProjectsAccordion'
 import SectionWrapper from '@/components/SectionWrapper'
+import TypedText from '@/components/TypedText'
 import { allProjects } from '@/data/projects'
 
 const featured = allProjects
@@ -18,7 +19,15 @@ export default function FeaturedProjects() {
       <div className={`${isCardActive ? 'pb-[800px]' : 'pb-96'} md:pb-0`}>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow leading-tight">
-            Featured <span className="text-cyber-cyan">Projects</span>
+            <TypedText
+              as="span"
+              variant="terminal"
+              startOnView
+              text={[
+                { text: "Featured ", className: "" },
+                { text: "Projects", className: "text-cyber-cyan" },
+              ]}
+            />
           </h2>
           <Button
             asChild

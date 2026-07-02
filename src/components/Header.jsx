@@ -3,17 +3,20 @@ import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NAV_LINKS } from '@/data/config'
 import { useFocusTrap } from '@/hooks/useFocusTrap'
+import TypedText from '@/components/TypedText'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [showText, setShowText] = useState(false)
   const menuRef = useRef(null)
   const hamburgerRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const t = setTimeout(() => setShowText(true), 600)
+    return () => { window.removeEventListener('scroll', handleScroll); clearTimeout(t) }
   }, [])
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
@@ -29,8 +32,24 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-3 mr-auto">
-          <img src="/assets/images/logo.svg" alt="Eduard Rotaru" className="h-20 w-auto" />
-          <span className="font-sans font-bold text-3xl text-charcoal tracking-tight">Eduard Rotaru</span>
+          <motion.img
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            src="/assets/images/logo.svg"
+            alt="Eduard Rotaru"
+            className="h-20 w-auto"
+          />
+          <span className="font-sans font-bold text-3xl text-charcoal tracking-tight" style={{ visibility: showText ? 'visible' : 'hidden' }}>
+            <TypedText
+              as="span"
+              variant="terminal"
+              text={[
+                { text: "Eduard ", className: "" },
+                { text: "Rotaru", className: "text-cyber-cyan" },
+              ]}
+            />
+          </span>
         </NavLink>
 
         {/* Desktop Nav */}

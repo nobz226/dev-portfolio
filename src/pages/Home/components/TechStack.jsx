@@ -9,6 +9,7 @@ import {
 import { TbApi, TbBrain, TbDatabase } from 'react-icons/tb'
 import { VscTerminalCmd } from 'react-icons/vsc'
 import SectionWrapper from '@/components/SectionWrapper'
+import TypedText from '@/components/TypedText'
 
 const stack = [
   {
@@ -78,7 +79,16 @@ export default function TechStack() {
   return (
     <SectionWrapper id="stack" label="// tech stack" variant="cyan" labelVariant="soft-blue">
       <h2 className="font-sans font-bold text-4xl md:text-5xl text-charcoal mb-12 leading-tight">
-        Tools &amp; <span className="text-snow">Technologies</span>
+        <TypedText
+          as="span"
+          variant="terminal"
+          startOnView
+          cursorColor="#f9f7f7"
+          text={[
+            { text: "Tools & ", className: "" },
+            { text: "Technologies", className: "text-snow" },
+          ]}
+        />
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10">
