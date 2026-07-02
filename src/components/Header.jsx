@@ -54,26 +54,32 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <NavLink
+          {NAV_LINKS.map((link, i) => (
+            <motion.div
               key={link.to}
-              to={link.to}
-              end={link.to === '/'}
-              className={({ isActive }) =>
-                `font-silom text-base font-medium tracking-widest uppercase transition-colors duration-300 relative group ${isActive ? 'text-cyber-cyan' : 'text-muted-foreground hover:text-charcoal'
-                }`
-              }
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 + i * 0.2, ease: 'easeOut' }}
             >
-              {({ isActive }) => (
-                <>
-                  {link.label}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-px bg-cyber-cyan transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
-                  />
-                </>
-              )}
-            </NavLink>
+              <NavLink
+                to={link.to}
+                end={link.to === '/'}
+                className={({ isActive }) =>
+                  `font-silom text-base font-medium tracking-widest uppercase transition-colors duration-300 relative group ${isActive ? 'text-cyber-cyan' : 'text-muted-foreground hover:text-charcoal'
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    {link.label}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-px bg-cyber-cyan transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
+                    />
+                  </>
+                )}
+              </NavLink>
+            </motion.div>
           ))}
         </nav>
 
