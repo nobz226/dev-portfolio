@@ -8,15 +8,13 @@ import TypedText from '@/components/TypedText'
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [showText, setShowText] = useState(false)
   const menuRef = useRef(null)
   const hamburgerRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll, { passive: true })
-    const t = setTimeout(() => setShowText(true), 600)
-    return () => { window.removeEventListener('scroll', handleScroll); clearTimeout(t) }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
@@ -40,7 +38,7 @@ export default function Header() {
             alt="Eduard Rotaru"
             className="h-20 w-auto"
           />
-          <span className="font-sans font-bold text-3xl text-charcoal tracking-tight" style={{ visibility: showText ? 'visible' : 'hidden' }}>
+          <span className="font-sans font-bold text-3xl text-charcoal tracking-tight">
             <TypedText
               as="span"
               variant="terminal"

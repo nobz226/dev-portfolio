@@ -87,6 +87,10 @@ export default function TypedText({
 }) {
   const containerRef = useRef(null);
 
+  const textKey = Array.isArray(text)
+    ? text.map(p => p.text + "::" + (p.className || "")).join("")
+    : text;
+
   useLayoutEffect(() => {
     const el = containerRef.current;
     if (!el || !text) return;
@@ -251,7 +255,7 @@ export default function TypedText({
       observer?.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text, variant, startOnView]);
+  }, [textKey, variant, startOnView]);
 
   return (
     <Tag ref={containerRef} className={className} {...rest} />
