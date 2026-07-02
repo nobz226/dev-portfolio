@@ -101,7 +101,6 @@ export default function TypedText({
     const timeouts = [];
     const intervals = [];
     let cancelled = false;
-
     function buildAndType() {
       if (cancelled) return;
 
@@ -118,12 +117,27 @@ export default function TypedText({
       el.appendChild(animationWrapper);
 
       const charSpans = [];
-      text.split("").forEach((char) => {
-        const span = document.createElement("span");
-        span.textContent = char;
-        span.className = "opacity-0 transition-opacity duration-[180ms] ease-in";
-        animationWrapper.appendChild(span);
-        charSpans.push(span);
+      text.split(/(\s+)/).forEach(segment => {
+        if (/^\s+$/.test(segment)) {
+          segment.split("").forEach(char => {
+            const span = document.createElement("span");
+            span.textContent = char;
+            span.className = "opacity-0 transition-opacity duration-[180ms] ease-in";
+            animationWrapper.appendChild(span);
+            charSpans.push(span);
+          });
+        } else if (segment) {
+          const wordWrap = document.createElement("span");
+          wordWrap.style.whiteSpace = "nowrap";
+          segment.split("").forEach(char => {
+            const span = document.createElement("span");
+            span.textContent = char;
+            span.className = "opacity-0 transition-opacity duration-[180ms] ease-in";
+            wordWrap.appendChild(span);
+            charSpans.push(span);
+          });
+          animationWrapper.appendChild(wordWrap);
+        }
       });
 
       let i = 0;
