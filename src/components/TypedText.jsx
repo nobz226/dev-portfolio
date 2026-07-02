@@ -31,8 +31,8 @@ const VARIANTS = {
     glitchInterval: 100,
     glitchChance: 1,
     glitchCycleVariance: 1,
-    glitchSymbolsStart: DEFAULT_SYMBOLS,
-    glitchSymbolsEnd: DEFAULT_SYMBOLS,
+    glitchSymbolsStart: DEFAULT_SYMBOLS + "■▇▆▅▄▃▃▁▉▊▌▍▎▏",
+    glitchSymbolsEnd: DEFAULT_SYMBOLS + "■▇▆▅▄▃▃▁▉▊▌▍▎▏",
     glitchSymbolsVariance: 1,
   },
   // Paragraph: long, dense "decoding" scramble that resolves dashes -> digits -> letters
