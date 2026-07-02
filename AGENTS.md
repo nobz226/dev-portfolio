@@ -210,3 +210,13 @@ Contact form states: `idle → sending → sent | error`.
 - **Avoid em dashes** in visible copy text when a simpler hyphen or rephrase will do
 - **No code duplication** — extract repeated markup/patterns into reusable components; prefer composition over copy-paste
 - **No tests** configured in this project
+
+## Critical Rules (Do) — discovered during audit v2
+
+- **Do use CSS animations for large sets of homogeneously-animated elements** — 57 `<motion.path>` elements each with per-instance Framer Motion controllers adds JS overhead. For large numbers of identically-animated items, prefer CSS `@keyframes` with inline `animation-delay` custom properties. The `HexPattern` is the canonical example.
+- **Do merge consecutive `<TypedText>` components on the same text line** — multiple independent `scramble` variants on the same visual line create chaotic overlapping animation. Use a single component with styled inner `<span>` elements.
+- **Do use CSS animation restart instead of React `key` toggling** — replaying an animation by incrementing a `key` prop forces React to unmount/remount the component. Prefer `animation-play-state` toggling or CSS class removal/addition.
+- **Do self-contain component overflow** — avoid parent-level padding hacks like `pb-[800px]` to accommodate child overflow. Fix the child component to report its natural height (e.g., switch from `position: absolute` to `position: relative` based on screen size, or keep it self-contained with `overflow: auto`).
+- **Do load custom fonts correctly** — fonts referenced in `--font-*` theme tokens must be actually loaded. Google Fonts URLs must point to fonts that exist on Google Fonts (Cal Sans is NOT on Google Fonts — self-host it). Test font loading by inspecting the Network tab or checking the rendered `font-family`.
+- **Do add `aria-hidden="true"` to decorative bullet dots, icons, and spacer elements** — small visual-only elements (<span>, decorative SVG paths) should be hidden from screen readers to avoid unnecessary noise.
+- **Do not render multiple independent typewriter animations on the same sentence** — each `TypedText` creates its own animation timeline. For a single text line, use one component and style emphasis with nested `<span>` elements or Tailwind classes.

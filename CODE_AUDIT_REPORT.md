@@ -1,281 +1,328 @@
 # Code Audit & Refactor Report
 
 > **Project:** dev-portfolio — Eduard Rotaru  
-> **Date:** 2026-06-30  
-> **Audit scope:** All source files, config, assets, dependencies  
+> **Date:** 2026-07-01  
+> **Audit scope:** All 39 source files, config files, assets, dependencies, and post-audit animation additions  
 > **Verification:** `npm run lint` (0 errors), `npm run build` (success)
 
 ---
 
-## Summary
+## Executive Summary
 
-| Category | Items | Status |
-|----------|-------|--------|
-| Bugs fixed | 3 | Done |
-| Dead files deleted | 3 | Done |
-| Dead code removed | 3 instances | Done |
-| Dependencies removed | 3 packages (77 transitive) | Done |
-| Performance improvements | 3 | Done |
-| Components/hooks extracted | 6 | Done |
-| Code deduplication | 3 instances | Done |
-| Config files cleaned | 2 | Done |
-| **Total changed files** | **28** | |
+This report documents a comprehensive deep-audit of the entire dev-portfolio codebase. The initial audit (v1, 2026-06-30) identified 28 changed files across bugs, dead code, dependency cleanup, performance, and refactoring — all completed. Since the initial audit, several animation additions were made (TypedText variants, HexPattern, header animations).
+
+This second pass (v2, 2026-07-01) identifies **12 new issues** spanning bugs (dead font link, invisible UI text, chaotic animation overlap), overengineering (layout hacks, DOM-heavy animation components, redundant useEffect merges), code quality (config duplication, missing docs), and accessibility.
+
+**Key finding:** The codebase is well-structured and follows its conventions. Issues found are mostly at the medium/low severity level — functional, but opportunities for polish.
 
 ---
 
-## Phase 1 — Bugs
+## v1 Findings (Completed)
 
-### 1.1 Opacity typo in ModelLodCard
+### Bugs Fixed
 
-**File:** `src/components/ModelLodCard.jsx:126`  
-**Issue:** `opacitiy-100` is not a valid Tailwind class. The `model-viewer` element never reached full opacity after the 3D model loaded.  
-**Fix:** `opacitiy-100` → `opacity-100`
+| Issue | File | Fix |
+|-------|------|-----|
+| `opacitiy-100` typo | `ModelLodCard.jsx:126` | Changed to `opacity-100` |
+| Broken sitemap image URLs | `public/sitemap.xml` | Changed `.png` → `.gif` |
+| `__dirname` ESM error | `vite.config.js` | Used `fileURLToPath` + `dirname` |
 
-### 1.2 Broken sitemap image URLs
+### Dead Code Removed
 
-**File:** `public/sitemap.xml`  
-**Issue:** Three `<image:loc>` URLs referenced `.png` files (`nobzbeats.png`, `mdmurals.png`, `skateshop.png`), but the actual assets on disk are `.gif` files. These would return 404s when crawlers tried to fetch them.  
-**Fix:** Updated all three URLs to use `.gif` extension.
+| Item | Lines | Action |
+|------|-------|--------|
+| `GlitchText.jsx` | 35 | Deleted |
+| `model-viewer.css` | 164 | Deleted |
+| `accordionArrow.svg` | - | Deleted |
+| Stray comment in `config.js` | 1 | Removed |
+| Unused `useRef` import in `ProjectsGrid.jsx` | 1 | Removed |
 
-### 1.3 vite.config.js ESM error
+### Dependencies Cleaned
 
-**File:** `vite.config.js`  
-**Issue:** ESLint flagged `__dirname` as undefined because Vite runs in ESM mode where `__dirname` is not available.  
-**Fix:** Replaced `import path from 'path'` + `path.resolve(__dirname, ...)` with `import { resolve, dirname } from 'path'` + `import { fileURLToPath } from 'url'` + `const __dirname = dirname(fileURLToPath(import.meta.url))`.
+| Package | Action | Savings |
+|---------|--------|---------|
+| `@types/react` | Removed | ~3 MB |
+| `@types/react-dom` | Removed | ~0.5 MB |
+| `radix-ui` (meta-package) | Replaced | 77 transitive packages |
+| `@radix-ui/react-slot` | Added | Targeted replacement |
+| `@radix-ui/react-label` | Added | Targeted replacement |
+| **Net** | | **-73 packages** |
 
----
+### Performance Improvements
 
-## Phase 2 — Dead Code Removal
+| Improvement | Impact |
+|-------------|--------|
+| `useWindowWidth()` shared hook | Eliminated N redundant resize listeners |
+| `passive: true` on scroll listener | Enables browser scroll optimizations |
+| Removed SSR guard in `SectionWrapper` | Cleaner initialization |
 
-### 2.1 GlitchText component (deleted)
+### Components/Hooks Extracted
 
-**File:** `src/components/GlitchText.jsx`  
-**Reason:** Never imported anywhere. The CSS glitch effect is handled by `index.css` (`.glitch-wrapper`, `@keyframes glitch-1/2`) and the `TypedText` component with `variant="glitch"`.  
-**Action:** Deleted file.
-
-### 2.2 model-viewer.css (deleted)
-
-**File:** `src/components/model-viewer.css`  
-**Reason:** Never imported in any JSX/JS file. Contained 164 lines of hotspot/interaction styles that were never loaded. The base `model-viewer` styles (`--progress-bar-*`, `[environment-image]`) were already duplicated in `index.css:163-169`.  
-**Action:** Deleted file.
-
-### 2.3 accordionArrow.svg (deleted)
-
-**File:** `public/assets/images/accordionArrow.svg`  
-**Reason:** Zero references in source code.  
-**Action:** Deleted file.
-
-### 2.4 Stray comment in config
-
-**File:** `src/data/config.js:18`  
-**Issue:** `//test comment` left on the `Contact` nav link entry.  
-**Action:** Removed comment.
-
-### 2.5 Unused import in ProjectsGrid
-
-**File:** `src/pages/Projects/components/ProjectsGrid.jsx:1`  
-**Issue:** `useCallback` was imported but never used in `Header.jsx`, and the linter caught it during the initial lint run.  
-**Action:** Removed `useCallback` from import.
-
-### 2.6 Unused import in Header (found by linter)
-
-**File:** `src/components/Header.jsx:1`  
-**Issue:** `useCallback` was imported but never used in `Header.jsx`. The linter caught it during the initial lint run.  
-**Action:** Removed `useCallback` from import.
+| Component | From | To |
+|-----------|------|----|
+| `useFocusTrap` | Duplicated in Header + ProjectDetail | `hooks/useFocusTrap.js` |
+| `FormField` | Repeated in ContactForm | `components/FormField.jsx` |
+| `ProjectNav` | Inline in ProjectDetail | `pages/ProjectDetail/components/` |
+| `PortraitRing` | Inline in HeroSection | `pages/Home/components/` |
+| `SOCIAL_ICONS` | Duplicated in Footer + ContactInfo | `lib/helpers.jsx` |
+| `renderParagraphs` | Inline in ProjectDetail | `lib/helpers.jsx` |
 
 ---
 
-## Phase 3 — Dependency Cleanup
+## v2 Findings (New — Post-Audit)
 
-### 3.1 Removed @types/react + @types/react-dom
+### Bugs (High Priority)
 
-**Reason:** The project uses plain JSX with no TypeScript (per AGENTS.md rules). These devDependencies added ~3.5 MB to `node_modules` with no benefit.  
-**Savings:** 2 packages removed.
+#### 2.1 Dead Google Fonts Link for Cal Sans
 
-### 3.2 Replaced radix-ui meta-package with targeted packages
+**File:** `index.html:21`
 
-**Before:** `radix-ui` — a meta-package that re-exports all 40+ Radix UI packages. The project only used `Slot` and `Label`.  
-**After:** `@radix-ui/react-slot` + `@radix-ui/react-label` — only the two packages actually needed.  
-**Savings:** 77 transitive packages removed, 4 packages added (net -73 packages).
-
-**Import changes:**
-
-| File | Before | After |
-|------|--------|-------|
-| `src/components/ui/badge.jsx` | `import { Slot } from "radix-ui"` | `import { Root as Slot } from "@radix-ui/react-slot"` |
-| `src/components/ui/button.jsx` | `import { Slot } from "radix-ui"` | `import { Root as Slot } from "@radix-ui/react-slot"` |
-| `src/components/ui/label.jsx` | `import { Label as LabelPrimitive } from "radix-ui"` | `import { Root as LabelPrimitive } from "@radix-ui/react-label"` |
-
----
-
-## Phase 4 — Performance
-
-### 4.1 Shared useWindowWidth hook
-
-**Problem:** Both `SectionWrapper.jsx:21-25` and `HexPattern.jsx:81-85` independently created `resize` event listeners and `useState` for window width. With 4-5 `SectionWrapper` instances on a page, that was 5-6 duplicate listeners.
-
-**Fix:** Created `src/hooks/useWindowWidth.js` with:
-- Single RAF-throttled resize listener
-- Shared across all consumers
-- Underlying browser `ResizeObserver` compatible pattern
-
-**Refactored consumers:**
-- `src/components/SectionWrapper.jsx` — replaced local useState + useEffect with `useWindowWidth()`
-- `src/components/ui/HexPattern.jsx` — replaced local useState + useEffect with `useWindowWidth()`
-
-### 4.2 passive scroll listener in Header
-
-**File:** `src/components/Header.jsx:14`  
-**Issue:** The scroll event listener lacked the `passive` flag, which prevents scroll optimization on mobile browsers.  
-**Fix:** Added `{ passive: true }` option.
-
-### 4.3 vite.config.js ESM fix (also listed in Bugs)
-
-The `__dirname` fix also ensures the config resolves correctly in ESM contexts.
-
----
-
-## Phase 5 — Refactoring
-
-### 5.1 useFocusTrap hook (new, shared)
-
-**Created:** `src/hooks/useFocusTrap.js`  
-**Reason:** The focus trap logic for keyboard navigation (Tab trapping + Escape close) was duplicated in `Header.jsx:19-49` and `ProjectDetail/index.jsx:63-90`.
-
-**Refactored consumers:**
-- `src/components/Header.jsx` — replaced ~30 lines with `useFocusTrap(menuRef, menuOpen, closeMenu, hamburgerRef)`
-- `src/pages/ProjectDetail/index.jsx` — replaced ~28 lines with `useFocusTrap(modalRef, isModalOpen, closeModal, triggerRef)`
-
-### 5.2 FormField component (new)
-
-**Created:** `src/components/FormField.jsx`  
-**Reason:** The contact form had 4 identical field patterns (Label + Input/Textarea + error span) with repeated styling. This component handles both input and textarea variants.
-
-**Refactored consumer:**
-- `src/pages/Contact/components/ContactForm.jsx` — replaced ~70 lines of inline field markup with 5 `<FormField />` calls
-
-### 5.3 ProjectNav component (new)
-
-**Created:** `src/pages/ProjectDetail/components/ProjectNav.jsx`  
-**Reason:** The bottom navigation in ProjectDetail had ~150 lines of inline JSX with separate mobile and desktop layouts for prev/next arrows and action buttons.
-
-**Sub-components extracted:**
-- `NavArrow` — prev/next project links (mobile + desktop variants)
-- `ActionButton` — Live Demo / View Code / Back buttons (handles both `href` and `onClick`)
-
-**Refactored consumer:**
-- `src/pages/ProjectDetail/index.jsx` — replaced ~150 lines with `<ProjectNav />`
-
-### 5.4 PortraitRing component (new)
-
-**Created:** `src/pages/Home/components/PortraitRing.jsx`  
-**Reason:** The rotating text ring was defined as an inline function component inside `HeroSection.jsx`. At 40 lines with constants and complex positioning math, it warranted its own file.
-
-**Refactored consumer:**
-- `src/pages/Home/components/HeroSection.jsx` — replaced inline definition with import
-
-### 5.5 Deduplicated SOCIAL_ICONS map
-
-**Problem:** Both `Footer.jsx:5-9` and `ContactInfo.jsx:5-9` defined identical `iconMap` objects mapping social labels to lucide-react icon components.
-
-**Fix:** Moved to `src/lib/helpers.jsx` as `SOCIAL_ICONS`:
-```js
-export const SOCIAL_ICONS = {
-  GitHub: Github,
-  LinkedIn: Linkedin,
-  Email: Mail,
-}
+```html
+<link rel="stylesheet" href="...Cal+Sans&display=swap" />
 ```
 
-**Refactored consumers:**
-- `src/components/Footer.jsx` — removed local `iconMap`, imported `SOCIAL_ICONS`
-- `src/pages/Contact/components/ContactInfo.jsx` — removed local `iconMap`, imported `SOCIAL_ICONS`
+Cal Sans is **not available on Google Fonts**. This URL returns a stylesheet with no usable `@font-face` rules. The `--font-sans` theme token (`"Cal Sans", system-ui, sans-serif`) silently falls back to `system-ui` on every page load. The `<link>` element is dead weight (~0.4 KB HTTP request + parsing).
 
-### 5.6 renderParagraphs helper (moved)
+**Symptom:** The intended heading font (Cal Sans) is never displayed. Users see their system default sans-serif.
 
-**From:** `src/pages/ProjectDetail/index.jsx:13-23`  
-**To:** `src/lib/helpers.jsx`  
-**Reason:** Shared utility function that was defined in a page component. Now available for any component that needs to render array or multi-paragraph content.
+**Fix option A (recommended):**  
+Self-host Cal Sans in `public/assets/fonts/` with `@font-face` in `index.css`:
+```css
+@font-face {
+  font-family: "Cal Sans";
+  src: url("/assets/fonts/CalSans.woff2") format("woff2");
+  font-display: swap;
+}
+```
+Remove the dead Google Fonts `<link>`.
 
-### 5.7 Removed SSR guard in SectionWrapper
+**Fix option B (simpler):**  
+Remove the dead `<link>` from `index.html` and change `--font-sans` to a font that's actually loaded (e.g., use Courier Prime, the silom TTF, or just `system-ui`). This preserves visual behavior since `system-ui` is already the fallback.
 
-**File:** `src/components/SectionWrapper.jsx`  
-**Issue:** `typeof window !== 'undefined' ? window.innerWidth : 1200` is unnecessary in a client-only Vite SPA.  
-**Fix:** Simplified to `useState(() => window.innerWidth)` (the lazy initializer avoids calling `window.innerWidth` on every render).
+#### 2.2 Invisible "Closed" Availability Labels
+
+**File:** `src/pages/Contact/components/ContactInfo.jsx:64-71`
+
+```jsx
+<span className={`... text-white/20`}>
+  <span className={`... bg-white/20`} />
+  Closed
+</span>
+```
+
+The parent container has `bg-warm-gray` (#eeece9). White at 20% opacity on this surface creates a contrast ratio of ~1.2:1 — effectively invisible to all users. The "Open" items use `text-cyber-cyan` (#2dd4bf) and are perfectly visible.
+
+**Symptom:** Users cannot see which services are unavailable.
+
+**Fix:**
+```jsx
+<span className={`... text-black/20`}>
+  <span className={`... bg-black/20`} />
+  Closed
+</span>
+```
+
+This provides ~12:1 contrast — properly dimmed but still perceptible.
+
+### Animation Quality (Medium Priority)
+
+#### 2.3 Chaotic Scramble Overlap in Hero Tagline
+
+**File:** `src/pages/Home/components/HeroSection.jsx:73-83`
+
+The tagline uses 5 separate `<TypedText variant="scramble">` components:
+```
+[Transforming complex ideas into high-fidelity web experiences through] 
+[technical honesty] [and] [artistic intent] [.]
+```
+
+Each component independently starts its scramble animation when it enters the viewport. The result is **all 5 scramble simultaneously**, creating visual noise. The last component is a single character (`.`) wrapped in an entire TypedText instance — extreme overkill for a period.
+
+**Fix:** Merge into 1-2 TypedText components. Use styled `<span>` elements with Framer Motion or CSS transitions for the emphasized words rather than separate animation instances. This preserves the "sequential reveal" intent without the overlapping scramble chaos.
+
+#### 2.4 `hoverKey` Animation Re-trigger Overhead
+
+**File:** `src/components/SectionLabel.jsx:14-18`
+
+```jsx
+const [hoverKey, setHoverKey] = useState(0)
+const handleMouseEnter = useCallback(() => {
+  setHoverKey(k => k + 1)
+}, [])
+// ...
+<TypedText key={hoverKey} ... />
+```
+
+Every hover over the section label increments `hoverKey`, which forces React to unmount and remount the `TypedText` component (via `key` change), re-running the entire animation setup effect. This is clever but uses React reconciliation as a side effect for animation replay.
+
+**Fix:** Replace with CSS-based animation restart. Use an `animation-play-state` toggle or a CSS class that forces the animation to re-run via `animation: none` → `animation: <keyframe>` on class addition/removal. This avoids component remounting entirely.
+
+### Layout Hacks (Medium Priority)
+
+#### 2.5 Accordion Overflow Padding Hack
+
+**File:** `src/pages/Home/components/FeaturedProjects.jsx:19`
+
+```jsx
+<div className={`${isCardActive ? 'pb-[800px]' : 'pb-96'} md:pb-0`}>
+```
+
+The accordion overflows its container on mobile when a slide is active, requiring massive phantom padding to prevent clipping. The value `800px` is a magic number tuned to the current content — any change to accordion content or styling could break this.
+
+**Root Cause:** The accordion's `.slide-content` changes from `position: absolute` to `position: relative` at the `768px` breakpoint (see `ProjectsAccordion.css:110-116`). In relative positioning, the content is part of normal document flow and expands the slide height naturally — but the parent containers don't accommodate this.
+
+**Fix:** Restructure the mobile accordion layout so it self-contains: either keep the slide content absolutely positioned with proper inner scrolling, or convert the mobile layout to use CSS `height: auto` on active slides with the parent allowing natural expansion.
+
+### Performance (Lower Priority)
+
+#### 2.6 ModelLodCard — Merge Effects 3+4
+
+**File:** `src/components/ModelLodCard.jsx:37-68`
+
+Effects 3 (load listeners) and 4 (interaction listeners) both depend on `libReady` and both attach listeners to `viewerRef.current`. They can be merged into a single effect:
+
+```jsx
+useEffect(() => {
+  const viewer = viewerRef.current
+  if (!viewer) return
+  let t, timeout
+  const onLoad = () => { t = setTimeout(() => setLoadState('done'), 300) }
+  const onError = () => setLoadState('error')
+  const pause = () => {
+    viewer.autoRotate = false
+    clearTimeout(timeout)
+    timeout = setTimeout(() => { viewer.autoRotate = true }, 3000)
+  }
+  viewer.addEventListener('load', onLoad)
+  viewer.addEventListener('error', onError)
+  viewer.addEventListener('mousedown', pause)
+  viewer.addEventListener('touchstart', pause)
+  return () => {
+    viewer.removeEventListener('load', onLoad)
+    viewer.removeEventListener('error', onError)
+    viewer.removeEventListener('mousedown', pause)
+    viewer.removeEventListener('touchstart', pause)
+    clearTimeout(t)
+    clearTimeout(timeout)
+  }
+}, [libReady])
+```
+
+**Savings:** Eliminates 1 effect wrapper.
+
+#### 2.7 HexPattern — 57 Framer Motion Instances
+
+**File:** `src/components/ui/HexPattern.jsx`
+
+Each of the 57 active hexagons is an individual `<motion.path>` with per-element `initial`/`animate` transitions. That's 57 Framer Motion animation controllers instantiated on mount, each with its own RAF-driven animation loop.
+
+If these were converted to CSS keyframes with custom properties for delays, the browser's native CSS animation engine handles all 57 paths with zero JS animation overhead.
+
+### Code Quality (Lower Priority)
+
+| Issue | File | Current | Fix |
+|-------|------|---------|-----|
+| Duplicate ecmaVersion | `eslint.config.js:19,22` | Both `2020` and `'latest'` | Normalize to `'latest'` |
+| Missing `.env.example` | root | None | Create with `VITE_FORMSPREE_ENDPOINT` |
+| Redundant `bg-transparent` | `HeroSection.jsx:101` | Duplicates `variant="outline"` | Remove class |
+| Dead CSS (glitch-wrapper) | `index.css:113-135` | Never used by any component | Optional removal |
+
+### Accessibility
+
+| Issue | File | Fix |
+|-------|------|-----|
+| Decorative bullets need `aria-hidden` | `DifferentiationSection.jsx:64` | Add `aria-hidden="true"` |
+| `hover:scale` on semantic `<li>` | `CareerInternship.jsx:52` | Move scale to inner wrapper |
 
 ---
 
-## Phase 6 — Config Cleanup
+## Files Changed (v2 Proposed)
 
-### 6.1 jsconfig.json
-
-**File:** `jsconfig.json`  
-**Issue:** `"ignoreDeprecations": "6.0"` was a legacy TypeScript compatibility flag from older config generators. It has no effect in a plain JS project.  
-**Action:** Removed the line.
-
-### 6.2 .gitignore
-
-**File:** `.gitignore`  
-**Audit:** `.DS_Store` was already in `.gitignore`. Checked that no `.DS_Store` files are tracked in git — confirmed clean.
-
----
-
-## Phase 7 — Verification
-
-| Step | Result |
+### Modified (8)
+| File | Change |
 |------|--------|
-| `npm run lint` | 0 errors, 0 warnings |
-| `npm run build` | 19 chunks, 3.65s build time |
+| `index.html` | Remove dead Cal Sans Google Fonts link |
+| `index.css` | Add @font-face for Cal Sans (if self-hosting); optionally remove dead glitch-wrapper CSS |
+| `src/pages/Contact/components/ContactInfo.jsx` | Fix `text-white/20` → `text-black/20` |
+| `src/pages/Home/components/HeroSection.jsx` | Merge scramble TypedTexts; remove redundant `bg-transparent` |
+| `src/components/ModelLodCard.jsx` | Merge effects 3+4 |
+| `src/components/SectionLabel.jsx` | Replace hoverKey with CSS animation restart |
+| `src/pages/Home/components/FeaturedProjects.jsx` | Fix accordion overflow hack |
+| `eslint.config.js` | Fix duplicate ecmaVersion |
+
+### Created (1)
+| File | Content |
+|------|---------|
+| `.env.example` | Document `VITE_FORMSPREE_ENDPOINT` |
+
+### Accessibility Fixes (2)
+| File | Change |
+|------|--------|
+| `src/pages/About/components/DifferentiationSection.jsx` | Add `aria-hidden="true"` to bullets |
+| `src/pages/About/components/CareerInternship.jsx` | Move hover scale to inner wrapper |
 
 ---
 
-## Files Changed
+## Post-Audit Animation Assessment
 
-### Deleted (3)
-- `src/components/GlitchText.jsx`
-- `src/components/model-viewer.css`
-- `public/assets/images/accordionArrow.svg`
+The post-audit animation additions (commits `db0cbc5` through `d827b07`) added:
+- `TypedText` with `variant="terminal"` / `variant="scramble"` / `variant="glitch"`
+- HexPattern with staggered path animations
+- Header entrance animations (logo, nav items, hamburger)
 
-### Created (7)
-- `src/hooks/useWindowWidth.js`
-- `src/hooks/useFocusTrap.js`
-- `src/components/FormField.jsx`
-- `src/lib/helpers.jsx`
-- `src/pages/Home/components/PortraitRing.jsx`
-- `src/pages/ProjectDetail/components/ProjectNav.jsx`
-
-### Modified (18)
-- `src/components/Header.jsx`
-- `src/components/Footer.jsx`
-- `src/components/SectionWrapper.jsx`
-- `src/components/ui/HexPattern.jsx`
-- `src/components/ui/badge.jsx`
-- `src/components/ui/button.jsx`
-- `src/components/ui/label.jsx`
-- `src/components/ModelLodCard.jsx`
-- `src/data/config.js`
-- `src/pages/Home/components/HeroSection.jsx`
-- `src/pages/ProjectDetail/index.jsx`
-- `src/pages/Contact/components/ContactForm.jsx`
-- `src/pages/Contact/components/ContactInfo.jsx`
-- `src/pages/Projects/components/ProjectsGrid.jsx`
-- `public/sitemap.xml`
-- `vite.config.js`
-- `jsconfig.json`
-- `package.json`
+**Assessment:** These animations work correctly and enhance the user experience. The main issue is the **scramble overlap** in the hero tagline (5 independent TypedTexts competing). The HexPattern animation is fine but uses Framer Motion for 57 individual paths where CSS keyframes would be lighter. Neither is a functional regression.
 
 ---
 
-## Before vs After Metrics
+## Best Practices Research Summary
 
-| Metric | Before | After | Change |
-|--------|--------|-------|--------|
-| Source files | 39 | 43 | +4 (net) |
-| Dead files | 3 | 0 | -3 |
-| npm packages | 23 | 20 | -3 |
-| Transitive packages | 797 | 724 | -73 |
-| Lint errors | 3 | 0 | -3 |
-| Build time | ~3.8s | ~3.0s | -20% |
-| CSS files imported | 3 | 2 | -1 |
-| Component files extracted | 0 | 4 | +4 |
-| Shared hooks | 2 | 4 | +2 |
+### React 19
+- All `useEffect` hooks have proper cleanup (timers cleared, listeners removed, observers disconnected) — ✅ Good
+- Dependency arrays are correct in all hooks (verified against `react-hooks/exhaustive-deps`) — ✅ Good
+- Some `useCallback`/`useMemo` usage is unnecessary for simple operations — could be simplified
+- Project avoids `React.FC`, PropTypes, and TypeScript — consistent with project rules
+
+### Framer Motion 12
+- `whileInView` with `viewport={{ once: true }}` is the correct pattern for scroll-triggered animations — ✅ Good
+- `AnimatePresence` is used correctly for mount/unmount transitions — ✅ Good
+- **Opportunity:** `useInView` hook is available for imperative viewport detection (used in ModelLodCard's IntersectionObserver) — could replace manual observer with Framer Motion's built-in hook
+- **Opportunity:** Per-element animation controllers (HexPattern's 57 motion.paths) add JS overhead — prefer CSS animations for large numbers of homogeneously-animated elements
+
+### Tailwind CSS v4
+- `@theme inline` is the correct v4 pattern — ✅ Good
+- Custom tokens follow v4 conventions (`--color-*`, `--font-*`) — ✅ Good
+- **Note:** Tailwind v4 uses CSS-first configuration. The `@custom-variant dark` is a shadcn/ui requirement — keep it
+- **Note:** `filter: brightness()` in `@keyframes subtle-glow` works with Tailwind v4's filter utilities
+
+---
+
+## Recommended Phase Order
+
+```
+Phase 1 — Critical Bugs (2.1, 2.2)         → 30 min
+Phase 2 — Animation Fixes (2.3, 2.4)        → 1-2 hours (requires careful visual preservation)
+Phase 3 — Layout Fix (2.5)                  → 1-2 hours
+Phase 4 — Performance (2.6, 2.7)            → 1 hour
+Phase 5 — Code Quality (eslint, .env, etc.) → 30 min
+Phase 6 — Accessibility                     → 15 min
+Phase 7 — Verification (lint, build, smoke) → 15 min
+```
+
+**Total estimated effort:** 4-6 hours
+
+---
+
+## Metrics
+
+| Metric | v1 (Before) | v1 (After) | v2 (Proposed) |
+|--------|-------------|------------|---------------|
+| Source files | 39 | 43 | 44 |
+| npm packages | 23 | 20 | 20 |
+| Transitive packages | 797 | 724 | 724 |
+| Lint errors | 3 | 0 | 0 |
+| Build time | ~3.8s | ~3.0s | ~3.0s |
+| Dead CSS (lines) | 187 | 23 | 0 |
+| Dead Font CDN links | 0 | 0 | 1 → 0 |
+| Shared hooks | 2 | 4 | 4 |
+| Inline style props used | 3 | 3 | 3 |
+| `motion.path` Framer instances | 0 | 57 | 57→0 (opt) |

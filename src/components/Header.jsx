@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NAV_LINKS } from '@/data/config'
 import { useFocusTrap } from '@/hooks/useFocusTrap'
-import TypedText from '@/components/TypedText'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -38,16 +37,15 @@ export default function Header() {
             alt="Eduard Rotaru"
             className="h-20 w-auto"
           />
-          <span className="font-sans font-bold text-3xl text-charcoal tracking-tight">
-            <TypedText
-              as="span"
-              variant="terminal"
-              text={[
-                { text: "Eduard ", className: "" },
-                { text: "Rotaru", className: "text-cyber-cyan" },
-              ]}
-            />
-          </span>
+          <motion.span
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
+            className="font-sans font-bold text-3xl text-charcoal tracking-tight"
+          >
+            <span>Eduard </span>
+            <span className="text-cyber-cyan">Rotaru</span>
+          </motion.span>
         </NavLink>
 
         {/* Desktop Nav */}
