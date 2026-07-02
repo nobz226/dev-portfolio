@@ -15,7 +15,8 @@ import { useLayoutEffect, useRef } from "react";
  *   <TypedText text="..." variant="glitch" typingSpeed={20} glitchChance={0.5} />
  */
 
-// ---- Presets, mirroring the three examples in the original pen ----------
+const DEFAULT_SYMBOLS = "!<>-_\\/[]{}—=+*^?#_@";
+
 const VARIANTS = {
   // Header 1: clean typewriter, no glitch
   plain: {
@@ -30,8 +31,8 @@ const VARIANTS = {
     glitchInterval: 100,
     glitchChance: 1,
     glitchCycleVariance: 1,
-    glitchSymbolsStart: "■▇▆▅▄▃▃▁▉▊▌▍▎▏",
-    glitchSymbolsEnd: "■▇▆▅▄▃▃▁▉▊▌▍▎▏",
+    glitchSymbolsStart: DEFAULT_SYMBOLS,
+    glitchSymbolsEnd: DEFAULT_SYMBOLS,
     glitchSymbolsVariance: 1,
   },
   // Paragraph: long, dense "decoding" scramble that resolves dashes -> digits -> letters
@@ -47,8 +48,6 @@ const VARIANTS = {
     glitchSymbolsVariance: 0.5,
   },
 };
-
-const DEFAULT_SYMBOLS = "!<>-_\\/[]{}—=+*^?#_@";
 
 let stylesInjected = false;
 function ensureCaretKeyframes() {
