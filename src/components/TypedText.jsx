@@ -49,24 +49,7 @@ const VARIANTS = {
   },
 };
 
-let stylesInjected = false;
-function ensureCaretKeyframes() {
-  if (stylesInjected || typeof document === "undefined") return;
-  if (document.getElementById("typed-text-keyframes")) {
-    stylesInjected = true;
-    return;
-  }
-  const style = document.createElement("style");
-  style.id = "typed-text-keyframes";
-  style.textContent = `
-    @keyframes typed-text-blink-caret {
-      from, to { opacity: 1; }
-      50% { opacity: 0; }
-    }
-  `;
-  document.head.appendChild(style);
-  stylesInjected = true;
-}
+
 
 export default function TypedText({
   text,
@@ -89,8 +72,6 @@ export default function TypedText({
   const containerRef = useRef(null);
 
   useLayoutEffect(() => {
-    ensureCaretKeyframes();
-
     const el = containerRef.current;
     if (!el || !text) return;
 
@@ -145,16 +126,6 @@ export default function TypedText({
         charSpans.push(span);
       });
 
-      const caret = document.createElement("span");
-      caret.className =
-        "inline-block w-0 h-[1em] align-bottom border-r-2 border-current -mr-[0.12em] [animation:typed-text-blink-caret_0.75s_step-end_infinite]";
-
-      if (charSpans.length > 0) {
-        animationWrapper.insertBefore(caret, charSpans[0]);
-      } else {
-        animationWrapper.appendChild(caret);
-      }
-
       let i = 0;
 
       function typeNext() {
@@ -162,7 +133,6 @@ export default function TypedText({
 
         if (i < charSpans.length) {
           const currentSpan = charSpans[i];
-          animationWrapper.insertBefore(caret, currentSpan.nextSibling);
           currentSpan.classList.remove("opacity-0");
           currentSpan.classList.add("opacity-100");
 
@@ -194,7 +164,6 @@ export default function TypedText({
           const t = setTimeout(typeNext, speed);
           timeouts.push(t);
         } else {
-          caret.remove();
           onComplete?.();
         }
       }
