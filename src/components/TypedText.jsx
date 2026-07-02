@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 /**
  * TypedText
@@ -74,7 +74,6 @@ export default function TypedText({
   as: Tag = "p",
   variant = "plain",
   className = "",
-  preserveLayout = true,
   startOnView = false,
   onComplete,
   // individual overrides — fall back to the chosen variant's preset
@@ -90,7 +89,7 @@ export default function TypedText({
 }) {
   const containerRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     ensureCaretKeyframes();
 
     const el = containerRef.current;
@@ -134,25 +133,8 @@ export default function TypedText({
       srText.textContent = text;
       el.appendChild(srText);
 
-      // Optional invisible placeholder to reserve layout space (prevents
-      // height/width jumping as characters type in, esp. for multi-line text).
-      if (preserveLayout) {
-        if (window.getComputedStyle(el).position === "static") {
-          el.style.position = "relative";
-        }
-        const placeholder = document.createElement("span");
-        placeholder.setAttribute("aria-hidden", "true");
-        placeholder.style.visibility = "hidden";
-        placeholder.style.pointerEvents = "none";
-        placeholder.textContent = text;
-        el.appendChild(placeholder);
-      }
-
       const animationWrapper = document.createElement("span");
       animationWrapper.setAttribute("aria-hidden", "true");
-      if (preserveLayout) {
-        animationWrapper.className = "absolute top-0 left-0 w-full h-full";
-      }
       el.appendChild(animationWrapper);
 
       const charSpans = [];
@@ -248,8 +230,6 @@ export default function TypedText({
   }, [text, variant, startOnView]);
 
   return (
-    <Tag ref={containerRef} className={className} {...rest}>
-      {text}
-    </Tag>
+    <Tag ref={containerRef} className={className} {...rest} />
   );
 }
