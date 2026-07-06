@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import ContactForm from './components/ContactForm'
 import ContactInfo from './components/ContactInfo'
@@ -6,6 +7,8 @@ import TypedText from '@/components/TypedText'
 import { usePageMeta } from '@/hooks/usePageMeta'
 
 export default function Contact() {
+  const [heroDone, setHeroDone] = useState(false)
+
   usePageMeta(
     'Contact Eduard Rotaru - Get In Touch',
     'Ready to discuss your next project? Contact Eduard Rotaru, a full-stack developer specializing in creative web experiences.'
@@ -34,6 +37,7 @@ export default function Contact() {
             <TypedText
               as="span"
               variant="terminal"
+              onComplete={() => setHeroDone(true)}
               text={[
                 { text: "Start a ", className: "" },
                 { text: "Conversation", className: "text-cyber-cyan" },
@@ -45,14 +49,19 @@ export default function Contact() {
 
       {/* Form + Info */}
       <section className="py-16 relative z-20">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={heroDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-12"
+        >
           <div className="lg:col-span-2">
             <ContactInfo />
           </div>
           <div className="lg:col-span-3">
             <ContactForm />
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
     </>

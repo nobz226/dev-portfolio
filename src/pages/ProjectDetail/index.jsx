@@ -17,6 +17,10 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [descDone, setDescDone] = useState(false)
+  const [whyDone, setWhyDone] = useState(false)
+  const [systemDone, setSystemDone] = useState(false)
+  const [soulDone, setSoulDone] = useState(false)
 
   const project = allProjects.find((p) => p.slug === slug)
 
@@ -169,62 +173,86 @@ export default function ProjectDetail() {
           )}
         </div>
         <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
-          <TypedText as="span" text="Description" variant="terminal" startOnView />
+          <TypedText as="span" text="Description" variant="terminal" startOnView onComplete={() => setDescDone(true)} />
         </h2>
-        <p className="font-mono text-lg leading-relaxed text-snow/80">
-          {project.description}
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={descDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
+          <p className="font-mono text-lg leading-relaxed text-snow/80">
+            {project.description}
+          </p>
+        </motion.div>
       </SectionWrapper>
 
       {/* The Why Section */}
-      {project.why && (
+        {project.why && (
         <SectionWrapper label="// the why" variant="cyan" labelVariant="soft-blue">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
-            <TypedText as="span" text="The Why" variant="terminal" startOnView cursorColor="#f9f7f7" />
+            <TypedText as="span" text="The Why" variant="terminal" startOnView cursorColor="#f9f7f7" onComplete={() => setWhyDone(true)} />
           </h2>
-          <div className="space-y-6 text-charcoal/80">
-            {renderParagraphs(project.why, 'why')}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={whyDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            <div className="space-y-6 text-charcoal/80">
+              {renderParagraphs(project.why, 'why')}
+            </div>
+          </motion.div>
         </SectionWrapper>
       )}
 
       {/* The System Section */}
-      {project.system && (
+        {project.system && (
         <SectionWrapper label="// the system" variant="dark">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
-            <TypedText as="span" text="The System" variant="terminal" startOnView />
+            <TypedText as="span" text="The System" variant="terminal" startOnView onComplete={() => setSystemDone(true)} />
           </h2>
-          <div className="space-y-6 text-snow/80 mb-8">
-            {renderParagraphs(project.system, 'system')}
-          </div>
-          <div>
-            <h3 className="font-silom font-bold text-2xl text-snow mb-6">
-              Tech Stack
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((t) => (
-                <Badge
-                  key={t}
-                  variant="outline"
-                  className="font-sans text-sm border-snow/30 text-snow bg-transparent rounded-none"
-                >
-                  {t}
-                </Badge>
-              ))}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={systemDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            <div className="space-y-6 text-snow/80 mb-8">
+              {renderParagraphs(project.system, 'system')}
             </div>
-          </div>
+            <div>
+              <h3 className="font-silom font-bold text-2xl text-snow mb-6">
+                Tech Stack
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((t) => (
+                  <Badge
+                    key={t}
+                    variant="outline"
+                    className="font-sans text-sm border-snow/30 text-snow bg-transparent rounded-none"
+                  >
+                    {t}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </SectionWrapper>
       )}
 
       {/* The Soul Section */}
-      {project.soul && (
+        {project.soul && (
         <SectionWrapper label="// the soul" variant="cyan" labelVariant="soft-blue">
           <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-6 leading-tight">
-            <TypedText as="span" text="The Soul" variant="terminal" startOnView cursorColor="#f9f7f7" />
+            <TypedText as="span" text="The Soul" variant="terminal" startOnView cursorColor="#f9f7f7" onComplete={() => setSoulDone(true)} />
           </h2>
-          <div className="space-y-6 text-charcoal/80">
-            {renderParagraphs(project.soul, 'soul')}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={soulDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            <div className="space-y-6 text-charcoal/80">
+              {renderParagraphs(project.soul, 'soul')}
+            </div>
+          </motion.div>
         </SectionWrapper>
       )}
 
