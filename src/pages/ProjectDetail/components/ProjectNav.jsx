@@ -25,8 +25,8 @@ function ActionButton({ href, onClick, label, icon, color = 'muted-foreground' }
 
   const content = (
     <div className={`flex items-center gap-1 md:gap-2 transition-transform duration-300 ${href ? 'origin-left hover:scale-[1.15]' : 'origin-left cursor-pointer hover:scale-[1.15]'}`}>
-      {label}
       <img src={icon} alt="" className={`w-8 h-8 ${iconSize}`} />
+      {label}
     </div>
   )
 
@@ -34,7 +34,7 @@ function ActionButton({ href, onClick, label, icon, color = 'muted-foreground' }
     <Button
       asChild={!!href}
       onClick={href ? undefined : onClick}
-      className={`font-silom text-sm uppercase tracking-wider bg-transparent ${textColor} ${hoverTextColor} rounded-none px-0 py-0`}
+      className={`font-silom text-sm uppercase tracking-wider bg-transparent hover:bg-transparent ${textColor} ${hoverTextColor} rounded-none px-0 py-0`}
     >
       {href ? (
         <a href={href} target="_blank" rel="noopener noreferrer">

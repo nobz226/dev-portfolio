@@ -133,8 +133,8 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                         rel="noopener noreferrer"
                         className="text-xs text-cyber-cyan font-silom uppercase tracking-wider flex items-center gap-1 md:gap-2 hover:text-cyber-cyan hover:bg-transparent transition-transform duration-300 origin-left hover:scale-[1.15]"
                        >
-                         Live Demo
                          <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
+                         Live Demo
                       </a>
                     )}
                     {project.repoUrl && (
@@ -144,16 +144,16 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                         rel="noopener noreferrer"
                         className="text-xs text-cyber-cyan font-silom uppercase tracking-wider flex items-center gap-1 md:gap-2 hover:text-cyber-cyan hover:bg-transparent transition-transform duration-300 origin-left hover:scale-[1.15]"
                       >
+                        <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
                         Source Code
-                                                  <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
                       </a>
                     )}
                     <Link
                       to={`/projects/${project.slug}`}
                       className="text-xs text-cyber-cyan font-silom uppercase tracking-wider flex items-center gap-1 md:gap-2 hover:text-cyber-cyan hover:bg-transparent transition-transform duration-300 origin-left hover:scale-[1.15]"
                     >
-                      Details
                       <img src="/assets/images/detailsIcon.svg" alt="details" className="w-12 h-12" />
+                      Details
                     </Link>
                   </div>
 

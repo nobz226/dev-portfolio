@@ -68,17 +68,17 @@ function ProjectListItem({ project }) {
               asChild={!!project.liveUrl}
               size="sm"
               aria-disabled={!project.liveUrl}
-              className={`font-silom text-xs uppercase tracking-wider text-cyber-cyan rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-cyber-cyan ${!project.liveUrl ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`font-silom text-sm uppercase tracking-wider text-cyber-cyan rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-cyber-cyan ${!project.liveUrl ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {project.liveUrl ? (
                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
-                  Live
                   <img src="/assets/images/arrow.svg" alt="arrow" className="w-12 h-12" />
+                  Live
                 </a>
               ) : (
                 <span className="flex items-center gap-1 md:gap-2" tabIndex={-1}>
-                  Live
                   <img src="/assets/images/arrow.svg" alt="" className="w-12 h-12" />
+                  Live
                 </span>
               )}
             </Button>
@@ -90,13 +90,13 @@ function ProjectListItem({ project }) {
             >
               {project.repoUrl ? (
                 <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
-                  Code
                   <img src="/assets/images/codeIcon.svg" alt="code" className="w-12 h-12" />
+                  Code
                 </a>
               ) : (
                 <span className="flex items-center gap-1 md:gap-2" tabIndex={-1}>
-                  Code
                   <img src="/assets/images/codeIcon.svg" alt="" className="w-12 h-12" />
+                  Code
                 </span>
               )}
             </Button>
@@ -106,8 +106,8 @@ function ProjectListItem({ project }) {
               className="font-silom text-sm uppercase tracking-wider text-snow/80 rounded-none flex-1 bg-transparent hover:bg-transparent hover:text-snow"
             >
               <Link to={`/projects/${project.slug}`} className="flex items-center gap-1 md:gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
-                Details
                 <img src="/assets/images/detailsIcon.svg" alt="details" className="w-12 h-12" />
+                Details
               </Link>
             </Button>
           </div>

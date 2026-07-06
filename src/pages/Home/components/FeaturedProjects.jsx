@@ -42,8 +42,8 @@ export default function FeaturedProjects() {
               className="font-silom uppercase tracking-widest text-sm text-text-dim bg-transparent w-fit hover:bg-transparent hover:text-text-dim"
             >
               <Link to="/projects" className="flex items-center gap-2 transition-transform duration-300 origin-left hover:scale-[1.15]">
-                View All
                 <img src="/assets/images/arrow2.svg" alt="arrow" className="w-[84px] h-[84px]" />
+                View All
               </Link>
             </Button>
           </motion.div>
