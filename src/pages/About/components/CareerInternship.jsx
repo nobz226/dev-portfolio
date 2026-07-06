@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import SectionWrapper from '@/components/SectionWrapper'
 import TypedText from '@/components/TypedText'
 
 export default function CareerInternship() {
+  const [titleDone, setTitleDone] = useState(false)
+
   return (
     <SectionWrapper id="career" label="// internship goals">
       <div className="max-w-3xl">
@@ -11,6 +14,7 @@ export default function CareerInternship() {
             as="span"
             variant="terminal"
             startOnView
+            onComplete={() => setTitleDone(true)}
             text={[
               { text: "Seeking ", className: "" },
               { text: "Internship Opportunities", className: "text-cyber-cyan" },
@@ -20,9 +24,8 @@ export default function CareerInternship() {
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          animate={titleDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
           className="space-y-6"
         >
           <p className="font-mono text-lg md:text-xl text-snow/90 leading-relaxed">

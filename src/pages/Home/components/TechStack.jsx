@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiFramer, SiThreedotjs,
@@ -76,6 +77,8 @@ const itemVariants = {
 }
 
 export default function TechStack() {
+  const [titleDone, setTitleDone] = useState(false)
+
   return (
     <SectionWrapper id="stack" label="// tech stack" variant="cyan" labelVariant="soft-blue">
       <h2 className="font-sans font-bold text-4xl md:text-5xl text-charcoal mb-12 leading-tight">
@@ -83,6 +86,7 @@ export default function TechStack() {
           as="span"
           variant="terminal"
           startOnView
+          onComplete={() => setTitleDone(true)}
           cursorColor="#f9f7f7"
           text={[
             { text: "Tools & ", className: "" },
@@ -91,7 +95,12 @@ export default function TechStack() {
         />
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={titleDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10"
+      >
         {stack.map((group, gi) => (
           <motion.div
             key={group.category}
@@ -149,7 +158,7 @@ export default function TechStack() {
             </ul>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </SectionWrapper>
   )
 }

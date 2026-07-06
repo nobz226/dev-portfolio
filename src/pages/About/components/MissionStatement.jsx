@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import SectionWrapper from '@/components/SectionWrapper'
 import TypedText from '@/components/TypedText'
 
 export default function MissionStatement() {
+  const [titleDone, setTitleDone] = useState(false)
+
   return (
     <SectionWrapper id="mission" label="// mission statement" variant="cyan" labelVariant="soft-blue">
       <div className="max-w-3xl">
@@ -11,6 +14,7 @@ export default function MissionStatement() {
             as="span"
             variant="terminal"
             startOnView
+            onComplete={() => setTitleDone(true)}
             cursorColor="#f9f7f7"
             text={[
               { text: "The Ongoing ", className: "" },
@@ -19,6 +23,11 @@ export default function MissionStatement() {
           />
         </h2>
 
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={titleDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
         <motion.blockquote
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -55,6 +64,7 @@ export default function MissionStatement() {
             </span>
           ))}
         </motion.div>
+      </motion.div>
       </div>
     </SectionWrapper>
   )

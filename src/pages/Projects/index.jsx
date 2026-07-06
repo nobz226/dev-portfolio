@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import ProjectsGrid from './components/ProjectsGrid'
 import SectionWrapper from '@/components/SectionWrapper'
@@ -7,6 +8,8 @@ import { usePageMeta } from '@/hooks/usePageMeta'
 import { useStructuredData } from '@/hooks/useStructuredData'
 
 export default function Projects() {
+  const [heroDone, setHeroDone] = useState(false)
+
   usePageMeta(
     'Projects - Eduard Rotaru | Full-Stack Development & Design',
     'Case studies and portfolio projects including music platforms, art galleries, e-commerce, and APIs. Featuring React, Next.js, Tailwind CSS, and modern web technologies.'
@@ -45,6 +48,7 @@ export default function Projects() {
             <TypedText
               as="span"
               variant="terminal"
+              onComplete={() => setHeroDone(true)}
               text={[
                 { text: "Projects & ", className: "" },
                 { text: "Case Studies", className: "text-cyber-cyan" },
@@ -67,7 +71,13 @@ export default function Projects() {
       </section>
 
       <SectionWrapper label={null} contentClassName="max-w-7xl px-8 md:px-12">
-        <ProjectsGrid />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={heroDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
+          <ProjectsGrid />
+        </motion.div>
       </SectionWrapper>
     </main>
     </>

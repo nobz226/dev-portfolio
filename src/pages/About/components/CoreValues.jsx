@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import ModelLodCard from '@/components/ModelLodCard'
 import SectionWrapper from '@/components/SectionWrapper'
 import TypedText from '@/components/TypedText'
@@ -26,22 +28,36 @@ const values = [
   },
 ]
 
-export default function CoreValues() {
+export default function CoreValues({ heroDone }) {
+  const [titleDone, setTitleDone] = useState(false)
+
   return (
     <SectionWrapper id="values" label="// core values">
       <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-14 leading-tight">
-        <TypedText
-          as="span"
-          variant="terminal"
-          startOnView
-          text={[
-            { text: "What Drives ", className: "" },
-            { text: "My Work", className: "text-cyber-cyan" },
-          ]}
-        />
+        {heroDone ? (
+          <TypedText
+            as="span"
+            variant="terminal"
+            startOnView
+            onComplete={() => setTitleDone(true)}
+            text={[
+              { text: "What Drives ", className: "" },
+              { text: "My Work", className: "text-cyber-cyan" },
+            ]}
+          />
+        ) : (
+          <span className="invisible pointer-events-none select-none" aria-hidden="true">
+            What Drives My Work
+          </span>
+        )}
       </h2>
 
-      <div className="flex flex-col gap-px bg-black/5">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={titleDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="flex flex-col gap-px bg-black/5"
+      >
         {values.map((v) => (
           <ModelLodCard
             key={v.index}
@@ -51,7 +67,7 @@ export default function CoreValues() {
             modelSrc={v.modelSrc}
           />
         ))}
-      </div>
+      </motion.div>
     </SectionWrapper>
   )
 }
