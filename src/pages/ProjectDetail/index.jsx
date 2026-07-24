@@ -11,6 +11,7 @@ import { useFocusTrap } from '@/hooks/useFocusTrap'
 import { allProjects } from '@/data/projects'
 import { renderParagraphs } from '@/lib/helpers'
 import ProjectNav from './components/ProjectNav'
+import StickyActionBar from './components/StickyActionBar'
 import TypedText from '@/components/TypedText'
 
 export default function ProjectDetail() {
@@ -162,6 +163,12 @@ export default function ProjectDetail() {
 
       {/* Description Section */}
       <SectionWrapper label="// description" variant="dark">
+        <StickyActionBar
+          project={project}
+          prevProject={prevProject}
+          nextProject={nextProject}
+          goBack={goBack}
+        />
         <div className="flex items-center gap-4 mb-8">
           <span className="font-silom text-sm text-snow uppercase tracking-widest">
             {project.category}

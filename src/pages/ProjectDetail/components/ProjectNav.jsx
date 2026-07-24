@@ -49,7 +49,7 @@ function ActionButton({ href, onClick, label, icon, color = 'muted-foreground' }
 
 export default function ProjectNav({ project, prevProject, nextProject, goBack }) {
   return (
-    <section className="relative py-16 px-6 border-t border-black/5">
+    <section id="project-nav" className="relative py-16 px-6 border-t border-black/5">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
