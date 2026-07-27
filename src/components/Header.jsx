@@ -44,7 +44,7 @@ export default function Header() {
             className="font-sans font-bold text-3xl text-charcoal tracking-tight"
           >
             <span>Eduard </span>
-            <span className="text-cyber-cyan">Rotaru</span>
+            <span>Rotaru</span>
           </motion.span>
         </NavLink>
 
@@ -61,7 +61,7 @@ export default function Header() {
                 to={link.to}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `font-silom text-base font-medium tracking-widest uppercase transition-colors duration-300 relative group ${isActive ? 'text-cyber-cyan' : 'text-muted-foreground hover:text-charcoal'
+                   `font-silom text-base font-medium tracking-widest uppercase transition-colors duration-300 relative group ${isActive ? 'text-charcoal' : 'text-muted-foreground hover:text-charcoal'
                   }`
                 }
               >
@@ -123,8 +123,8 @@ export default function Header() {
                   end={link.to === '/'}
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) =>
-                    `font-silom text-base font-medium tracking-widest uppercase py-2 transition-colors duration-300 ${isActive ? 'text-cyber-cyan' : 'text-muted-foreground'
-                    }`
+                     `font-silom text-base font-medium tracking-widest uppercase py-2 transition-colors duration-300 ${isActive ? 'text-charcoal' : 'text-muted-foreground'
+                     }`
                   }
                 >
                   {link.label}
