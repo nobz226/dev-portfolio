@@ -28,28 +28,22 @@ const values = [
   },
 ]
 
-export default function CoreValues({ heroDone }) {
+export default function CoreValues() {
   const [titleDone, setTitleDone] = useState(false)
 
   return (
     <SectionWrapper id="values" label="// core values">
       <h2 className="font-sans font-bold text-4xl md:text-5xl text-snow mb-14 leading-tight">
-        {heroDone ? (
-          <TypedText
-            as="span"
-            variant="terminal"
-            startOnView
-            onComplete={() => setTitleDone(true)}
-            text={[
-              { text: "What Drives ", className: "" },
-              { text: "My Work", className: "text-cyber-cyan" },
-            ]}
-          />
-        ) : (
-          <span className="invisible pointer-events-none select-none" aria-hidden="true">
-            What Drives My Work
-          </span>
-        )}
+        <TypedText
+          as="span"
+          variant="terminal"
+          startOnView
+          onComplete={() => setTitleDone(true)}
+          text={[
+            { text: "What Drives ", className: "" },
+            { text: "My Work", className: "text-cyber-cyan" },
+          ]}
+        />
       </h2>
 
       <motion.div
