@@ -50,7 +50,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-black/5 py-4 text-center">
-        <p className="font-mono text-sm text-muted-foreground/60">
+        <p className="font-mono text-sm text-muted-foreground">
           © {new Date().getFullYear()} Eduard Rotaru. Built with React + Vite.
         </p>
       </div>

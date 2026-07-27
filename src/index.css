@@ -10,6 +10,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Cal Sans";
+  src: url("/assets/fonts/CalSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --color-cyber-cyan: #2dd4bf;
   --color-soft-blue: #22b8c7;

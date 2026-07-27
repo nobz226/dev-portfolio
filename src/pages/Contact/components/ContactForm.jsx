@@ -108,11 +108,13 @@ export default function ContactForm() {
               label="Name" name="name" required
               value={formData.name} onChange={handleChange}
               placeholder="Your name" error={errors.name}
+              autoComplete="name"
             />
             <FormField
               label="Email" name="email" type="email" required
               value={formData.email} onChange={handleChange}
               placeholder="your@email.com" error={errors.email}
+              autoComplete="email"
             />
           </div>
 

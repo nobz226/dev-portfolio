@@ -2,7 +2,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 
-export default function FormField({ label, name, type = 'text', value, onChange, error, placeholder, rows, required }) {
+export default function FormField({ label, name, type = 'text', value, onChange, error, placeholder, rows, required, autoComplete }) {
   const id = `field-${name}`
   const shared = 'font-mono text-base bg-snow border-black/10 text-charcoal placeholder:text-black/25 rounded-none focus-visible:ring-cyber-cyan focus-visible:border-cyber-cyan'
 
@@ -20,6 +20,7 @@ export default function FormField({ label, name, type = 'text', value, onChange,
           onChange={onChange}
           rows={rows}
           placeholder={placeholder}
+          autoComplete={autoComplete}
           aria-invalid={!!error}
           aria-describedby={error ? `${id}-error` : undefined}
           className={`${shared} resize-none`}
@@ -33,6 +34,7 @@ export default function FormField({ label, name, type = 'text', value, onChange,
           value={value}
           onChange={onChange}
           placeholder={placeholder}
+          autoComplete={autoComplete}
           aria-invalid={!!error}
           aria-describedby={error ? `${id}-error` : undefined}
           className={shared}
