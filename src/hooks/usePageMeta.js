@@ -1,4 +1,10 @@
 import { useEffect } from 'react'
+import { PERSONAL } from '@/data/config'
+
+function absoluteUrl(path) {
+  if (!path || path.startsWith('http')) return path
+  return `https://${PERSONAL.domain}${path.startsWith('/') ? '' : '/'}${path}`
+}
 
 export function usePageMeta(title, description, ogImage = '/og-image.png', canonical = '') {
   useEffect(() => {
@@ -28,6 +34,7 @@ export function usePageMeta(title, description, ogImage = '/og-image.png', canon
     }
 
     const url = canonical || window.location.href
+    const imageUrl = absoluteUrl(ogImage)
 
     // Description
     upsertMeta('name', 'description',
@@ -36,7 +43,7 @@ export function usePageMeta(title, description, ogImage = '/og-image.png', canon
     // Open Graph
     upsertMeta('property', 'og:title', title || 'Eduard Rotaru')
     upsertMeta('property', 'og:description', description || 'Full-stack developer portfolio')
-    upsertMeta('property', 'og:image', ogImage)
+    upsertMeta('property', 'og:image', imageUrl)
     upsertMeta('property', 'og:image:width', '1200')
     upsertMeta('property', 'og:image:height', '630')
     upsertMeta('property', 'og:url', url)
@@ -48,7 +55,7 @@ export function usePageMeta(title, description, ogImage = '/og-image.png', canon
     upsertMeta('name', 'twitter:card', 'summary_large_image')
     upsertMeta('name', 'twitter:title', title || 'Eduard Rotaru')
     upsertMeta('name', 'twitter:description', description || 'Full-stack developer portfolio')
-    upsertMeta('name', 'twitter:image', ogImage)
+    upsertMeta('name', 'twitter:image', imageUrl)
 
     // Canonical
     upsertLink('canonical', url)
