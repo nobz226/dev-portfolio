@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import ProjectListItem from './ProjectCard'
 import { allProjects } from '@/data/projects'
 
-const allTags = ['All', ...new Set(allProjects.flatMap((p) => p.tags))]
+const allTags = ['All', ...[...new Set(allProjects.flatMap((p) => p.tags))].sort()]
 
 export default function ProjectsGrid() {
   const [active, setActive] = useState('All')
