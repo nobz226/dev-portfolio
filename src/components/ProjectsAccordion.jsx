@@ -64,7 +64,7 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
         }}
         className="flex-1 relative md:overflow-hidden overflow-visible md:min-h-[500px] w-full"
       >
-        <div className="flex md:flex-row flex-col h-[500px] md:h-[500px] md:items-stretch relative gap-0 w-full min-w-0">
+        <div className="flex md:flex-row flex-col h-auto md:h-[500px] md:items-stretch relative gap-0 w-full min-w-0">
           {projects.map((project, index) => {
             const isActive = activeIndex === index
             return (
@@ -75,7 +75,7 @@ export default function ProjectsAccordion({ projects, onActiveChange }) {
                 aria-expanded={isActive}
                 aria-label={`${project.title}: ${project.description}`}
                 onKeyDown={(e) => handleSlideKeyDown(e, index)}
-                className={`accordion-slide relative cursor-pointer bg-gradient-to-br from-charcoal to-accordion-dark transition-all duration-800 overflow-hidden ${
+                className={`accordion-slide relative cursor-pointer bg-gradient-to-br from-charcoal to-accordion-dark transition-all duration-800 ${
                   isActive
                     ? 'active md:flex-[2.5] grayscale-0'
                     : 'flex-1 grayscale-[80%] brightness-70 hover:grayscale-[30%] hover:brightness-[0.85]'
