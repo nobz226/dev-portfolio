@@ -4,6 +4,12 @@
   border-right: 1px solid rgba(45, 212, 191, 0.1);
 }
 
+@media (min-width: 768px) {
+  .accordion-slide {
+    overflow: hidden;
+  }
+}
+
 .accordion-slide.active.accordion-slide {
   background: var(--color-accordion-bg);
 }
@@ -83,7 +89,6 @@
 
   .accordion-slide.active {
     flex: 1;
-    min-height: 650px;
   }
 
   .accordion-slide-title {
