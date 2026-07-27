@@ -205,7 +205,7 @@ export default function ProjectDetail() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             <div className="space-y-6 text-charcoal/80">
-              {renderParagraphs(project.why, 'why')}
+              {renderParagraphs(project.why, 'why', 'text-charcoal/80')}
             </div>
           </motion.div>
         </SectionWrapper>
@@ -257,7 +257,7 @@ export default function ProjectDetail() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             <div className="space-y-6 text-charcoal/80">
-              {renderParagraphs(project.soul, 'soul')}
+              {renderParagraphs(project.soul, 'soul', 'text-charcoal/80')}
             </div>
           </motion.div>
         </SectionWrapper>

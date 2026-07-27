@@ -6,13 +6,13 @@ export const SOCIAL_ICONS = {
   Email: Mail,
 }
 
-export function renderParagraphs(content, keyPrefix = 'p') {
+export function renderParagraphs(content, keyPrefix = 'p', className = 'text-snow/80') {
   const paragraphs = Array.isArray(content)
     ? content
     : String(content).split(/\n\n+/).filter(Boolean)
 
   return paragraphs.map((paragraph, i) => (
-    <p key={`${keyPrefix}-${i}`} className="font-mono text-lg leading-relaxed text-snow/80">
+    <p key={`${keyPrefix}-${i}`} className={`font-mono text-lg leading-relaxed ${className}`}>
       {paragraph}
     </p>
   ))
