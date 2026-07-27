@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import SectionLabel from '@/components/SectionLabel'
 import TypedText from '@/components/TypedText'
 
-export default function AboutHero({ onHeroComplete }) {
+export default function AboutHero() {
   return (
     <>
       <section className="relative pt-40 pb-20 overflow-visible">
@@ -40,7 +40,6 @@ export default function AboutHero({ onHeroComplete }) {
             as="span"
             text="Skateboarder. Music producer. Full-stack developer. Every passion feeds the same obsession — relentless pursuit of quality and an eye for the invisible detail."
             variant="scramble"
-            onComplete={onHeroComplete}
           />
         </motion.p>
       </div>
